@@ -1,0 +1,52 @@
+<ul class="nav-side-bar">
+    <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
+    <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
+    <li><a href="<%= user_url(current_user) %>">Accounts</a></li>
+    <li><a href="<%= user_url(current_user) %>">Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
+</ul>
+
+<section class="page-content">
+<form action="<%= user_url(@user) %>" method="post">
+<%= auth_token %>
+  <header class="user-header"
+    <img src="<%= @profile.try(:picture_url) %>">
+    <label>
+      <input type="text" name="user[picture_url]">
+      Edit Photo
+    </label>
+    <br>
+    <h3 class="page-title">Edit Profile, <%= @user.username %></h3>
+  </header>
+  
+  <input type="hidden" name="_method" value="patch">
+
+  <label>
+    <input type="text" name="profile[age]" value="<%= @profile.age %>">
+    Age
+  </label>
+  <br>
+
+  <label>
+    <label>
+      <input type="radio" name="profile[gender]" value="0">
+      M
+    </label>
+    <label>
+      <input type="radio" name="profile[gender]" value="1">
+      F
+    </label>
+    Gender
+  </label>
+  <br>
+
+  <label>
+    <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code %>">
+    Zip Code
+  </label>
+  <br>
+
+  <input type="submit" value="Update Profile">
+</form>
+</section>

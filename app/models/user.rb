@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_one :profile, inverse_of: :user
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return (user.try(:is_password?, password) ? user : nil)

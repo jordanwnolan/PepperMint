@@ -1,1 +1,41 @@
-<h3 class="page-title">Welcome, <%= @user.username %></h3>
+<ul class="nav-side-bar">
+  <% if @user == current_user %>
+    <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
+    <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
+    <li><a href="<%= user_url(current_user) %>">Accounts</a></li>
+    <li><a href="<%= user_url(current_user) %>">Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
+  <% else %>
+    <li><a href="#">Friend <%= @user.username %></a></li>
+    <li><a href="#">Message <%= @user.username %></a></li>
+  <% end %>
+</ul>
+
+<section class="page-content">
+  <header class="user-header"
+    <img src="<%= @profile.try(:picture_url) %>">
+    <h3 class="page-title"><%= @user.username %></h3>
+    <ul class="user-header-info-list">
+      <li class="user-header-info-item">Age: <%= @profile.age %></li>
+      <li class="user-header-info-item">Gender: <%= @profile.gender %></li>
+      <li class="user-header-info-item">Zip Code: <%= @profile.zip_code %></li>
+      <li class="user-header-info-item">Joined: <%= @profile.created_at.to_formatted_s(:month_and_year) %></li>
+    </ul>
+  </header>
+
+  <article class="user-content">
+    <div class="user-sub-section">
+      <h3 class="sub-section-heading">Goals</h3>
+    </div>
+
+    <div class="user-sub-section">
+      <h3 class="sub-section-heading">Budgets</h3>
+    </div>
+
+    <div class="user-sub-section">
+      <h3 class="sub-section-heading">Posts</h3>
+    </div>
+  </article>
+
+</section>
