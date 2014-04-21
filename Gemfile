@@ -21,10 +21,15 @@ group :development do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'debugger'
 end
 
-group :test do
-  gem 'guard-rspec'
+group :test do 
+  gem 'shoulda-matchers'
+  gem 'faker' 
+  gem 'capybara' 
+  gem 'guard-rspec' 
+  gem 'launchy' 
 end
