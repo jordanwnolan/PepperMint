@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422011442) do
+ActiveRecord::Schema.define(version: 20140422115058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20140422011442) do
 
   add_index "banks", ["name"], name: "index_banks_on_name", using: :btree
 
+  create_table "merchant_categories", force: true do |t|
+    t.integer  "merchant_category_code"
+    t.string   "merchant_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profiles", force: true do |t|
     t.integer  "age"
     t.integer  "gender"
@@ -51,6 +58,19 @@ ActiveRecord::Schema.define(version: 20140422011442) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
+
+  create_table "transactions", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "merchant_category_code"
+    t.text     "description"
+    t.string   "category"
+    t.integer  "amount"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["account_id"], name: "index_transactions_on_account_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
