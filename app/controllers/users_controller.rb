@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in!
+  before_action :require_signed_in!, except: [:new, :create]
 
   def new
     @user = User.new
@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
     if @user.save
       @profile = Profile.new(user_id: @user.id)
+      @profile.save
+      login_user(@user)
       redirect_to(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
