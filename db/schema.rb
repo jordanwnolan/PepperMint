@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422115058) do
+ActiveRecord::Schema.define(version: 20140422144653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: true do |t|
-    t.integer  "user_id",          null: false
-    t.integer  "bank_id",          null: false
+    t.integer  "user_id",                      null: false
+    t.integer  "bank_id",                      null: false
     t.string   "account_username"
     t.string   "account_password"
     t.string   "account_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "balance"
+    t.integer  "balance",          default: 0
     t.integer  "account_type"
   end
 

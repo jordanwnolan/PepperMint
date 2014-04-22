@@ -17,6 +17,25 @@
   <br>
 
   <label>
+  Account Name
+    <input type="text" 
+    name="account[account_name]" 
+    value="<%= @account.account_name %>">
+    </label>
+    <br>
+
+  <label>
+    Account Type
+    <select name="account[account_type]">
+    <option></option>
+    <option value="0">Checking</option>
+    <option value="1">Savings</option>
+    <option value="2">Credit Card</option>
+    </select>
+  <br>
+
+
+  <label>
   Username
     <input type="text" 
     name="account[account_username]" 
