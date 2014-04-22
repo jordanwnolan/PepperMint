@@ -1,0 +1,36 @@
+<h3>Add Account</h3>
+
+<form action="<%= accounts_url %>" method="post">
+  <%= auth_token %>
+
+  <label>
+  Bank
+  <select name="account[bank_id]">
+    <option></option>
+      <% @banks.each do |bank| %>
+      <<-HTML.html_safe
+        <option value="<%= bank.id %>"><%= bank.name %></option>
+      HTML
+      <% end %>
+    </select>
+  </label>
+  <br>
+
+  <label>
+  Username
+    <input type="text" 
+    name="account[account_username]" 
+    value="<%= @account.account_username %>">
+    </label>
+    <br>
+
+  <label>
+  Password
+    <input type="password" 
+    name="account[account_password]" 
+    value="<%= @account.account_password %>">
+    </label>
+    <br>
+
+    <input type="submit" value="Add Account">
+</form>

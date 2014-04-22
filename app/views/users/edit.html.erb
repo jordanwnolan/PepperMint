@@ -1,7 +1,7 @@
 <ul class="nav-side-bar">
     <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
     <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
-    <li><a href="<%= user_url(current_user) %>">Accounts</a></li>
+    <li><a href="<%= accounts_url %>">Accounts</a></li>
     <li><a href="<%= user_url(current_user) %>">Settings</a></li>
     <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
     <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
@@ -27,14 +27,21 @@
     Age
   </label>
   <br>
-
+  
   <label>
     <label>
-      <input type="radio" name="profile[gender]" value="0">
+      <input type="radio" 
+        name="profile[gender]" 
+        value="0" 
+        <%= "checked" if @profile.gender == 0%>>
       M
     </label>
+    
     <label>
-      <input type="radio" name="profile[gender]" value="1">
+      <input type="radio" 
+        name="profile[gender]" 
+        value="1"
+        <%= "checked" if @profile.gender == 1%>>
       F
     </label>
     Gender

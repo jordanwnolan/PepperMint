@@ -1,6 +1,7 @@
 PepperMint::Application.routes.draw do
 
-  # root 'welcome#index'
+  root 'home#home'
   resources :users
+  resources :accounts
   resource :session, only: [:new, :create, :destroy]
 end

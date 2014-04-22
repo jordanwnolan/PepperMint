@@ -1,0 +1,40 @@
+<ul class="nav-side-bar">
+    <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
+    <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
+    <li><a href="<%= accounts_url %>">Accounts</a></li>
+    <li><a href="<%= user_url(current_user) %>">Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
+    <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
+</ul>
+
+<section class="page-content">
+  <header class="user-header">
+    <h3 class="page-title"><%= current_user.username %>'s Accounts</h3>
+  </header>
+
+  <table class="accounts-table">
+    <tr>
+      <td>Bank Name</td>
+      <td>Account Name</td>
+      <td>Account Type</td>
+      <td>Balance</td>
+    </tr>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= account.bank.name %></td>
+        <td><%= account.account_name %></td>
+        <td><%= account.account_type %></td>
+        <td>$<%= account.balance %></td>
+      </tr>
+    <% end %>
+      <td></td>
+      <td></td>
+      <td>Total:</td>
+      <td>
+        $<%= @accounts.inject(0) do |n, account| %>
+          <%n += account.account_type == 2 ? -1 * (account.balance) : account.balance %>
+        <% end %>
+      </td>
+
+  </table>
+</section>
