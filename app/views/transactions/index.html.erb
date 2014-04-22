@@ -17,7 +17,7 @@
         <option value="0" selected>All</option>
         <% @accounts.each do |account| %>
            <%= account.account_name %>
-           </option>
+           <option value="<%= account.id %>"><%= account.account_name %></option>
         <% end %>
       </select>
       <input type="submit" value="View">
