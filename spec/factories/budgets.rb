@@ -1,8 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :merchant_category do
-    merchant_category_code 5000
-    merchant_category "Gas"
+  factory :budget do
+    frequency 2
+    frequency_reset 1
+    amount 500
+    category_id 1
   end
 end

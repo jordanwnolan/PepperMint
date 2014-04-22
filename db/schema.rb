@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422144653) do
+ActiveRecord::Schema.define(version: 20140422192716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,29 @@ ActiveRecord::Schema.define(version: 20140422144653) do
 
   add_index "banks", ["name"], name: "index_banks_on_name", using: :btree
 
+  create_table "budgets", force: true do |t|
+    t.integer  "user_id",                        null: false
+    t.integer  "category_id",                    null: false
+    t.integer  "frequency",                      null: false
+    t.integer  "frequency_reset"
+    t.integer  "amount",                         null: false
+    t.boolean  "private",         default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "budgets", ["category_id"], name: "index_budgets_on_category_id", using: :btree
+  add_index "budgets", ["user_id"], name: "index_budgets_on_user_id", using: :btree
+
   create_table "merchant_categories", force: true do |t|
     t.integer  "merchant_category_code"
     t.string   "merchant_category"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "transaction_category_id"
   end
+
+  add_index "merchant_categories", ["transaction_category_id"], name: "index_merchant_categories_on_transaction_category_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "age"
@@ -59,11 +76,16 @@ ActiveRecord::Schema.define(version: 20140422144653) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
 
+  create_table "transaction_categories", force: true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "transactions", force: true do |t|
     t.integer  "account_id"
     t.integer  "merchant_category_code"
     t.text     "description"
-    t.string   "category"
     t.integer  "amount"
     t.date     "date"
     t.datetime "created_at"
