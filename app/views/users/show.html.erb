@@ -19,8 +19,10 @@
     <ul class="user-header-info-list">
       <li class="user-header-info-item">Age: <%= @profile.age %></li>
       <li class="user-header-info-item">Gender: <%= @profile.gender %></li>
-      <li class="user-header-info-item">Zip Code: <%= @profile.zip_code %></li>
-      <li class="user-header-info-item">Joined: <%= @profile.created_at.to_formatted_s(:month_and_year) %></li>
+      <li class="user-header-info-item">
+      Zip Code: <%= @profile.zip_code.to_s.try(:rjust, 5, '0') %></li>
+      <li class="user-header-info-item">
+      Joined: <%= @profile.created_at.to_formatted_s(:month_and_year) %></li>
     </ul>
   </header>
 

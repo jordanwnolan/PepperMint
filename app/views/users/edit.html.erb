@@ -49,7 +49,10 @@
   <br>
 
   <label>
-    <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code %>">
+  <%# fail %>
+    <input type="text" 
+    name="profile[zip_code]" 
+    value="<%= @profile.zip_code.to_s.try(:rjust, 5, '0') %>">
     Zip Code
   </label>
   <br>
