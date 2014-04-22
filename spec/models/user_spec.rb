@@ -36,5 +36,6 @@ describe User do
   context "associations" do
     it { should have_one(:profile) }
     it { should have_many(:accounts) }
+    it { should have_many(:transactions).through(:accounts) }
   end
 end

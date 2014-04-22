@@ -21,8 +21,8 @@
     </tr>
     <% @accounts.each do |account| %>
       <tr>
+        <td><a href="<%= account_url(account) %>"><%= account.account_name %></a></td>
         <td><%= account.bank.name %></td>
-        <td><%= account.account_name %></td>
         <td><%= account.account_type %></td>
         <td>$<%= account.balance %></td>
       </tr>

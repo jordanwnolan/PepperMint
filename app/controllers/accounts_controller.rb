@@ -21,6 +21,25 @@ class AccountsController < ApplicationController
     @accounts = current_user.accounts.includes(:bank)
   end
 
+  def show
+    # fail
+    @accounts = current_user.accounts
+    @account = current_user.accounts.where(id: params[:id]).first
+    @transactions = @account.transactions.includes(:merchant_category, :account)
+
+    unless @account
+      flash.now[:errors] = ["You are not authorized to view this account"]
+    end
+  end
+
+  def choose
+    if params[:account][:id] == '0'
+      redirect_to transactions_url
+    else
+      redirect_to account_url(Integer(params[:account][:id]))
+    end
+  end
+
   private
 
   def account_params
