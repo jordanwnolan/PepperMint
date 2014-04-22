@@ -18,7 +18,7 @@
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
-  <%= error %>
+  <div class="alert-error"><%= error %></div>
   <% end %>
 <% end %>
 <%= yield %>

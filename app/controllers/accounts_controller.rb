@@ -25,10 +25,12 @@ class AccountsController < ApplicationController
     # fail
     @accounts = current_user.accounts
     @account = current_user.accounts.where(id: params[:id]).first
-    @transactions = @account.transactions.includes(:merchant_category, :account)
 
-    unless @account
-      flash.now[:errors] = ["You are not authorized to view this account"]
+    if @account
+      @transactions = @account.transactions.includes(:merchant_category, :account)
+    else
+      flash[:errors] = ["You are not authorized to view this account"]
+      redirect_to accounts_url
     end
   end
 

@@ -39,7 +39,7 @@
           <td><%= transaction.try(:date) %></td>
           <td><%= transaction.try(:description) %></td>
           <td><%= category %></td>
-          <td><%= transaction.try(:amount) %></td>
+          <td>$<%= transaction.try(:amount) %></td>
         </tr>
       <% end %>
       </table>
