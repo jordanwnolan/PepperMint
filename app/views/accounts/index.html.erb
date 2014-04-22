@@ -12,6 +12,8 @@
     <h3 class="page-title"><%= current_user.username %>'s Accounts</h3>
   </header>
 
+  <a href="<%= new_account_url %>">Add Account</a>
+
   <table class="accounts-table">
     <tr>
       <td>Bank Name</td>
@@ -32,7 +34,7 @@
       <td>Total:</td>
       <td>
         $<%= @accounts.inject(0) do |n, account| %>
-          <%n += account.account_type == 2 ? -1 * (account.balance) : account.balance %>
+          <%n += account.try(:account_type) == 2 ? -1 * (account.try(:balance)) : account.try(:balance) %>
         <% end %>
       </td>
 
