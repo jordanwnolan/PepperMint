@@ -1,0 +1,41 @@
+<%= render partial: 'layouts/overview_side_bar' %>
+
+<section class="page-content">
+  <header class="user-header">
+    <h3 class="page-title">Create Goal <%= @goal.name %></h3>
+  </header>
+
+  <article class="page-content">
+    <form action="<%= goals_url %>" method="post">
+    <%= auth_token %>
+
+    <label for="goal-name">Name</label>
+    <input id="goal-name" type="text" name="goal[name]" value="<%= @goal.name %>">
+
+    <label for="goal-date">End Date</label>
+    <input id="goal-date" type="date" name="goal[goal_date]" value="<%= @goal.goal_date %>">
+
+    <label for="goal-amount">Amount</label>
+    <input id="goal-amount" type="text" name="goal[amount]" value="<%= @goal.amount %>">
+
+    <label for="goal-account">Select Account to Track</label>
+    <select name="goal[account_id]">
+    <option></option>
+      <% @accounts.each do |account| %>
+        <option value="<%= account.id %>" <%= "selected" if @goal.account_id == account.id %>>
+          <%= account.account_name %>
+        </option>
+      <% end %>
+    </select>
+
+    <label for="goal-private">Private</label>
+    <input type="radio" name="budget[private]" value="true" <%= "checked" if (@goal.private == true) %>>
+
+    <label for="goal-public">Public</label>
+    <input type="radio" name="budget[private]" value="false" <%= "checked" if (@goal.private == false) %>>
+    <input type="submit" value="Create Goal">
+    </form>
+
+    
+  </article>
+</section>

@@ -1,1 +1,30 @@
 <%= render partial: 'layouts/overview_side_bar' %>
+
+<section class="page-content">
+
+  <article class="overview-group">
+  <header class="overview-subheader">
+    <h3>Budgets</h3>
+  </header>
+
+  <a href="<%= new_goal_url %>">Add Goal</a>
+  <article class="goals">
+    <% @budgets.each do |budget| %>
+      <%= render partial: 'budgets/budgets', locals: { budget: budget } %>
+    <% end %>
+  </article>
+  </article>
+
+  <article class="overview-group">
+  <header class="overview-subheader">
+    <h3>Goals</h3>
+  </header>
+
+  <a href="<%= new_goal_url %>">Add Goal</a>
+  <article class="goals">
+    <% @goals.each do |goal| %>
+      <%= render partial: 'goals/goal', locals: { goal: goal } %>
+    <% end %>
+  </article>
+  </article>
+</section>

@@ -1,0 +1,15 @@
+<%= render partial: 'layouts/overview_side_bar' %>
+
+<section class="page-content">
+  <header class="user-header">
+    <h3 class="page-title"><%= current_user.username %>'s Goals</h3>
+  </header>
+
+  <a href="<%= new_goal_url %>">Add Goal</a>
+  <section class="goals">
+    <% @goals.each do |goal| %>
+      <%= render partial: 'goal', locals: { goal: goal } %>
+      <a href="<%= goal_url(goal) %>">View Goal</a>
+    <% end %>
+  </section>
+</section>

@@ -26,12 +26,10 @@ class Goal < ActiveRecord::Base
   end
 
   def overall_on_track?
-    debugger
     progress(account.transactions.where("date >= ?", self.created_at)) >= get_current_overall_scaled_goal_amount
   end
 
   def this_month_on_track?
-    debugger
     progress(account.transactions.where("date >= ?", get_reset_date)) >= get_current_scaled_monthly_amount
   end
 

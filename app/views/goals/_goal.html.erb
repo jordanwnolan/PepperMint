@@ -1,0 +1,34 @@
+<article class="goal">
+  <header class="goal-info">
+    <h3 class="goal-name"><%= goal.name %></h3>
+    <time><%= goal.goal_date %></time>
+  </header>
+      <table class="goals-table">
+        <tr>
+          <td>Total Goal Status</td>
+          <td>Goal Amount</td>
+          <td>Amount So Far</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= goal.overall_on_track? ? "On Track!" : "Uh oh, you're behind!" %></td>
+          <td><%= goal.amount %></td>
+          <td><%= goal.overall_progress %></td>
+          <td>~~~chart_goes_here</td>
+        </tr>
+
+        <tr>
+          <td>Status this Month</td>
+          <td>Monthly Amount</td>
+          <td>Amount Saved This Month</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= goal.this_month_on_track? ? "On Track!" : "Uh oh, you're behind this month!" %>
+          <td><%= goal.monthly_amount %></td>
+          <td><%= goal.this_month_progress %></td>
+          <td>~~~chart goes here</td>
+        </tr>
+      </table>
+  </div>
+</article>
