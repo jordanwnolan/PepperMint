@@ -14,6 +14,7 @@
     <td><%= transaction.try(:description) %></td>
     <td><%= category %></td>
     <td>$<%= transaction.try(:amount) %></td>
+    <td><%= button to "Edit",  edit_transaction_url(transaction) %>
   </tr>
 <% end %>
 </table>
