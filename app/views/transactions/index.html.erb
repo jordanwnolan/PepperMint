@@ -1,11 +1,4 @@
-<ul class="nav-side-bar">
-    <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
-    <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
-    <li><a href="<%= accounts_url %>">Accounts</a></li>
-    <li><a href="<%= user_url(current_user) %>">Settings</a></li>
-    <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
-    <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
-</ul>
+<%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
 
@@ -24,24 +17,6 @@
   </header>
 
   <article class="page-body">
-      <table class="transactions-table">
-      <tr class="table-headers">
-        <td>Account</td>
-        <td>Date</td>
-        <td>Description</td>
-        <td>Category</td>
-        <td>Amount</td>
-      </tr>
-      <% @transactions.each do |transaction| %>
-      <% category = transaction.try(:merchant_category).merchant_category %>
-        <tr class="table-data">
-          <td><%= transaction.account.account_name %></td>
-          <td><%= transaction.try(:date) %></td>
-          <td><%= transaction.try(:description) %></td>
-          <td><%= category %></td>
-          <td>$<%= transaction.try(:amount) %></td>
-        </tr>
-      <% end %>
-      </table>
+    <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
   </article>
 </section>

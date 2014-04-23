@@ -1,13 +1,19 @@
+<% @budgets.each do |budget| %>
   <% progress = budget.progress %>
   <% pct = number_to_percentage(progress / budget.amount.to_f * 100, precision: 0)  %>
   <div class="page-body-item-container">
     <div class="page-body-item">
       <ul>
+        <li class="list-title">
+          <a href="<%= budget_url(budget) %>">
+            <%= budget.transaction_category.description %>
+          </a>
+        </li>
         <li class="chart">~~chart goes here~~~</li>
         <li><%= pct %></li>
         <li><%= progress %> / <%= budget.amount %></li>
-        <li><%= budget.transaction_category.description %></li>
         <li><%= Budget.frequencies[budget.frequency] %></li>
       </ul>
     </div>
   </div>
+<% end %>

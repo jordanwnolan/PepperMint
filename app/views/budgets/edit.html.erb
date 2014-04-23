@@ -6,8 +6,9 @@
   </header>
 
   <article class="page-body">
-    <form action="<%= budgets_url %>" method="post" class="new-budget-form">
+    <form action="<%= budget_url(@budget) %>" method="post" class="new-budget-form">
     <%= auth_token %>
+    <input type="hidden" name="_method" value="patch">
 
     <label for="budget-amount">Amount</label>
       <input type="text" name="budget[amount]" id="budget-amount" value="<%= @budget.amount %>">
@@ -25,7 +26,7 @@
     <select name="budget[frequency]">
       <option></option>
       <% Budget.frequencies.each do |val, description| %>
-        <option value="<%= val %>"><%= description %></option>
+        <option value="<%= val %>" <%= "selected" if @budget.frequency == val %>><%= description %></option>
       <% end %>
     </select>
 
@@ -34,7 +35,9 @@
       <option></option>
       <%= Budget.frequency_resets.each do |n, items| %>
         <% items.each_with_index do |item, index| %>
-        <option value="<%= index %>"><%= n %> -- <%= item %></option>
+        <option value="<%= index %>" 
+        <%= "selected" if item == Budget.frequency_resets[@budget.frequency][@budget.frequency_reset] %>><%= n %> -- <%= item %>
+        </option>
         <% end %>
       <% end %>
     </select>
@@ -47,9 +50,9 @@
     <label for="budget-public">Public</label>
     <input type="radio" name="budget[private]" value="false" <%= "checked" if (@budget.private == false) %>>
 
-    <input type="submit" value="Create Budget!">
+    <input type="submit" value="Edit Budget!">
     </form>
-
+    <%= link_to "Cancel", budget_url(@budget) %>
 
   </article>
 </section>

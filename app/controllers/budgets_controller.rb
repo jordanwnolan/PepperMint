@@ -23,11 +23,39 @@ class BudgetsController < ApplicationController
 
   def show
     @budget = current_user.budgets.includes(:transaction_category).where(id: params[:id]).first
+    @transactions = @budget.current_transactions
 
     unless @budget
       flash[:errors] = ["You are not authorized to view this budget"]
       redirect_to root_url
     end
+  end
+
+  def edit
+    @budget = current_user.budgets.where(id: params[:id]).first
+    @categories = TransactionCategory.all
+    unless @budget
+      flash[:errors] = ["You are not authorized to view this budget"]
+      redirect_to root_url
+    end
+  end
+
+  def update
+    @budget = current_user.budgets.where(id: params[:id]).first
+
+    if @budget.update(budget_params)
+      flash[:alerts] = ["Budget updated successfully"]
+      redirect_to budget_url(@budget)
+    else
+      flash.now[:errors] = @budget.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @budget = Budget.find(params[:id])
+    @budget.destroy
+    redirect_to budgets_url
   end
 
   private

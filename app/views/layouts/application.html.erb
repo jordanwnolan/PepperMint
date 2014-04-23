@@ -7,30 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header class="top-navbar-container">
-<a href="<%= overview_url %>">
-  <h1 class="site-title">PepperMint</h1>
-</a>
-<nav class="top-navbar"
-  <ul class="top-navbar-items">
-    <li><a href="#">Feed</a></li>
-    <li><a href="#">Notifications</a></li>
-    <li><a href="#">Messages</a></li>
-    
-    <% if current_user %>
-    <li>
-      <a href="<%= user_url(current_user) %>">You are logged in as <%= current_user.username %></a>
-      <form class="logout-button" action="<%= session_url %>" method="post">
-        <%= auth_token %>
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Log Out">
-      </form>
-      </li>
-    <% end %>
-    
-    </ul>
-  </nav>
-</header>
+
+<%= render partial: 'layouts/top_nav_bar' %>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>

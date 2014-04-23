@@ -1,0 +1,19 @@
+<table class="transactions-table">
+<tr class="table-headers">
+  <td>Account</td>
+  <td>Date</td>
+  <td>Description</td>
+  <td>Category</td>
+  <td>Amount</td>
+</tr>
+<% @transactions.each do |transaction| %>
+<% category = transaction.try(:merchant_category).merchant_category %>
+  <tr class="table-data">
+    <td><%= transaction.account.account_name %></td>
+    <td><%= transaction.try(:date) %></td>
+    <td><%= transaction.try(:description) %></td>
+    <td><%= category %></td>
+    <td>$<%= transaction.try(:amount) %></td>
+  </tr>
+<% end %>
+</table>

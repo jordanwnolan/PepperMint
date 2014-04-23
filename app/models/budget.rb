@@ -31,9 +31,13 @@ class Budget < ActiveRecord::Base
       2=> :end_of_month }
   end
 
+  def current_transactions
+    self.transactions.where("date >= ?", get_reset_date)
+  end
+
   def progress
-    date = get_reset_date
-    applicable_transactions = self.transactions.where("date >= ?", date).all
+
+    applicable_transactions = current_transactions.all
 
     applicable_transactions.inject(0) { |accum, transactions| accum += transactions.amount }
   end

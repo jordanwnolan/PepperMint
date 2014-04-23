@@ -7,8 +7,8 @@
   </header>
 
   <article class="page-body">
-    <% @budgets.each do |budget| %>
-      <%= render partial: 'layouts/budget', locals: { budget: budget } %>
-    <% end %>
+    
+    <%= render partial: 'budgets/budgets', locals: { budgets: @budgets } %>
+    
   </article>
 </section>
