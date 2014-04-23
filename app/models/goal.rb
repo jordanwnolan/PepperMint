@@ -1,6 +1,6 @@
 class Goal < ActiveRecord::Base
   include Progress
-  before_create :define_monthly_amount
+  before_create :define_monthly_amount, :set_initial_balance
   before_save :define_monthly_amount
 
   validates :name, :goal_date, :amount, :private, presence: true
@@ -15,12 +15,16 @@ class Goal < ActiveRecord::Base
     self.transactions.where("date >= ?", date)
   end
 
+  def set_initial_balance
+    self.account_initial_bal = self.account.current_balance
+  end
+
   def define_monthly_amount
     start_date = (self.created_at ? self.created_at : Date.current)
     months_to_go = (self.goal_date.year * 12 + self.goal_date.month) - (start_date.year * 12 + start_date.month)
     self.monthly_amount = (amount / months_to_go.to_f).round
   end
-  
+
   def overall_on_track?
     debugger
     progress(account.transactions.where("date >= ?", self.created_at)) >= get_current_overall_scaled_goal_amount
