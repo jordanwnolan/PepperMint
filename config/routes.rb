@@ -5,7 +5,7 @@ PepperMint::Application.routes.draw do
   resources :users
   resources :accounts
   resources :budgets
-  resources :transactions, only: [:index]
+  resources :transactions, only: [:index, :edit, :update]
   get 'account_choose', to: 'accounts#choose', as: :account_choose
   resource :session, only: [:new, :create, :destroy]
   

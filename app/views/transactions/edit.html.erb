@@ -1,0 +1,42 @@
+<form action="<%= transaction_url(@transaction) %>" method="post">
+<table class="transactions-table">
+<tr class="table-headers">
+  <td>Account</td>
+  <td>Date</td>
+  <td>Description</td>
+  <td>Category</td>
+  <td>Amount</td>
+</tr>
+
+<% category_code = @transaction.try(:merchant_category_code) %>
+
+<%= auth_token %>
+
+<input type="hidden" name="_method" value="patch">
+
+<tr class="table-data">
+  <td><%= @transaction.account.account_name %></td>
+  <td><%= @transaction.try(:date) %></td>
+
+  <td>
+    <input type="text" name="transaction[description]" value="<%= @transaction.try(:description) %>">
+  </td>
+
+  <td>
+    <select name="transaction[merchant_category_code]">
+      <% @categories.each do |category| %>
+        <option value="<%= category.merchant_category_code %>" 
+          <%= "selected" if category_code == category.merchant_category_code%>>
+          <%= category.merchant_category %>
+        </option>
+      <% end %>
+    </select>
+  </td>
+
+  <td>$<%= @transaction.try(:amount) %></td>
+  <td><input type="submit" value="Update"></td>
+
+</tr>
+</table>
+</form>
+<%= link_to "Cancel", transactions_url %>

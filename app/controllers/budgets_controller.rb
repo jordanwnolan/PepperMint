@@ -42,7 +42,6 @@ class BudgetsController < ApplicationController
 
   def update
     @budget = current_user.budgets.where(id: params[:id]).first
-
     if @budget.update(budget_params)
       flash[:alerts] = ["Budget updated successfully"]
       redirect_to budget_url(@budget)
