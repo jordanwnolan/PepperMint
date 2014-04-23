@@ -1,5 +1,5 @@
 <% @budgets.each do |budget| %>
-  <% progress = budget.progress %>
+  <% progress = budget.progress(budget.current_transactions) %>
   <% pct = number_to_percentage(progress / budget.amount.to_f * 100, precision: 0)  %>
   <div class="page-body-item-container">
     <div class="page-body-item">
@@ -12,7 +12,8 @@
         <li class="chart">~~chart goes here~~~</li>
         <li><%= pct %></li>
         <li><%= progress %> / <%= budget.amount %></li>
-        <li><%= Budget.frequencies[budget.frequency] %></li>
+        <li><%= FREQUENCIES[budget.frequency] %></li>
+        <li class="on-track"><%= budget.on_track?(progress) ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
       </ul>
     </div>
   </div>

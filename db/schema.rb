@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422192716) do
+ActiveRecord::Schema.define(version: 20140423155055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,22 @@ ActiveRecord::Schema.define(version: 20140422192716) do
 
   add_index "budgets", ["category_id"], name: "index_budgets_on_category_id", using: :btree
   add_index "budgets", ["user_id"], name: "index_budgets_on_user_id", using: :btree
+
+  create_table "goals", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "account_id"
+    t.integer  "account_initial_bal", default: 0
+    t.date     "goal_date"
+    t.integer  "amount"
+    t.boolean  "private",             default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "monthly_amount"
+  end
+
+  add_index "goals", ["account_id"], name: "index_goals_on_account_id", using: :btree
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
 
   create_table "merchant_categories", force: true do |t|
     t.integer  "merchant_category_code"

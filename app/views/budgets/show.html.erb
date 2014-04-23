@@ -3,7 +3,7 @@
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-content-title">
-      <%= Budget.frequencies[@budget.frequency] %> --
+      <%= FREQUENCIES[@budget.frequency] %> --
       <%= @budget.transaction_category.description %>
     </h3>
     <%= link_to "Edit Budget", edit_budget_url(@budget) %>

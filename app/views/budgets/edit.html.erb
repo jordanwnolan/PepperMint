@@ -25,7 +25,7 @@
     <label for="budget-frequency">Frequency</label>
     <select name="budget[frequency]">
       <option></option>
-      <% Budget.frequencies.each do |val, description| %>
+      <% FREQUENCIES.each do |val, description| %>
         <option value="<%= val %>" <%= "selected" if @budget.frequency == val %>><%= description %></option>
       <% end %>
     </select>
@@ -33,10 +33,10 @@
     <label for="budget-reset-weekly">When to end period (weekly)?</label>
     <select name="budget[frequency_reset]">
       <option></option>
-      <%= Budget.frequency_resets.each do |n, items| %>
+      <%= FREQUENCY_RESETS.each do |n, items| %>
         <% items.each_with_index do |item, index| %>
         <option value="<%= index %>" 
-        <%= "selected" if item == Budget.frequency_resets[@budget.frequency][@budget.frequency_reset] %>><%= n %> -- <%= item %>
+        <%= "selected" if item == FREQUENCY_RESETS[@budget.frequency][@budget.frequency_reset] %>><%= n %> -- <%= item %>
         </option>
         <% end %>
       <% end %>
