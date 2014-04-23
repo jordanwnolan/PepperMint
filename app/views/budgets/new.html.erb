@@ -1,0 +1,55 @@
+<%= render partial: 'layouts/overview_side_bar' %>
+
+<section class="page-content">
+  <header class="page-content-header">
+    <h3 class="page-content-title">Create New Budget</h3>
+  </header>
+
+  <article class="page-body">
+    <form action="<%= budgets_url %>" method="post" class="new-budget-form">
+    <%= auth_token %>
+
+    <label for="budget-amount">Amount</label>
+      <input type="text" name="budget[amount]" id="budget-amount" value="<%= @budget.amount %>">
+    </select>
+
+    <label for="budget-category">Category</label>
+    <select name="budget[category_id]" id="budget-category">
+      <option></option>
+      <% @categories.each do |category| %>
+        <option value="<%= category.id %>"><%= category.description %></option>
+      <% end %>
+    </select>
+
+    <label for="budget-frequency">Frequency</label>
+    <select name="budget[frequency]">
+      <option></option>
+      <% Budget.frequencies.each do |val, description| %>
+        <option value="<%= val %>"><%= description %></option>
+      <% end %>
+    </select>
+
+    <label for="budget-reset-weekly">When to end period (weekly)?</label>
+    <select name="budget[frequency_reset]">
+      <option></option>
+      <%= Budget.frequency_resets.each do |n, items| %>
+        <% items.each_with_index do |item, index| %>
+        <option value="<%= index %>"><%= n %> -- <%= item %></option>
+        <% end %>
+      <% end %>
+    </select>
+
+
+
+    <label for="budget-private">Private</label>
+    <input type="radio" name="budget[private]" value="true" <%= "checked" if (@budget.private == true) %>>
+
+    <label for="budget-public">Public</label>
+    <input type="radio" name="budget[private]" value="false" <%= "checked" if (@budget.private == false) %>>
+
+    <input type="submit" value="Create Budget!">
+    </form>
+
+
+  </article>
+</section>

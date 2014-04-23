@@ -1,0 +1,14 @@
+<%= render partial: 'layouts/overview_side_bar' %>
+
+<section class="page-content">
+  <header class="page-content-header">
+    <h3 class="page-content-title">Budgets</h3>
+    <a href="<%= new_budget_url %>">Create New Budget</a>
+  </header>
+
+  <article class="page-body">
+    <% @budgets.each do |budget| %>
+      <%= render partial: 'layouts/budget', locals: { budget: budget } %>
+    <% end %>
+  </article>
+</section>

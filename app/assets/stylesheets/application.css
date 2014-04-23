@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
  */
+
+html, h1, h2, h3, form, section, article, div, select, option, p {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font: inherit;
+}
+
+body {
+  font-family: sans-serif;
+}

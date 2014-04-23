@@ -1,7 +1,7 @@
 class Budget < ActiveRecord::Base
   validates :frequency, :frequency_reset, :amount, presence: true
   validate :user
-  validate :category
+  validate :transaction_category
 
   belongs_to :user
   belongs_to(
@@ -12,6 +12,19 @@ class Budget < ActiveRecord::Base
   )
 
   has_many :transactions, through: :transaction_category, source: :transactions
+
+  def self.frequencies
+    {0 => 'Daily',
+     1 => 'Weekly',
+     2 => 'Monthly'}
+  end
+
+  def self.frequency_resets
+    {0 => [],
+     1 => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+     2 => ['First of Month', '15th of Month', 'End of Month']
+   }
+  end
 
   def self.reset_day
     { 1 => :beginning_of_month,
