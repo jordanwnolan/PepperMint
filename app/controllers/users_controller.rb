@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all.includes(:profile).where("id != ?", current_user.id)
+    @current_followed_users = current_user.followed_users.to_a
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -21,6 +26,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @already_following = current_user.followed_users.include?(@user)
+
+    if @user == current_user
+      @budgets = @user.budgets.to_a
+      @goals = @user.goals.to_a
+    else
+      @budgets = @user.budgets.where(private: false)
+      @goals = @user.goals.where(private: false)
+    end
+    
     @profile = @user.profile
   end
 
@@ -41,6 +56,19 @@ class UsersController < ApplicationController
       flash.now[:errors] += @profile.errors.full_messages if @profile.errors
       render :edit
     end
+  end
+
+  def follow_user
+    @user = User.find(params[:id])
+    Follow.create( {follower_id: current_user.id, followed_id: @user.id} )
+    redirect_to @user
+  end
+
+  def unfollow_user
+    @user = User.find(params[:id])
+    follow = Follow.find_by(follower_id: current_user.id, followed_id: @user.id)
+    follow.destroy
+    redirect_to @user
   end
 
   private

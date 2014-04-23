@@ -2,7 +2,13 @@ PepperMint::Application.routes.draw do
 
   root 'home#home'
   get 'overview', to: 'home#overview', as: :overview
-  resources :users
+
+  resources :users do
+    member do
+      get 'follow', to: 'users#follow_user'
+      get 'unfollow', to: 'users#unfollow_user'
+    end
+  end
   resources :accounts
   resources :budgets
   resources :goals

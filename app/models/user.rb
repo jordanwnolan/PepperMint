@@ -13,6 +13,13 @@ class User < ActiveRecord::Base
   has_many :transactions, through: :accounts, source: :transactions
   has_many :budgets
   has_many :goals
+  #follow model for people following you
+  has_many(:follower_joins, class_name: 'Follow', foreign_key: :follower_id, primary_key: :id)
+  #follow model for people you are following
+  has_many(:followed_joins, class_name: 'Follow', foreign_key: :followed_id, primary_key: :id)
+
+  has_many(:followers, through: :followed_joins, source: :follower)
+  has_many(:followed_users, through: :follower_joins, source: :followed)
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

@@ -1,0 +1,31 @@
+
+  <article class="overview-group">
+  <header class="overview-subheader">
+    <h3>Budgets</h3>
+  </header>
+
+  <% unless @user %>
+    <a href="<%= new_budget_url %>">Add Budget</a>
+  <% end %>
+  <article class="goals">
+    <% budgets.each do |budget| %>
+      <%= render partial: 'budgets/budgets', locals: { budget: budget } %>
+    <% end %>
+  </article>
+  </article>
+
+  <article class="overview-group">
+  <header class="overview-subheader">
+    <h3>Goals</h3>
+  </header>
+
+  <% unless @user %>
+    <a href="<%= new_goal_url %>">Add Goal</a>
+  <% end %>
+
+  <article class="goals">
+    <% goals.each do |goal| %>
+      <%= render partial: 'goals/goal', locals: { goal: goal } %>
+    <% end %>
+  </article>
+  </article>

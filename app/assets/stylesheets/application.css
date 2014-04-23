@@ -106,7 +106,6 @@ h2 {
   border-style: none;
 }
 
-
 .header-nav > ul > li:hover > a {
   background: #333;
 }
@@ -118,7 +117,6 @@ h2 {
 .nav-side-bar {
   width: 200px;
   float: left;
-  
 }
 
 .nav-side-bar > li > a {
@@ -137,4 +135,15 @@ h2 {
   float: right;
   border-left: 3px solid #ddd;
   padding-left: 50px;
+}
+
+.user-header-info-list > li {
+  padding: 10px;
+  float: left;
+  display: block;
+}
+
+.user > article > header > h3 {
+  font-size: 20px;
+  padding: 20px 0 0 0;
 }
