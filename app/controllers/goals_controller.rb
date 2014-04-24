@@ -25,7 +25,8 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @goal = current_user.goals.find(params[:id])
+    @goal = Goal.includes(:user, comments: :author).find(params[:id])
+    @comments = @goal.comments.order(created_at: :desc)
 
     unless @goal
       flash[:errors] = ["You are not authorized to view this goal"]

@@ -2,6 +2,8 @@ class Budget < ActiveRecord::Base
   include Progress
   include Shareable
   include Fameable
+  include Commentable
+  
   validates :frequency, :frequency_reset, :amount, presence: true
   validate :user
   validate :transaction_category

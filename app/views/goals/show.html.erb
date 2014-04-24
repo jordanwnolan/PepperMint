@@ -3,12 +3,22 @@
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-content-title">
+    <%= "#{ @goal.user.username }'s goal to: " unless @goal.user == current_user %>
     <%= @goal.name %>
     </h3>
     <%= link_to "Edit Goal", edit_goal_url(@goal) %>
     <%= button_to "Delete Goal", goal_url(@goal), method: :delete, form_class: "delete-button" %>
   </header>
   <article class="page-body">
+    <div class="cards">
     <%= render partial: 'goals/goal', locals: { goal: @goal } %>
+    
+    <form action="<%= goal_comments_url(@goal) %>" method="post">
+      <%= auth_token %>
+      <textarea name="comment[body]" id="comment-body"></textarea>
+      <input type="submit" value="Add Comment">
+    </form>
+    <%= render @comments %>
+    </div>
   </article>
 </section>

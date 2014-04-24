@@ -1,15 +1,29 @@
+<section class="page-group">
 <%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-content-title">
+      <%= "#{ @budget.user.username }'s budget for: " unless @budget.user == current_user %>
       <%= FREQUENCIES[@budget.frequency] %> --
       <%= @budget.transaction_category.description %>
     </h3>
     <%= link_to "Edit Budget", edit_budget_url(@budget) %>
     <%= button_to "Delete Budget", budget_url(@budget), method: :delete, form_class: "delete-button" %>
   </header>
-  <article class="page-body">
-    <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+  <article class="page-section">
+    <form action="<%= budget_comments_url(@budget) %>" method="post">
+    <%= auth_token %>
+    <textarea name="comment[body]" id="comment-body"></textarea>
+    <input type="submit" value="Add Comment">
+    </form>
+    <div class="cards group">
+    <%= render @comments %>
+    </div>
+    <% if @budget.user == current_user %>
+      <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+    <% end %>
   </article>
+</section>
+
 </section>

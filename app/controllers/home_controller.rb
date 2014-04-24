@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
   def feed
     @shares = Share.
-    all.includes(:user, :fames)
+    all.includes(:user, :fames, shareable: { comments: :author } )
     .where("created_at >= ? AND user_id != ?", Date.current.prev_month,current_user.id)
     .order(created_at: :desc)
   end
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   def followed_feed
     ids = current_user.followed_users.map { |user| user.id }
     @shares = Share.where(user_id: ids).where("created_at >= ?", Date.current.prev_month)
-    .includes(:user, :fames).order(created_at: :desc)
+    .includes(:user, :fames, shareable: { comments: :author }).order(created_at: :desc)
   end
 
   def fame

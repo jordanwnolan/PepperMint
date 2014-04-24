@@ -6,11 +6,11 @@ PepperMint::Application.routes.draw do
   get 'feed', to: 'home#feed'
 
 
+
   resources :users do
     resources :messages, only: [:create, :show, :index, :destroy]
     resources :notifications, only: [:index]
     member do
-      # resources :messages, only: [:create, :show, :index, :destroy]
       get 'follow', to: 'users#follow_user'
       get 'unfollow', to: 'users#unfollow_user'
       post 'share/:share_id/fame', to: 'users#fame', as: :fame
@@ -19,9 +19,14 @@ PepperMint::Application.routes.draw do
   end
 
   resources :fames, only: [:destroy]
+  resources :comments, only: [:destroy]
   resources :accounts
-  resources :budgets
-  resources :goals
+  resources :budgets do
+    resources :comments, only: [:create]
+  end
+  resources :goals do
+    resources :comments, only: [:create]
+  end
   resources :transactions, only: [:index, :edit, :update]
   get 'account_choose', to: 'accounts#choose', as: :account_choose
   resource :session, only: [:new, :create, :destroy]

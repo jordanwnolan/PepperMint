@@ -22,10 +22,11 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @budget = current_user.budgets.includes(:transaction_category).where(id: params[:id]).first
+    @budget = Budget.includes(:user, :transaction_category, { comments: :author} ).where(id: params[:id]).first
     @transactions = @budget.current_transactions
+    @comments = @budget.comments.order(created_at: :desc)
 
-    unless @budget
+    if @budget.private
       flash[:errors] = ["You are not authorized to view this budget"]
       redirect_to root_url
     end
@@ -34,9 +35,10 @@ class BudgetsController < ApplicationController
   def edit
     @budget = current_user.budgets.where(id: params[:id]).first
     @categories = TransactionCategory.all
+
     unless @budget
       flash[:errors] = ["You are not authorized to view this budget"]
-      redirect_to root_url
+      redirect_to @budget
     end
   end
 

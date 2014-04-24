@@ -2,6 +2,7 @@ class Goal < ActiveRecord::Base
   include Progress
   include Shareable
   include Fameable
+  include Commentable
   
   before_create :define_monthly_amount, :set_initial_balance
   before_save :define_monthly_amount
