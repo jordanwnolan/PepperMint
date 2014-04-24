@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if options[:item]
       item = options[:item]
       is_new = options[:is_new]
-      item.create_public_share( { user: current_user, is_new: is_new } )
+      item.create_public_share( { user_id: current_user.id, is_new: is_new } )
     end
   end
 

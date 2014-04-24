@@ -1,0 +1,12 @@
+<section class="page group">
+  <ul class="nav-side-bar group">
+      <li><a href="<%= feed_url %>">Show All Updates</a><li>
+      <li><a href="<%= overview_url %>">Overview</a></li>
+      <li><a href="<%= budgets_url %>">Budgets</a></li>
+      <li><a href="<%= goals_url %>">Goals</a></li>
+      <li><a href="<%= transactions_url %>">Transactions</a></li>
+  </ul>
+<section class="page-content">
+  <%= render partial: 'feed', locals: { shares: @shares } %>
+</section>
+</section>

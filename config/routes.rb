@@ -2,6 +2,8 @@ PepperMint::Application.routes.draw do
 
   root 'home#home'
   get 'overview', to: 'home#overview', as: :overview
+  get 'followed_feed', to: 'home#followed_feed'
+  get 'feed', to: 'home#feed'
 
   resources :users do
     member do

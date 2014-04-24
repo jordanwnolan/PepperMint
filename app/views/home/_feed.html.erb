@@ -1,0 +1,14 @@
+    <section class="shares">
+      <% shares.each do |share| %>
+        <article class="share">
+          <header class="share-header">
+            <div class="thumb">
+            <a href="<%= user_url(share.user.id) %>"><img src=""></a>
+            </div>
+            <h3><a href="<%= user_url(share.user.id) %>"><%= share.user.username %></a></h3>
+            <time><%= share.created_at %></time>
+          </header>
+          <p><%= share.message %></p>
+        </article>
+      <% end %>
+    </section>

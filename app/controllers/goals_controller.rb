@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
     # fail
     if @goal.save
       flash[:alerts] = ['Goal created successfully']
-      publish_share({ item: @goal }) unless @goal.private
+      publish_share({ item: @goal, user_id: current_user.id }) unless @goal.private
       # fail
       redirect_to @goal
     else
@@ -53,7 +53,7 @@ class GoalsController < ApplicationController
 
     if @goal.update(goal_params)
       flash[:alerts] = ['Goal created successfully']
-      publish_share({ item: @goal, is_new: false }) unless @goal.private
+      publish_share({ item: @goal, is_new: false, user_id: current_user.id }) unless @goal.private
       redirect_to @goal
     else
       @accounts = current_user.accounts

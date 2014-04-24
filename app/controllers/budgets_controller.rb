@@ -9,11 +9,10 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    # fail
     @budget = current_user.budgets.new(budget_params)
 
     if @budget.save
-      publish_share({ item: @budget, is_new: true }) unless @budget.private
+      publish_share({ item: @budget, is_new: true, user_id: current_user.id }) unless @budget.private
       redirect_to budgets_url
     else
       flash.now[:errors] = @budget.errors.full_messages
@@ -45,7 +44,7 @@ class BudgetsController < ApplicationController
     @budget = current_user.budgets.where(id: params[:id]).first
     if @budget.update(budget_params)
       flash[:alerts] = ["Budget updated successfully"]
-      publish_share({ item: @budget }) unless @budget.private
+      publish_share({ item: @budget, user_id: current_user.id }) unless @budget.private
       redirect_to budget_url(@budget)
     else
       flash.now[:errors] = @budget.errors.full_messages
