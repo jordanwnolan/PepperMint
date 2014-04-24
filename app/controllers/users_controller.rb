@@ -30,7 +30,13 @@ class UsersController < ApplicationController
       @message = @user.received_messages.new
     end
     @already_following = current_user.followed_users.include?(@user)
-    @messages = @user.received_messages.where(sender_id: current_user.id).order(:created_at).first(10)
+    received_messages = @user.received_messages
+    .where(sender_id: current_user.id).order(:created_at).first(10)
+
+    sent_messages = @user.sent_messages
+    .where(receiver_id: current_user.id).order(:created_at).first(10)
+
+    @messages = received_messages + sent_messages
 
     if @user == current_user
       @budgets = @user.budgets.to_a

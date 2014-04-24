@@ -29,7 +29,19 @@
         <li>
           <div class="message">
           <header>
+            <h3 class="user">
+            <% if message.sender == current_user %>
+              <%= "You"  %>
+            <% else %>
+              <a href="<%= user_url(message.sender) %>">
+              <%= message.sender.username %>
+              </a>
+            <% end %>
+            sent: 
+            </h3>
+
             <h3><%= message.title %></h3>
+            
             <time><%= message.created_at %></time>
           </header>
           <div class="message-body">
@@ -47,6 +59,8 @@
     <header class="user-header group">
       <img src="<%= @profile.try(:picture_url) %>">
       <h3 class="page-title"><%= @user.username %></h3>
+      <h3 class="fame">Fame: <%= @user.total_fame %></h3>
+
       <ul class="user-header-info-list">
         <li class="user-header-info-item">Age: <%= @profile.age %></li>
         <li class="user-header-info-item">Gender: <%= @profile.gender %></li>

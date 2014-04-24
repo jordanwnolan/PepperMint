@@ -42,6 +42,7 @@
         <div class="message">
         <header>
           <h3><%= message.title %></h3>
+          <a href="<%= user_url(message.sender) %>"><%= message.sender.username %></a>
           <time><%= message.created_at %></time>
         </header>
         <div class="message-body">
@@ -63,6 +64,9 @@
       <li>
         <div class="message">
         <header>
+          <h3 class="user"><a href="<%= user_url(message.receiver) %>"><%= message.receiver.username %></a>
+          sent:
+          </h3>
           <h3><%= message.title %></h3>
           <time><%= message.created_at %></time>
         </header>

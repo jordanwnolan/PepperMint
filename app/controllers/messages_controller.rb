@@ -2,8 +2,8 @@ class MessagesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @received_messages = @user.received_messages
-    @sent_messages = @user.sent_messages
+    @received_messages = @user.received_messages.includes(:sender)
+    @sent_messages = @user.sent_messages.includes(:receiver)
   end
 
   def create
@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
       redirect_to @user
     else
       @already_following = current_user.followed_users.include?(@user)
-      @messages = @user.received_messages.where(sender_id: current_user.id).order(:created_at).first(10)
+      @messages = @user.received_messages.includes(:sender).where(sender_id: current_user.id).order(:created_at).first(10)
 
       if @user == current_user
         @budgets = @user.budgets.to_a
