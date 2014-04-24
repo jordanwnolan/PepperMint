@@ -4,6 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+
+  def publish_shares
+    current_user.publish_shares
+  end
+
+  def publish_share(options)
+    # fail
+    if options[:item]
+      item = options[:item]
+      is_new = options[:is_new]
+      item.create_public_share( { user: current_user, is_new: is_new } )
+    end
+  end
+
   def current_user
     return nil if session[:token].nil?
     @current_user ||= User.find_by(session_token: session[:token])

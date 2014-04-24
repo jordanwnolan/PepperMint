@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  after_action :publish_shares, only: [:create]
 
   def new
     @user = User.new

@@ -13,7 +13,7 @@
         <li><%= pct %></li>
         <li><%= progress %> / <%= budget.amount %></li>
         <li><%= FREQUENCIES[budget.frequency] %></li>
-        <li class="on-track"><%= budget.on_track?(progress) ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
+        <li class="on-track"><%= budget.on_track? ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
       </ul>
     </div>
   </div>

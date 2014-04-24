@@ -1,5 +1,6 @@
 class Budget < ActiveRecord::Base
   include Progress
+  include Shareable
   validates :frequency, :frequency_reset, :amount, presence: true
   validate :user
   validate :transaction_category
@@ -14,6 +15,20 @@ class Budget < ActiveRecord::Base
 
   has_many :transactions, through: :transaction_category, source: :transactions
 
+  def generate_message(options)
+    # fail
+
+    if options[:is_new]
+      msg = "Nice! #{self.user.username} just created a new budget for: #{self.transaction_category.description}!"
+    elsif options[:on_track]
+      msg = "Yay! #{self.user.username} is under their #{self.transaction_category.description} budget! Give them some fame!"
+    else
+      msg = "Oh no! #{self.user.username} is over ther #{self.transaction_category.description} budget! Shame on them!"
+    end
+
+    msg
+  end
+
   def self.reset_day
     { 1 => :beginning_of_month,
       2=> :end_of_month }
@@ -23,7 +38,7 @@ class Budget < ActiveRecord::Base
     self.transactions.where("date >= ?", get_reset_date(self.frequency, self.frequency_reset))
   end
 
-  def on_track?(progress)
-    progress < self.amount
+  def on_track?
+    progress(current_transactions) < self.amount
   end
 end

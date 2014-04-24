@@ -11,9 +11,11 @@ class GoalsController < ApplicationController
 
   def create
     @goal = current_user.goals.new(goal_params)
-
+    # fail
     if @goal.save
       flash[:alerts] = ['Goal created successfully']
+      publish_share({ item: @goal }) unless @goal.private
+      # fail
       redirect_to @goal
     else
       @accounts = current_user.accounts
@@ -39,6 +41,7 @@ class GoalsController < ApplicationController
 
     unless @goal
       flash[:errors] = ["You are not authorized to view this goal"]
+      
       redirect_to overview_url
     end
 
@@ -50,6 +53,7 @@ class GoalsController < ApplicationController
 
     if @goal.update(goal_params)
       flash[:alerts] = ['Goal created successfully']
+      publish_share({ item: @goal, is_new: false }) unless @goal.private
       redirect_to @goal
     else
       @accounts = current_user.accounts

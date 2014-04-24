@@ -1,15 +1,26 @@
 class Goal < ActiveRecord::Base
   include Progress
+  include Shareable
   before_create :define_monthly_amount, :set_initial_balance
   before_save :define_monthly_amount
 
-  validates :name, :goal_date, :amount, :private, presence: true
+  validates :name, :goal_date, :amount, presence: true
   validate :user, :account
 
   belongs_to :user
   belongs_to :account
 
   has_many :transactions, through: :account, source: :transactions
+
+  def generate_message(options)
+    if options[:is_new]
+      "Great! #{self.user.username} just created a goal to #{self.name}"
+    elsif options[:on_track]
+      "Hooray! #{self.user.username} is on track to meet their goal to #{self.name}! Give them some fame!"
+    else
+      "Oh noes! #{self.user.username} is not on track to meet their goal to #{self.name}! Shame on them!"
+    end
+  end
 
   def current_transactions(date = self.created_at)
     self.transactions.where("date >= ?", date)

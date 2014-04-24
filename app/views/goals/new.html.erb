@@ -29,10 +29,11 @@
     </select>
 
     <label for="goal-private">Private</label>
-    <input type="radio" name="budget[private]" value="true" <%= "checked" if (@goal.private == true) %>>
+    <input type="radio" name="goal[private]" value="true" <%= "checked" if (@goal.private == true) %>>
 
     <label for="goal-public">Public</label>
-    <input type="radio" name="budget[private]" value="false" <%= "checked" if (@goal.private == false) %>>
+    <input type="radio" name="goal[private]" value="false" <%= "checked" if (@goal.private == false) %>>
+
     <input type="submit" value="Create Goal">
     </form>
 

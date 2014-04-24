@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423213211) do
+ActiveRecord::Schema.define(version: 20140424002043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140423213211) do
     t.boolean  "private",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",       default: true
   end
 
   add_index "budgets", ["category_id"], name: "index_budgets_on_category_id", using: :btree
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140423213211) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "monthly_amount"
+    t.boolean  "is_active",           default: true
   end
 
   add_index "goals", ["account_id"], name: "index_goals_on_account_id", using: :btree
@@ -101,6 +103,18 @@ ActiveRecord::Schema.define(version: 20140423213211) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
+
+  create_table "shares", force: true do |t|
+    t.text     "message"
+    t.boolean  "status"
+    t.integer  "shareable_id"
+    t.string   "shareable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
 
   create_table "transaction_categories", force: true do |t|
     t.string   "description"

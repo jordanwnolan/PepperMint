@@ -39,6 +39,16 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def publish_shares
+    self.budgets.where(private: false, is_active: true).each do |budget|
+      budget.create_public_share({ user_id: self.id, is_new: false })
+    end
+
+    self.goals.where(private: false, is_active: true).each do |goal|
+      goal.create_public_share({ user_id: self.id, is_new: false })
+    end
+  end
+
   def reset_session_token!
     self.session_token = self.class.generate_session_token
     self.save!
