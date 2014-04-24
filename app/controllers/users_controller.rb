@@ -71,6 +71,24 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def fame
+    item = Share.find(params[:share_id])
+    item.fames.create({value: 1, 
+      user_receiving_fame_id: params[:id], 
+      user_giving_fame_id: current_user.id, 
+      share_id: item.id })
+    redirect_to feed_url
+  end
+
+  def shame
+    item = Share.find(params[:share_id])
+    item.fames.create({value: -1, 
+      user_receiving_fame_id: params[:id], 
+      user_giving_fame_id: current_user.id,
+      share_id: item.id })
+    redirect_to feed_url
+  end
+
   private
 
   def user_params

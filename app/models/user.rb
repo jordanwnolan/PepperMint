@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :transactions, through: :accounts, source: :transactions
   has_many :budgets
   has_many :goals
+  has_many :received_fames, class_name: "Fame", foreign_key: :user_receiving_fame_id, primary_key: :id
+  has_many :given_fames, class_name: "Fame", foreign_key: :user_giving_fame_id, primary_key: :id
+
   #follow model for people following you
   has_many(:follower_joins, class_name: 'Follow', foreign_key: :follower_id, primary_key: :id)
   #follow model for people you are following
@@ -53,6 +56,10 @@ class User < ActiveRecord::Base
     self.session_token = self.class.generate_session_token
     self.save!
     self.session_token
+  end
+
+  def total_fame
+    self.received_fames.sum(:value)
   end
 
   private

@@ -5,12 +5,17 @@ PepperMint::Application.routes.draw do
   get 'followed_feed', to: 'home#followed_feed'
   get 'feed', to: 'home#feed'
 
+
   resources :users do
     member do
       get 'follow', to: 'users#follow_user'
       get 'unfollow', to: 'users#unfollow_user'
+      post 'share/:share_id/fame', to: 'users#fame', as: :fame
+      post 'share/:share_id/shame', to: 'users#shame', as: :shame
     end
   end
+
+  resources :fames, only: [:destroy]
   resources :accounts
   resources :budgets
   resources :goals

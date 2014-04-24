@@ -9,6 +9,16 @@
             <time><%= share.created_at %></time>
           </header>
           <p><%= share.message %></p>
+          <% fame = share.fames.select { |fame| fame.user_giving_fame_id == current_user.id }.first %>
+          <div class="fame"><%= share.total_fame %></div>
+          <% if fame %>
+          <%# fail %>
+          <%= button_to "Unfame", fame_url(fame), method: :delete %>
+          <% else %>
+          <%# fail %>
+          <%= button_to "Fame!", fame_user_url(share.user, share) %>
+          <%= button_to "Shame...", shame_user_url(share.user, share) %>
+          <% end %>
         </article>
       <% end %>
     </section>
