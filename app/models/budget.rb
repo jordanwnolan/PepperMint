@@ -16,6 +16,10 @@ class Budget < ActiveRecord::Base
 
   has_many :transactions, through: :transaction_category, source: :transactions
 
+  def self.generate_notification_message
+    "Overbudget!"
+  end
+
   def generate_message(options)
     # fail
 

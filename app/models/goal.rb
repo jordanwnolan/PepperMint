@@ -14,6 +14,10 @@ class Goal < ActiveRecord::Base
 
   has_many :transactions, through: :account, source: :transactions
 
+  def self.generate_notification_message
+    "Under goal!"
+  end
+
   def generate_message(options)
     if options[:is_new]
       "Great! #{self.user.username} just created a goal to #{self.name}"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424132537) do
+ActiveRecord::Schema.define(version: 20140424145953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(version: 20140424132537) do
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.string   "message",                         null: false
+    t.boolean  "viewed",          default: false
+    t.integer  "user_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "age"
