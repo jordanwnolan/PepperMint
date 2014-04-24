@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-html, h1, h2, h3, form, section, article, div, select, option, p, ul, li {
+html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li {
   padding: 0;
   margin: 0;
   border: 0;
@@ -22,6 +22,37 @@ html, h1, h2, h3, form, section, article, div, select, option, p, ul, li {
 
 body {
   font-family: sans-serif;
+}
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="submit"] {
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    vertical-align: baseline;
+    width: auto;
+    background: transparent;
+    color: inherit;
+  }
+
+input[type="submit"] {
+    display: inline;
+    cursor: pointer;
+  }
+
+.logout-button {
+  padding: 10px 20px;
+}
+
+.logout-button > input[type="submit"] {
+  color: #fff;
 }
 
 a {
@@ -146,4 +177,67 @@ h2 {
 .user > article > header > h3 {
   font-size: 20px;
   padding: 20px 0 0 0;
+}
+
+.cards {
+  
+}
+
+.card {
+  background-color: #eee;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card-header {
+  display: block;
+  border-bottom: 3px solid #ddd;
+}
+
+.card-header > div {
+  display: inline-block;
+  float: left;
+}
+
+.card-header > h3 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card-header > time {
+  font-weight: lighter;
+  font-size: 12px;
+}
+
+.card > p {
+  padding-top: 10px;
+}
+
+.card > .card-buttons {
+
+}
+
+.card > .fame {
+
+}
+
+.card > .fame > p {
+  display: inline-block;
+}
+
+.card > .fame > input[type="submit"] {
+  float: right;
+}
+
+.card > .comments {
+
+}
+
+.card > .comments > .comment-count {
+  font-size: 30px;
+  background-color: red;
+  display: block;
+  float: left;
 }

@@ -1,4 +1,4 @@
-    <section class="shares">
+    <section class="cards group">
       <% shares.each do |share| %>
       <% if share.shareable_type =='Budget' %>
         <% url = budget_url(share.shareable_id) %>
@@ -7,33 +7,42 @@
         <% url = goal_url(share.shareable.id) %>
         <% comments_url = goal_comments_url(share.shareable) %>
       <% end %>
-        <article class="share">
-          <header class="share-header">
+        <article class="card">
+          <header class="card-header group">
             <div class="thumb">
             <a href="<%= user_url(share.user.id) %>"><img src=""></a>
             </div>
             <h3><a href="<%= user_url(share.user.id) %>"><%= share.user.username %></a></h3>
             <time><%= share.created_at %></time>
           </header>
-          <a href="<%= url %>"><p><%= share.message %></p></a>
+
+          <p><a href="<%= url %>"><%= share.message %></a></p>
+
           <% fame = share.fames.select { |fame| fame.user_giving_fame_id == current_user.id }.first %>
-          <div class="fame"><%= share.total_fame %></div>
-          <% if fame %>
-          <%= button_to "Unfame", fame_url(fame), method: :delete %>
-          <% else %>
-          <%= button_to "Fame!", fame_user_url(share.user, share) %>
-          <%= button_to "Shame...", shame_user_url(share.user, share) %>
-          <% end %>
-      <h3 class="comment-count">
-      <% count = share.shareable.comments.count %>
-      <%= count %> <%= count == 1 ? "comment" : "comments" %>
-      </h3>
-      <form action="<%= comments_url %>" method="post">
-        <%= auth_token %>
-        <input type="hidden" name="comment[feed]" value="true">
-        <textarea name="comment[body]"></textarea>
-        <input type="submit" value="Add Comment">
-      </form>
+
+          <div class="card-buttons group">
+            <div class="fame group">
+            <p><%= share.total_fame %></p>
+            <% if fame %>
+            <%= button_to "Unfame", fame_url(fame), method: :delete %>
+            <% else %>
+            <%= button_to "Fame!", fame_user_url(share.user, share) %>
+            <%= button_to "Shame...", shame_user_url(share.user, share) %>
+            <% end %>
+            </div>
+            <div class="comments group">
+            <h3 class="comment-count">
+              <% count = share.shareable.comments.count %>
+              <%= count %> <%= count == 1 ? "comment" : "comments" %>
+            </h3>
+            <form action="<%= comments_url %>" method="post">
+              <%= auth_token %>
+              <input type="hidden" name="comment[feed]" value="true">
+              <textarea name="comment[body]"></textarea>
+              <input type="submit" value="Add Comment">
+            </form>
+          </div>
+          </div>
         </article>
       <% end %>
     </section>
