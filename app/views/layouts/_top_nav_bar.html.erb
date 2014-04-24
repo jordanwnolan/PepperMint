@@ -11,7 +11,7 @@
   <ul class="group">
     <li><a href="<%= users_url %>">Follow People</a></li>
     <li><a href="<%= feed_url %>">Feed</a></li>
-    <li><a href="#">Notifications</a></li>
+    <li><a href="<%= user_notifications_url(current_user) %>">Notifications</a></li>
     <li><a href="<%= user_messages_url(current_user.id) %>">Messages</a></li>
     
     

@@ -8,6 +8,7 @@ PepperMint::Application.routes.draw do
 
   resources :users do
     resources :messages, only: [:create, :show, :index, :destroy]
+    resources :notifications, only: [:index]
     member do
       # resources :messages, only: [:create, :show, :index, :destroy]
       get 'follow', to: 'users#follow_user'

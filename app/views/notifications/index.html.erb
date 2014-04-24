@@ -1,0 +1,23 @@
+<section class="page group">
+  <%= render partial: 'layouts/overview_side_bar' %>
+  <section class="page-content">
+    <header class="page-content-header">
+      <h3 class="page-content-title">Notifications</h3>
+    </header>
+  <article class="page-section">
+    <div class="cards group">
+    <% @notifications.each do |notification| %>
+      <article class="card">
+        <header>
+          <h3><%= notification.message %></h3>
+          <time><%= notification.created_at %></time>
+        </header>
+        <div class="card-body">
+        <p><%= link_to "#{notification.notifiable.name}", notification.notifiable %></p>
+        </div>
+      </article>
+    <% end %>
+    </div>
+  </article>
+  </section>
+</section>

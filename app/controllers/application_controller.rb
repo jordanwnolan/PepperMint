@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
   def require_signed_in!
     redirect_to root_url unless signed_in?
   end
+
+    def mark_as_read
+    current_user.notifications.where(viewed: false).update({viewed: true})
+  end
 end

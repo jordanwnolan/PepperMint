@@ -34,6 +34,10 @@ class Budget < ActiveRecord::Base
     msg
   end
 
+  def name
+    self.transaction_category.description
+  end
+
   def self.reset_day
     { 1 => :beginning_of_month,
       2=> :end_of_month }

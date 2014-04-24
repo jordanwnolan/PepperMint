@@ -8,4 +8,8 @@ class Share < ActiveRecord::Base
   def total_fame
     self.fames.sum(:value)
   end
+
+  def name
+    self.message
+  end
 end

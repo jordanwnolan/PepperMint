@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :transactions, through: :accounts, source: :transactions
   has_many :budgets
   has_many :goals
+  has_many :notifications
   has_many :received_fames, class_name: "Fame", foreign_key: :user_receiving_fame_id, primary_key: :id
   has_many :given_fames, class_name: "Fame", foreign_key: :user_giving_fame_id, primary_key: :id
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id, primary_key: :id
