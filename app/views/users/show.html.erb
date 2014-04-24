@@ -14,7 +14,32 @@
     <% else %>
       <a href="<%= follow_user_url(@user) %>">Follow <%= @user.username %></a></li>
     <% end %>
-    <li><a href="#">Message <%= @user.username %></a></li>
+    <li><form action="<%=user_messages_url(@user) %>" method="post" class="message-form">
+            <%= auth_token %>
+            <label for="message-title">Subject</label>
+            <input type="text" name="message[title]" value="<%= @message.title %>" id="message-title">
+
+            <textarea name="message[body]"><%= @message.body %></textarea>
+            <input type="submit" value="Send Message">
+            </form>
+    </li>
+    <li>Messages</li>
+    <ul>
+    <% @messages.each do |message| %>
+        <li>
+          <div class="message">
+          <header>
+            <h3><%= message.title %></h3>
+            <time><%= message.created_at %></time>
+          </header>
+          <div class="message-body">
+            <p><%= message.body %></p>
+            <%= button_to "Delete Message", user_message_url(@user.id, message.id), method: :delete %>
+          </div>
+          </div>
+        </li>  
+    <% end %>
+    </ul>
   <% end %>
 </ul>
   <section class="page-content">

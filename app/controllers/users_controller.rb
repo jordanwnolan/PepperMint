@@ -26,7 +26,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    unless @message
+      @message = @user.received_messages.new
+    end
     @already_following = current_user.followed_users.include?(@user)
+    @messages = @user.received_messages.where(sender_id: current_user.id).order(:created_at).first(10)
 
     if @user == current_user
       @budgets = @user.budgets.to_a

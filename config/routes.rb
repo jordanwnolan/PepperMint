@@ -7,7 +7,9 @@ PepperMint::Application.routes.draw do
 
 
   resources :users do
+    resources :messages, only: [:create, :show, :index, :destroy]
     member do
+      # resources :messages, only: [:create, :show, :index, :destroy]
       get 'follow', to: 'users#follow_user'
       get 'unfollow', to: 'users#unfollow_user'
       post 'share/:share_id/fame', to: 'users#fame', as: :fame

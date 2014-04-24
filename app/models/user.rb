@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :goals
   has_many :received_fames, class_name: "Fame", foreign_key: :user_receiving_fame_id, primary_key: :id
   has_many :given_fames, class_name: "Fame", foreign_key: :user_giving_fame_id, primary_key: :id
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id, primary_key: :id
+  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id, primary_key: :id
 
   #follow model for people following you
   has_many(:follower_joins, class_name: 'Follow', foreign_key: :follower_id, primary_key: :id)
