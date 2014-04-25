@@ -1,7 +1,9 @@
+
+<section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
-  <header class="user-header">
+  <header class="page-content-header">
     <h3 class="page-title"><%= current_user.username %>'s Goals</h3>
   </header>
 
@@ -12,4 +14,5 @@
       <a href="<%= goal_url(goal) %>">View Goal</a>
     <% end %>
   </section>
+</section>
 </section>

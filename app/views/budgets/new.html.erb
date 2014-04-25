@@ -1,5 +1,5 @@
+<section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
-
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-content-title">Create New Budget</h3>
@@ -8,11 +8,11 @@
   <article class="page-body">
     <form action="<%= budgets_url %>" method="post" class="new-budget-form">
     <%= auth_token %>
-
+    <div class="input">
     <label for="budget-amount">Amount</label>
-      <input type="text" name="budget[amount]" id="budget-amount" value="<%= @budget.amount %>">
-    </select>
-
+    <input type="text" name="budget[amount]" id="budget-amount" value="<%= @budget.amount %>">
+    </div>
+    <div>
     <label for="budget-category">Category</label>
     <select name="budget[category_id]" id="budget-category">
       <option></option>
@@ -20,7 +20,9 @@
         <option value="<%= category.id %>" <%= "selected" if @budget.category_id == category.id %>><%= category.description %></option>
       <% end %>
     </select>
+    </div>
 
+    <div>
     <label for="budget-frequency">Frequency</label>
     <select name="budget[frequency]">
       <option></option>
@@ -28,7 +30,9 @@
         <option value="<%= val %>"><%= description %></option>
       <% end %>
     </select>
+    </div>
 
+    <div>
     <label for="budget-reset-weekly">When to end period (weekly)?</label>
     <select name="budget[frequency_reset]">
       <option></option>
@@ -38,18 +42,22 @@
         <% end %>
       <% end %>
     </select>
+  </div>
 
-
-
+    <div>
     <label for="budget-private">Private</label>
     <input type="radio" name="budget[private]" value="true" <%= "checked" if (@budget.private == true) %>>
 
     <label for="budget-public">Public</label>
     <input type="radio" name="budget[private]" value="false" <%= "checked" if (@budget.private == false) %>>
+    </div>
 
+    <div class="submit">
     <input type="submit" value="Create Budget!">
+    </div>
     </form>
 
 
   </article>
+</section>
 </section>

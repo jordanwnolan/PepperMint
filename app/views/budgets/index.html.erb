@@ -1,5 +1,7 @@
-<%= render partial: 'layouts/overview_side_bar' %>
 
+
+<section class="page group">
+<%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-content-title">Budgets</h3>
@@ -11,4 +13,5 @@
     <%= render partial: 'budgets/budgets', locals: { budgets: @budgets } %>
     
   </article>
+  </section>
 </section>

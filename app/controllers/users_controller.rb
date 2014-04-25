@@ -14,8 +14,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @profile = Profile.new(user_id: @user.id)
-      @profile.save
       login_user(@user)
       redirect_to(@user)
     else
