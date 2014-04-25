@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
+  after_create :create_profile
+
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
@@ -14,10 +16,13 @@ class User < ActiveRecord::Base
   has_many :budgets
   has_many :goals
   has_many :notifications
+  has_many :unread_notifications, -> { where(viewed: false) }, class_name: "Notification", foreign_key: :user_id
   has_many :received_fames, class_name: "Fame", foreign_key: :user_receiving_fame_id, primary_key: :id
   has_many :given_fames, class_name: "Fame", foreign_key: :user_giving_fame_id, primary_key: :id
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id, primary_key: :id
   has_many :received_messages, class_name: "Message", foreign_key: :receiver_id, primary_key: :id
+
+  has_many :unread_messages, -> { where(viewed: false) }, class_name: "Message", foreign_key: :receiver_id
   has_many :authored_comments, class_name: "Comment", foreign_key: :author_id, primary_key: :id
 
   #follow model for people following you
@@ -71,4 +76,9 @@ class User < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end
+
+  def create_profile
+    Profile.create(user_id: self.id)
+  end
+
 end

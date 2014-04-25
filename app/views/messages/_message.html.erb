@@ -1,0 +1,33 @@
+<div class="message">
+<header>
+  <h3 class="user">
+  <% if message.sender == current_user %>
+    <%= "You"  %>
+  <% else %>
+    <a href="<%= user_url(message.sender) %>">
+    <%= message.sender.username %>
+    </a>
+  <% end %>
+  sent: 
+  </h3>
+
+  <h3 class="message-title"><%= message.title %></h3>
+  <article class="group">
+  <time><%= time_ago_in_words(message.created_at) %> ago</time>
+    <form action="<%= user_message_url(@user.id, message.id) %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="delete">
+    <div class="message-delete">
+      <input type="submit" value="Delete Message">
+    </div>
+  </form>
+  </article>
+</header>
+<div class="message-body">
+  <p><%= message.body %></p>
+</div>
+
+<footer>
+
+</footer>
+</div>

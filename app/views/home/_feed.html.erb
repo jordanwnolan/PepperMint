@@ -15,7 +15,7 @@
             <h3><a href="<%= user_url(share.user.id) %>"><%= share.user.username %></a></h3>
 
             </div>
-            <time><%= share.created_at %></time>
+            <time><%= time_ago_in_words(share.created_at) %> ago</time>
           </header>
 
           <p><a href="<%= url %>"><%= share.message %></a></p>

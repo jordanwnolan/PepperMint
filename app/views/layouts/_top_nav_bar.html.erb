@@ -22,7 +22,9 @@
     <form class="logout-button" action="<%= session_url %>" method="post">
       <%= auth_token %>
       <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Log Out">
+      <div class="logout">
+        <input type="submit" value="Log Out">
+      </div>
     </form>
     </li>
     </ul>

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def get_notification_and_message_count
+
+  end
+
   def publish_shares
     current_user.publish_shares
   end
@@ -41,7 +45,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless signed_in?
   end
 
-    def mark_as_read
+  def mark_as_read
     current_user.notifications.where(viewed: false).update({viewed: true})
   end
 end

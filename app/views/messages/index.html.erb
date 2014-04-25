@@ -28,8 +28,8 @@
 </ul>
 
 <section class="page-content">
-  <header class="page-content-header">
-    <h3 class="page-content-title">Messages</h3>
+  <header class="page-content-header group">
+    <h1 class="page-title">Messages</h1>
   </header>
 
   <article class="page-section">
@@ -38,19 +38,7 @@
   </header>
   <ul>
   <% @received_messages.each do |message| %>
-      <li>
-        <div class="message">
-        <header>
-          <h3><%= message.title %></h3>
-          <a href="<%= user_url(message.sender) %>"><%= message.sender.username %></a>
-          <time><%= message.created_at %></time>
-        </header>
-        <div class="message-body">
-          <p><%= message.body %></p>
-          <%= button_to "Delete Message", user_message_url(@user.id, message.id), method: :delete %>
-        </div>
-        </div>
-      </li>  
+    <li><%= render partial: 'message', locals: { message: message } %></li>
   <% end %>
   </ul>
   </article>
@@ -61,22 +49,9 @@
   </header>
   <ul>
   <% @sent_messages.each do |message| %>
-      <li>
-        <div class="message">
-        <header>
-          <h3 class="user"><a href="<%= user_url(message.receiver) %>"><%= message.receiver.username %></a>
-          sent:
-          </h3>
-          <h3><%= message.title %></h3>
-          <time><%= message.created_at %></time>
-        </header>
-        <div class="message-body">
-          <p><%= message.body %></p>
-          <%= button_to "Delete Message", user_message_url(@user.id, message.id), method: :delete %>
-        </div>
-        </div>
-      </li>  
+    <li><%= render partial: 'message', locals: { message: message } %></li>
   <% end %>
   </ul>
+
   </article>
 </section>

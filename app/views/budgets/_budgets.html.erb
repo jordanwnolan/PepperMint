@@ -1,20 +1,19 @@
-<% @budgets.each do |budget| %>
-  <% progress = budget.progress(budget.current_transactions) %>
-  <% pct = number_to_percentage(progress / budget.amount.to_f * 100, precision: 0)  %>
-  <div class="page-body-item-container">
-    <div class="page-body-item">
-      <ul>
-        <li class="list-title">
-          <a href="<%= budget_url(budget) %>">
-            <%= budget.transaction_category.description %>
-          </a>
-        </li>
-        <li class="chart">~~chart goes here~~~</li>
-        <li><%= pct %></li>
-        <li><%= progress %> / <%= budget.amount %></li>
-        <li><%= FREQUENCIES[budget.frequency] %></li>
-        <li class="on-track"><%= budget.on_track? ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
-      </ul>
-    </div>
+
+<% progress = budget.progress(budget.current_transactions) %>
+<% pct = number_to_percentage(progress / budget.amount.to_f * 100, precision: 0)  %>
+<div class="page-body-item-container">
+  <div class="page-body-item">
+    <ul>
+      <li class="list-title">
+        <a href="<%= budget_url(budget) %>">
+          <%= budget.transaction_category.description %>
+        </a>
+      </li>
+      <li class="chart">~~chart goes here~~~</li>
+      <li><%= pct %></li>
+      <li><%= progress %> / <%= budget.amount %></li>
+      <li><%= FREQUENCIES[budget.frequency] %></li>
+      <li class="on-track"><%= budget.on_track? ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
+    </ul>
   </div>
-<% end %>
+</div>

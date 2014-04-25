@@ -1,8 +1,8 @@
 <section class="page group">
   <%= render partial: 'layouts/overview_side_bar' %>
-  <section class="page-content">
-    <header class="page-content-header">
-      <h3 class="page-content-title">Notifications</h3>
+  <section class="page-content group">
+    <header class="page-content-header group">
+      <h1 class="page-title">Notifications</h1>
     </header>
   <article class="page-section">
     <div class="cards group">
@@ -10,7 +10,7 @@
       <article class="card">
         <header>
           <h3><%= notification.message %></h3>
-          <time><%= notification.created_at %></time>
+          <time><%= time_ago_in_words(notification.created_at) %> ago</time>
         </header>
         <div class="card-body">
         <p><%= link_to "#{notification.notifiable.name}", notification.notifiable %></p>

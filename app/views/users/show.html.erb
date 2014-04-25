@@ -14,64 +14,49 @@
     <% else %>
       <a href="<%= follow_user_url(@user) %>">Follow <%= @user.username %></a></li>
     <% end %>
-    <li><form action="<%=user_messages_url(@user) %>" method="post" class="message-form">
-            <%= auth_token %>
+    <li>
+        <form action="<%=user_messages_url(@user) %>" method="post" class="message-form">
+          <%= auth_token %>
+          <div class="input">
             <label for="message-title">Subject</label>
             <input type="text" name="message[title]" value="<%= @message.title %>" id="message-title">
+          </div>
 
+          <div class="input">
             <textarea name="message[body]"><%= @message.body %></textarea>
-            <input type="submit" value="Send Message">
-            </form>
-    </li>
-    <li>Messages</li>
-    <ul>
-    <% @messages.each do |message| %>
-        <li>
-          <div class="message">
-          <header>
-            <h3 class="user">
-            <% if message.sender == current_user %>
-              <%= "You"  %>
-            <% else %>
-              <a href="<%= user_url(message.sender) %>">
-              <%= message.sender.username %>
-              </a>
-            <% end %>
-            sent: 
-            </h3>
+          </div>
 
-            <h3><%= message.title %></h3>
-            
-            <time><%= message.created_at %></time>
-          </header>
-          <div class="message-body">
-            <p><%= message.body %></p>
-            <%= button_to "Delete Message", user_message_url(@user.id, message.id), method: :delete %>
+          <div class="submit">
+            <input type="submit" value="Send Message">
           </div>
-          </div>
-        </li>  
-    <% end %>
-    </ul>
+          </form>
+    </li>
+    <div class="messages">
+    <li>Messages</li>
+  <ul>
+  <% @messages.each do |message| %>
+    <li><%= render partial: 'messages/message', locals: { message: message } %></li>
+  <% end %>
+  </ul>
+    </div>
   <% end %>
 </ul>
   <section class="page-content">
-  <article class="user">
-    <header class="user-header group">
+    <header class="page-content-header group">
       <img src="<%= @profile.try(:picture_url) %>">
-      <h3 class="page-title"><%= @user.username %></h3>
-      <h3 class="fame">Fame: <%= @user.total_fame %></h3>
+      <h1 class="page-title"><%= @user.username %></h1>
+      <strong class="fame">Fame: <%= @user.total_fame %></strong>
 
-      <ul class="user-header-info-list">
+      <ul class="user-header-info-list group">
         <li class="user-header-info-item">Age: <%= @profile.age %></li>
-        <li class="user-header-info-item">Gender: <%= @profile.gender %></li>
+        <li class="user-header-info-item">Gender: <%= GENDER[@profile.gender] %></li>
         <li class="user-header-info-item">
-        Zip Code: <%= @profile.zip_code.to_s.try(:rjust, 5, '0') %></li>
+        Zip Code: <%= @profile.zip_code.to_s.try(:rjust, 5, '0') unless @profile.zip_code.nil? %></li>
         <li class="user-header-info-item">
         Joined: <%= @profile.created_at.to_formatted_s(:month_and_year) %></li>
       </ul>
   </header>
 
   <%= render partial: 'layouts/overview_main', locals: { goals: @goals, budgets: @budgets } %>
-  </article>
 </section>
 </section>

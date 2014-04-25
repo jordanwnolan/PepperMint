@@ -22,6 +22,8 @@ html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, 
 
 body {
   font-family: sans-serif;
+  /*background-color: #696;*/
+  /*color: #fd0;*/
 }
 
   input[type="text"],
@@ -48,16 +50,20 @@ input[type="submit"] {
     cursor: pointer;
   }
 
-.logout-button {
+.logout {
   padding: 10px 20px;
 }
 
-.logout-button > input[type="submit"] {
+.logout:hover {
+  background-color: #0b6;
+}
+
+.logout {
   color: #fff;
 }
 
 a {
-  color: #f00;
+  color: #0a5;
   text-decoration: none;
 }
 
@@ -69,6 +75,10 @@ h2 {
   font-size: 30px;
   font-weight: bold;
   margin: 0 0 20px 0;
+}
+
+h3 {
+  font-size: 20px;
 }
 
 /* --- Helper methods (clearfix) --- */
@@ -109,7 +119,7 @@ h2 {
 }
 
 .header-logo > a:hover {
-  background: #333;
+  background: #0b6;
 }
 
 .header-nav {
@@ -139,12 +149,12 @@ h2 {
 }
 
 .header-nav > ul > li:hover > a {
-  background: #333;
+  background: #0b6;
 }
 
-.header-nav > ul > li > form > input:hover {
-  background: #333;
-}
+/*.header-nav > ul > li > form > .logout > input:hover {
+  background: #fff;
+}*/
 
 .nav-side-bar {
   width: 200px;
@@ -153,7 +163,7 @@ h2 {
 
 .nav-side-bar > li > a {
   display: inline-block;
-  padding: 10px 5px;
+  padding: 10px 0 5px 0;
 }
 
 .page {
@@ -169,118 +179,56 @@ h2 {
   padding-left: 50px;
 }
 
+.page-content > .page-content-header {
+  border-bottom: 3px solid #ddd;
+  padding: 0 0 10px 0;
+}
+
+.page-content-header > .page-title {
+  font-size: 50px;
+}
+
+.page-content-header > h1 {
+  display: block;
+  float: left;
+}
+
+.page-content-header > h3 {
+  font-size: 30px;
+}
+
+.page-content-header > .fame {
+  clear: left;
+  padding: 10px 0;
+}
+
+.page-content > .page-section {
+  padding: 0 0 20px 0;
+  border-bottom: 2px solid #ddd;
+}
+
+.page-section {
+  margin: 20px 0 0 0;
+}
+
+.user-header-info-list {
+  padding: 10px 0;
+  clear: left;
+}
+
 .user-header-info-list > li {
-  padding: 10px;
+  padding: 0 10px 0 0;
   float: left;
   display: block;
 }
 
 .user > article > header > h3 {
   font-size: 20px;
-  padding: 20px 0 0 0;
-}
-
-.cards {
-  
+  margin: 20px 0 0 0;
 }
 
 form > input {
   background: #0c0;
-}
-
-.card {
-  background-color: #eee;
-  border: 3px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-}
-
-.card > .thumb {
-  width: 50px;
-  height: 50px;
-}
-
-.card-header {
-  display: block;
-  border-bottom: 3px solid #ddd;
-  vertical-align: middle;
-}
-
-.card-header > div {
-  display: inline-block;
-  float: left;
-}
-
-.card-header > h3 {
-  float: left;
-  display: inline;
-  font-weight: bold;
-  font-size: 20px;
-  vertical-align: 50%;
-}
-
-.card-header > h3 > a {
-  vertical-align: 50%;
-}
-
-.card > .card-footer > .card-buttons > .fame-count {
-  display: inline-block;
-  float: left;
-  font-weight: bold;
-  font-size: 20px;
-  vertical-align: 50%;
-}
-
-.card-header > time {
-  font-weight: lighter;
-  font-size: 12px;
-}
-
-.card > p {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #ddd;
-}
-
-.card > .card-footer {
-  padding-top: 10px;
-}
-.card > .card-footer > .card-buttons {
-  font-size: 12px;
-  font-weight: lighter;
-}
-
-.fame-form {
-  display: block;
-}
-
-.card > .card-footer > .fame {
-  display: block;
-  float: left;
-  padding-left: 5px;
-}
-
-.fame-form > .submit > input {
-  display: inline;
-  padding: 0;
-  vertical-align: text-bottom;
-  background: none;
-}
-
-.fame-forms > .fame-form > .submit > .input {
-  background: none;
-  padding: 0;
-  height: 100%;
-}
-
-.fame-count {
-  padding: 0 0 0 10px;
-  display: block;
-}
-
-.card > .card-buttons > .fame > p {
-  display: inline-block;
 }
 
 .comments {
@@ -308,8 +256,10 @@ form > input {
   padding: 2px;
   font-size: 12px;
   background: #fff;
-  border: 1px solid #aaa;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  width: 200px;
+  height: auto;
 }
 
 .card > .card-buttons > .comments > form > .input > textarea {
@@ -318,15 +268,14 @@ form > input {
   font-size: 12px;
   background: #fff;
   border: 1px solid #aaa;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
 }
 
 .new-user-form {
-  /*background: #eee;*/
   padding: 30px;
   width: 300px;
   margin: auto;
-  border-radius: 5px;
+
 }
 
 .new-user-form > h3 {
@@ -341,7 +290,12 @@ form > input {
 }
 
 .new-user-form > .input {
-  margin: 0;
+  margin: 5px;
+}
+
+.new-user-form > .submit > input {
+  padding: 10px 20px;
+  margin: 10px auto;
 }
 
 .input {
@@ -351,13 +305,12 @@ form > input {
 .input > label {
   display: block;
   font-weight: bold;
-  text-align: center;
 }
 
 .input > input {
-  background-color: #eee;
-  border: 3px solid #ddd;
-  border-radius: 5px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 2px;
   width: 300px;
 }
 
@@ -401,6 +354,215 @@ form > input {
   color: #0a5;
 }
 
-.welcome > .links > a > h3 {
+/*****Messaging*****/
+
+.message-form {
+
+}
+
+.message-form > .input {
+  padding: 5px 5px 0 0;
+  margin: 0;
+}
+
+.message-form > .input > label {
+  text-align: left;
+  font-weight: normal;
+}
+
+.message-form > .input > input {
+  border: 1px solid #eee;
+  width: 100%;
+  background: #fff;
+  border-radius: 0;
+}
+
+.message-form > .input > textarea {
+  width: 100%;
+  border: 1px solid #eee;
+}
+
+.message-form > .submit {
+
+}
+.message-form > .submit > input {
+  display: inline-block;
+  font-size: 12px;
+  background: #fff;
+  color: #0a5;
+  padding: 0;
+}
+
+.messages {
+  display: block;
+  margin: 10px 0 0 0;
+}
+
+.message {
+  display: block;
+  padding: 5px 10px 10px 10px;
+  margin: 10px auto;
+  background-color: #eee;
+  /*border: 2px solid #ccc;*/
+  border-radius: 3px;
+}
+
+.message > header > article {
+  display: block;
+  padding: 5px 0 5px 0;
+}
+
+.message > header > article > time {
+  /*font-weight: lighter;*/
+  display: block;
+  float: left;
+  color: #999;
+  font-size: 10px;
+}
+
+.message > header > .message-title {
+  background: #fff;
+  padding: 2px;
+  font-size: 14px;
+}
+
+.message > .message-body {
+  display: block;
+  padding: 2px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.message > header > form {
+  display: block;
+}
+
+.message-delete {
+  display: block;
+  float: right;
+  font-size: 10px;
+}
+
+.message-delete > input {
+  color: #999;
+}
+
+.message-delete > input:hover {
+  color: #000;
+}
+
+/*****Faming*****/
+
+.fame {
+  display: block;
+  float: left;
+  padding-left: 5px;
+}
+
+.fame-count {
+  display: inline-block;
+  float: left;
   font-weight: bold;
+  font-size: 20px;
+  vertical-align: 50%;
+}
+
+.fame-form {
+  display: block;
+}
+
+.fame-form > .submit > input {
+  display: inline;
+  padding: 0;
+  vertical-align: text-bottom;
+  background: none;
+}
+
+.fame-forms > .fame-form > .submit > .input {
+  background: none;
+  padding: 0;
+  height: 100%;
+}
+
+.fame-count {
+  padding: 0 0 0 10px;
+  display: block;
+}
+
+
+
+/*****Cards******/
+
+
+
+
+
+/******Card******/
+
+.cards {
+  
+}
+
+.card {
+  background-color: #eee;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card > .thumb {
+  width: 50px;
+  height: 50px;
+}
+
+.card-header {
+  display: block;
+  border-bottom: 3px solid #ddd;
+  vertical-align: middle;
+}
+
+.card-header > div {
+  display: inline-block;
+  float: left;
+}
+
+.card-header > h3 {
+  float: left;
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+  clear: right;
+}
+
+.card-header > h3 > a {
+  display: block;
+  clear: right;
+  vertical-align: 50%;
+}
+
+.card-header > time {
+  display: block;
+  clear: both;
+  font-weight: lighter;
+  font-size: 12px;
+}
+
+.card > p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ddd;
+}
+
+.card > .card-footer {
+  padding-top: 10px;
+}
+.card > .card-footer > .card-buttons {
+  font-size: 12px;
+}
+
+/*********comments*********/
+
+.comment-count {
+  font-size: 12px;
 }
