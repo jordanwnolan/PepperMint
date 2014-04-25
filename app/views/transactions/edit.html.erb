@@ -1,3 +1,7 @@
+<section class="page group">
+
+<%= render partial: "layouts/overview_side_bar" %>
+<section class="page-content">
 <form action="<%= transaction_url(@transaction) %>" method="post">
 <table class="transactions-table">
 <tr class="table-headers">
@@ -19,7 +23,9 @@
   <td><%= @transaction.try(:date) %></td>
 
   <td>
+    <div class="transaction-description">
     <input type="text" name="transaction[description]" value="<%= @transaction.try(:description) %>">
+    </div>
   </td>
 
   <td>
@@ -40,3 +46,5 @@
 </table>
 </form>
 <%= link_to "Cancel", transactions_url %>
+</section>
+</section>

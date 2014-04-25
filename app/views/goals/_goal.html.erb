@@ -1,7 +1,7 @@
 <article class="card">
   <header class="card-header group">
     <h3><a href="<%= goal_url(goal) %>"><%= goal.name %></a></h3>
-    <time><%= goal.goal_date %></time>
+    <time>Created: <%= time_ago_in_words(goal.goal_date) %> ago</time>
   </header>
       <table class="goals-table">
         <tr>

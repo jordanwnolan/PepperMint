@@ -67,6 +67,13 @@ a {
   text-decoration: none;
 }
 
+textarea {
+  padding: 2px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
 ul {
   list-style: none;
 }
@@ -116,6 +123,11 @@ h3 {
   padding: 10px 20px;
   color: #fff;
   font-weight: bold;
+}
+
+.transaction-description > input{
+
+  width: 50px;
 }
 
 .header-logo > a:hover {
@@ -253,11 +265,6 @@ form > input {
 }
 
 .new-comment-form > .input > textarea {
-  padding: 2px;
-  font-size: 12px;
-  background: #fff;
-  border: 1px solid #ccc;
-  resize: vertical;
   width: 200px;
   height: auto;
 }

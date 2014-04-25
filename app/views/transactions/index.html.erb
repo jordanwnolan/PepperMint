@@ -1,8 +1,8 @@
+
+<section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
-
 <section class="page-content">
-
-  <header class="account-header"
+  <header class="account-header">
     <h3 class="header-title">All Transactions</h3>
 
     <form action="<%= account_choose_url %>" method="get">
@@ -14,9 +14,11 @@
         <% end %>
       </select>
       <input type="submit" value="View">
+      </form>
   </header>
 
   <article class="page-body">
     <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
   </article>
+</section>
 </section>
