@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li {
+html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, label {
   padding: 0;
   margin: 0;
   border: 0;
@@ -27,7 +27,8 @@ body {
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  input[type="submit"] {
+  input[type="submit"],
+  textarea {
     -webkit-appearance: none;
     box-sizing: content-box;
     display: inline-block;
@@ -151,7 +152,7 @@ h2 {
 }
 
 .nav-side-bar > li > a {
-  display: block;
+  display: inline-block;
   padding: 10px 5px;
 }
 
@@ -183,6 +184,10 @@ h2 {
   
 }
 
+form > input {
+  background: #0c0;
+}
+
 .card {
   background-color: #eee;
   border: 3px solid #ddd;
@@ -191,9 +196,16 @@ h2 {
   margin: 10px;
 }
 
+.card > .thumb {
+  width: 50px;
+  height: 50px;
+  overflow: 
+}
+
 .card-header {
   display: block;
   border-bottom: 3px solid #ddd;
+  vertical-align: middle;
 }
 
 .card-header > div {
@@ -202,8 +214,23 @@ h2 {
 }
 
 .card-header > h3 {
+  float: left;
+  display: inline;
   font-weight: bold;
   font-size: 20px;
+  vertical-align: 50%;
+}
+
+.card-header > h3 > a {
+  vertical-align: 50%;
+}
+
+.card > .card-footer > .card-buttons > .fame-count {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  font-size: 20px;
+  vertical-align: 50%;
 }
 
 .card-header > time {
@@ -213,31 +240,168 @@ h2 {
 
 .card > p {
   padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ddd;
 }
 
-.card > .card-buttons {
-
+.card > .card-footer {
+  padding-top: 10px;
+}
+.card > .card-footer > .card-buttons {
+  font-size: 12px;
+  font-weight: lighter;
 }
 
-.card > .fame {
-
+.fame-form {
+  display: block;
 }
 
-.card > .fame > p {
+.card > .card-footer > .fame {
+  display: block;
+  float: left;
+  padding-left: 5px;
+}
+
+.fame-form > .submit > input {
+  display: inline;
+  padding: 0;
+  vertical-align: text-bottom;
+  background: none;
+}
+
+.fame-forms > .fame-form > .submit > .input {
+  background: none;
+  padding: 0;
+  height: 100%;
+}
+
+.fame-count {
+  padding: 0 0 0 10px;
+  display: block;
+}
+
+.card > .card-buttons > .fame > p {
   display: inline-block;
 }
 
-.card > .fame > input[type="submit"] {
-  float: right;
+.comments {
+  /*background-color: red;*/
 }
 
-.card > .comments {
-
-}
-
-.card > .comments > .comment-count {
-  font-size: 30px;
-  background-color: red;
+.card > .card-buttons > .comments > .comment-count {
+  /*background-color: green;*/
   display: block;
   float: left;
+}
+
+.new-comment-form > .submit > input {
+  position: static;
+  display: block;
+  float: left;
+  padding: 5px;
+}
+
+.new-comment-form > .input {
+  margin: 0 0 0 0;
+}
+
+.new-comment-form > .input > textarea {
+  padding: 2px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.card > .card-buttons > .comments > form > .input > textarea {
+  padding: 2px;
+  margin: 5px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.new-user-form {
+  /*background: #eee;*/
+  padding: 30px;
+  width: 300px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.new-user-form > h3 {
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.new-user-form > h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.new-user-form > .input {
+  margin: 0;
+}
+
+.input {
+  margin: 20px 0;
+}
+
+.input > label {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input > input {
+  background-color: #eee;
+  border: 3px solid #ddd;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.submit > input {
+  text-align: center;
+  position: relative;
+  display: block;
+  background-color: #bbb;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.submit > input:hover {
+  background-color: #ccc;
+}
+
+.welcome {
+  margin: auto;
+  padding: 30px;
+  width: 300px;
+}
+
+.welcome > h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.welcome > .links {
+  margin: auto;
+}
+
+.welcome > .links > a {
+  width: 70px;
+  display: block;
+  float: left;
+  margin: 20px;
+  padding: 20px;
+  background: #eee;
+  text-align: center;
+  color: #0a5;
+}
+
+.welcome > .links > a > h3 {
+  font-weight: bold;
 }

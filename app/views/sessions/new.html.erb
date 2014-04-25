@@ -1,18 +1,21 @@
-<h3 class="page-title">Log In!</h3>
+
   <form class="new-user-form" action="<%=  session_url %>" method="post">
+    <h1>PepperMint</h1>
+    <h3>Log In!</h3>
     <%= auth_token %>
-      <label>
-        <input type="text" name="user[email]" value="<%= @user.email %>">
-        Email
-    </label>
-    <br>
 
-    <label>
-        <input type="password" name="user[password]">
-        Password
-    </label>
-    <br>
+    <div class="input">
+      <label for="user-email">Email</label>
+      <input type="text" name="user[email]" value="<%= @user.email %>">
+    </div>
 
-    <input type="submit" value="Log In!">
+    <div class="input">
+      <label for="user-password">Password</label>
+      <input type="password" name="user[password]">
+    </div>
+
+    <div class="submit">
+      <input type="submit" value="Log In!">
+    </div>
+
   </form>
-<form

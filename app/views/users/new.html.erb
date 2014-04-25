@@ -1,25 +1,23 @@
-<section class="centered-content">
-  <h3 class="page-title">Sign Up!</h3>
-    <form class="new-user-form" action="<%= users_url %>" method="post">
-      <%= auth_token %>
-        <label>
-          
-          <input type="text" name="user[email]" value="<%= @user.email %>">
-          Email
-      </label>
-      <br>
-        <label>
-          <input type="text" name="user[username]" value="<%= @user.email %>">
-          Username
-      </label>
-        <br>
-      <label>
-          <input type="password" name="user[password]" value="<%= @user.email %>">
-          Password
-      </label>
-      <br>
+<form class="new-user-form" action="<%= users_url %>" method="post">
+  <%= auth_token %>
 
-      <input type="submit" value="Sign Up!">
-    </form>
-  <form
-</section>
+  <h1 class="page-title">Sign Up!</h1>
+  <div class="input">
+    <label for="user-email">Email</label>
+    <input type="text" name="user[email]" value="<%= @user.email %>">
+  </div>
+
+  <div class="input">
+    <label for="user-username">Username</label>
+    <input type="text" name="user[username]" value="<%= @user.email %>">
+  </div>
+
+  <div class="input">
+  <label for="user-password">Password</label>
+  <input type="password" name="user[password]" value="<%= @user.email %>">
+  </div>
+
+  <div class="submit">
+    <input type="submit" value="Sign Up!">
+  </div>
+</form>
