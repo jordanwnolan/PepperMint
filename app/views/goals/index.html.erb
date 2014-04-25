@@ -8,10 +8,9 @@
   </header>
 
   <a href="<%= new_goal_url %>">Add Goal</a>
-  <section class="goals">
+  <section class="cards group">
     <% @goals.each do |goal| %>
       <%= render partial: 'goal', locals: { goal: goal } %>
-      <a href="<%= goal_url(goal) %>">View Goal</a>
     <% end %>
   </section>
 </section>

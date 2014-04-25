@@ -1,6 +1,6 @@
-<article class="goal">
-  <header class="goal-info">
-    <h3 class="goal-name"><%= goal.name %></h3>
+<article class="card">
+  <header class="card-header group">
+    <h3><a href="<%= goal_url(goal) %>"><%= goal.name %></a></h3>
     <time><%= goal.goal_date %></time>
   </header>
       <table class="goals-table">
