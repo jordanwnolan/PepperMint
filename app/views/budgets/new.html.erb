@@ -36,11 +36,19 @@
     <label for="budget-reset-weekly">When to end period (weekly)?</label>
     <select name="budget[frequency_reset]">
       <option></option>
-      <%= FREQUENCY_RESETS.each do |n, items| %>
-        <% items.each_with_index do |item, index| %>
-        <option value="<%= index %>"><%= n %> -- <%= item %></option>
+        <% WEEKLY_FREQUENCY_RESETS.each_with_index do |item, index| %>
+        <option value="<%= index %>"><%= item %></option>
         <% end %>
-      <% end %>
+    </select>
+  </div>
+
+    <div>
+    <label for="budget-reset-weekly">When to end period (monthly)?</label>
+    <select name="budget[frequency_reset]">
+      <option></option>
+        <% MONTHLY_FREQUENCY_RESETS.each_with_index do |item, index| %>
+        <option value="<%= index %>"><%= item %></option>
+        <% end %>
     </select>
   </div>
 

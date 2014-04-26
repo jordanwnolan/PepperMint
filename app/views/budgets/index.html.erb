@@ -9,8 +9,9 @@
   </header>
 
   <article class="page-body">
-    
-    <%= render partial: 'budgets/budgets', locals: { budgets: @budgets } %>
+    <% @budgets.each do |budget| %>
+      <%= render partial: 'budgets/budget', locals: { budget: budget } %>
+    <% end %>
     
   </article>
   </section>

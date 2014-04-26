@@ -515,7 +515,7 @@ form > input {
   border: 3px solid #ddd;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0 0 0;
 }
 
 .card > .thumb {
@@ -566,6 +566,21 @@ form > input {
 }
 .card > .card-footer > .card-buttons {
   font-size: 12px;
+}
+
+.card > .budget-body {
+
+}
+
+.card > .budget-body > .chart {
+  padding: 10px 0 0 0;
+  width: 100%;
+}
+
+.card > .budget-body > li {
+  padding: 10px 10px 0 0;
+  display: block;
+  float: left;
 }
 
 /*********comments*********/
