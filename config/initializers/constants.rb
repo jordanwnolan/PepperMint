@@ -6,7 +6,13 @@ WEEKLY_FREQUENCY_RESETS =  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 MONTHLY_FREQUENCY_RESETS = ['First of Month', '15th of Month', 'End of Month']
 
-   GENDER = {
-    0 => 'M',
-    1 => 'F'
-   }
+ GENDER = {
+  0 => 'M',
+  1 => 'F'
+ }
+
+ ACCOUNT_TYPES = {
+  0 => "Checking",
+  1 => "Savings",
+  2 => "Credit Card"
+ }

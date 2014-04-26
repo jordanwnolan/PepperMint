@@ -1,3 +1,4 @@
+<section class="page group">
 <ul class="nav-side-bar">
     <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
     <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
@@ -15,23 +16,23 @@
   <a href="<%= new_account_url %>">Add Account</a>
 
   <table class="accounts-table">
-    <tr>
-      <td>Bank Name</td>
-      <td>Account Name</td>
-      <td>Account Type</td>
-      <td>Balance</td>
-    </tr>
+    <thead>
+      <th>Bank Name</th>
+      <th>Account Name</th>
+      <th>Account Type</th>
+      <th>Balance</th>
+    </thead>
     <% @accounts.each do |account| %>
       <tr>
         <td><a href="<%= account_url(account) %>"><%= account.account_name %></a></td>
         <td><%= account.bank.name %></td>
-        <td><%= account.account_type %></td>
+        <td><%= ACCOUNT_TYPES[account.account_type] %></td>
         <td>$<%= account.balance %></td>
       </tr>
     <% end %>
-      <td></td>
-      <td></td>
-      <td>Total:</td>
+      <td class="total"></td>
+      <td class="total"></td>
+      <td class="total">Total:</td>
       <td>
         $<%= @accounts.inject(0) do |n, account| %>
           <%n += account.try(:account_type) == 2 ? -1 * (account.try(:balance)) : account.try(:balance) %>
@@ -39,4 +40,5 @@
       </td>
 
   </table>
+</section>
 </section>

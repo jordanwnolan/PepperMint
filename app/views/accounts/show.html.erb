@@ -1,3 +1,4 @@
+<section class="page group">
 <ul class="nav-side-bar">
     <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
     <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
@@ -9,9 +10,8 @@
 
 <section class="page-content">
 
-  <header class="account-header"
-    <h3 class="header-title"><%= @account.account_name %></h3>
-
+  <header class="page-content-header group">
+    <h3 class="page-title"><%= @account.account_name %></h3>
     <form action="<%= account_choose_url %>" method="get">
       <select name="account[id]">
         <option value="0">All</option>
@@ -25,24 +25,9 @@
   </header>
 
   <article class="page-body">
-      <table class="transactions-table">
-      <tr class="table-headers">
-        <td>Date</td>
-        <td>Description</td>
-        <td>Category</td>
-        <td>Amount</td>
-      </tr>
-      <% @transactions.each do |transaction| %>
-      <% category = transaction.try(:merchant_category).merchant_category %>
-        <tr class="table-data">
-          <td><%= transaction.try(:date) %></td>
-          <td><%= transaction.try(:description) %></td>
-          <td><%= category %></td>
-          <td><%= transaction.try(:amount) %></td>
-        </tr>
-      <% end %>
-      </table>
+    <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
   </article>
   
   
+</section>
 </section>

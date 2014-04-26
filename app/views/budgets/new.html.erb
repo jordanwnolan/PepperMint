@@ -12,7 +12,9 @@
     <label for="budget-amount">Amount</label>
     <input type="text" name="budget[amount]" id="budget-amount" value="<%= @budget.amount %>">
     </div>
-    <div>
+
+    <div class="dropdowns group">
+    <div class="dropdown">
     <label for="budget-category">Category</label>
     <select name="budget[category_id]" id="budget-category">
       <option></option>
@@ -22,9 +24,9 @@
     </select>
     </div>
 
-    <div>
+    <div class="dropdown">
     <label for="budget-frequency">Frequency</label>
-    <select name="budget[frequency]">
+    <select name="budget[frequency]" id="budget-frequency">
       <option></option>
       <% FREQUENCIES.each do |val, description| %>
         <option value="<%= val %>"><%= description %></option>
@@ -32,9 +34,9 @@
     </select>
     </div>
 
-    <div>
+    <div class="dropdown">
     <label for="budget-reset-weekly">When to end period (weekly)?</label>
-    <select name="budget[frequency_reset]">
+    <select name="budget[frequency_reset]" id="budget-reset-weekly">
       <option></option>
         <% WEEKLY_FREQUENCY_RESETS.each_with_index do |item, index| %>
         <option value="<%= index %>"><%= item %></option>
@@ -42,22 +44,24 @@
     </select>
   </div>
 
-    <div>
-    <label for="budget-reset-weekly">When to end period (monthly)?</label>
-    <select name="budget[frequency_reset]">
+    <div class="dropdown">
+    <label for="budget-reset-monthly">When to end period (monthly)?</label>
+    <select name="budget[frequency_reset]" id="budget-reset-monthly">
       <option></option>
         <% MONTHLY_FREQUENCY_RESETS.each_with_index do |item, index| %>
         <option value="<%= index %>"><%= item %></option>
         <% end %>
     </select>
   </div>
+  </div>
 
-    <div>
+  
+    <div class="radio">
     <label for="budget-private">Private</label>
-    <input type="radio" name="budget[private]" value="true" <%= "checked" if (@budget.private == true) %>>
+    <input type="radio" id="budget-private" name="budget[private]" value="true" <%= "checked" if (@budget.private == true) %>>
 
     <label for="budget-public">Public</label>
-    <input type="radio" name="budget[private]" value="false" <%= "checked" if (@budget.private == false) %>>
+    <input type="radio" id="budget-public" name="budget[private]" value="false" <%= "checked" if (@budget.private == false) %>>
     </div>
 
     <div class="submit">

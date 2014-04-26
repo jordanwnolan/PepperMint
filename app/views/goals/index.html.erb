@@ -5,9 +5,11 @@
 <section class="page-content">
   <header class="page-content-header">
     <h3 class="page-title"><%= current_user.username %>'s Goals</h3>
+
+     <a href="<%= new_goal_url %>">Create New Goal</a>
   </header>
 
-  <a href="<%= new_goal_url %>">Add Goal</a>
+ 
   <section class="cards group">
     <% @goals.each do |goal| %>
       <%= render partial: 'goal', locals: { goal: goal } %>

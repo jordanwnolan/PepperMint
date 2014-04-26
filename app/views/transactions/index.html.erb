@@ -2,9 +2,9 @@
 <section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
-  <header class="account-header">
-    <h3 class="header-title">All Transactions</h3>
-
+  <header class="page-content-header group">
+    <h3 class="page-title">All Transactions</h3>
+</header>
     <form action="<%= account_choose_url %>" method="get">
       <select name="account[id]">
         <option value="0" selected>All</option>

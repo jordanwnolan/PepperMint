@@ -7,6 +7,8 @@
           <%= budget.transaction_category.description %>
         </a>
       </h3>
+
+      <time>Created <%= time_ago_in_words(budget.created_at) %> ago</time>
     </header>
     <ul class="budget-body group">
       <li class="chart">~~chart goes here~~~</li>

@@ -1,12 +1,15 @@
-<table class="transactions-table">
-<tr class="table-headers">
-  <td>Account</td>
-  <td>Date</td>
-  <td>Description</td>
-  <td>Category</td>
-  <td>Amount</td>
-</tr>
-<% @transactions.each do |transaction| %>
+<div class="transactions-table">
+<table>
+<thead>
+  <th>Account</th>
+  <th>Date</th>
+  <th>Description</th>
+  <th>Category</th>
+  <th>Amount</th>
+  <th></th>
+</thead>
+<tbody>
+<% transactions.each do |transaction| %>
 <% category = transaction.try(:merchant_category).merchant_category %>
   <tr class="table-data">
     <td><%= transaction.account.account_name %></td>
@@ -17,4 +20,6 @@
     <td><%= link_to "Edit",  edit_transaction_url(transaction)%>
   </tr>
 <% end %>
+</tbody>
 </table>
+</td>

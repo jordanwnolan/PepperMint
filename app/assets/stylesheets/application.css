@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, label {
+html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, label, strong, thead, th, tbody, tr, td {
   padding: 0;
   margin: 0;
   border: 0;
@@ -198,6 +198,8 @@ h3 {
 
 .page-content-header > .page-title {
   font-size: 50px;
+  width: 100%;
+  padding-bottom: 10px;
 }
 
 .page-content-header > h1 {
@@ -513,9 +515,9 @@ form > input {
 .card {
   background-color: #eee;
   border: 3px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0 0 0;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 20px 0 0 0;
 }
 
 .card > .thumb {
@@ -526,6 +528,7 @@ form > input {
 .card-header {
   display: block;
   border-bottom: 3px solid #ddd;
+  padding: 0 0 10px 0;
   vertical-align: middle;
 }
 
@@ -549,6 +552,7 @@ form > input {
 }
 
 .card-header > time {
+  padding-top: 5px;
   display: block;
   clear: both;
   font-weight: lighter;
@@ -573,11 +577,13 @@ form > input {
 }
 
 .card > .budget-body > .chart {
-  padding: 10px 0 0 0;
+  border-bottom: 3px solid #ddd;
+  padding: 10px 0 10px 0;
   width: 100%;
 }
 
 .card > .budget-body > li {
+  width: 120px;
   padding: 10px 10px 0 0;
   display: block;
   float: left;
@@ -587,4 +593,77 @@ form > input {
 
 .comment-count {
   font-size: 12px;
+}
+
+.dropdowns {
+  width: 500px;
+}
+
+.dropdown {
+  display: block;
+  padding: 10px 0 0 0;
+}
+
+.dropdown select {
+  width: 200px;
+  float: right;
+  
+}
+
+.dropdown select option {
+  background: #ddd;
+}
+
+.radio {
+  padding: 10px 0 0 0;
+}
+
+/********Tables********/
+
+table {
+  width: 100%;
+  margin: 10px 0 0 0;
+  border-collapse: collapse;
+  border: 3px solid #ccc;
+}
+
+th {
+  padding: 10px;
+  background: #eee;
+  /*border: 3px solid #ccc;*/
+  border-left: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+
+  text-align: left;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px;
+  border: 2px solid #ccc;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.transactions-table {
+  /*width: 100%;*/  
+}
+
+td.total {
+  text-align: right;
+  border: 0;
+}
+
+.overview {
+  display: block;
+}
+
+.overview > header {
+  margin: 10px 0 0 0;
+  border-bottom: 3px solid #ccc;
+  padding: 0 0 10px 0;
+}
+
+.overview > header > h3 {
+  padding: 0 0 10px 0;
 }

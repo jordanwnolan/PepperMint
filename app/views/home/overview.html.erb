@@ -1,8 +1,12 @@
 
 
 <section class="page group">
+
 <%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
+<header class="page-content-header group">
+  <h1 class="page-title">Overview</h1>
+</header>
   <%= render partial: 'layouts/overview_main', locals: { goals: @goals, budgets: @budgets} %>
 </section>
 </section>
