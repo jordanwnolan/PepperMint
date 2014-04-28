@@ -61,7 +61,7 @@ input[type="submit"] {
 
 .submit.login-button > input {
   padding: 10px 20px;
-  background-color: #f80;
+  background-color: #fa0;
   color: #fff;
   border-radius: 3px;
   font-weight: bold;
@@ -153,8 +153,7 @@ h3 {
   font-weight: bold;
 }
 
-.transaction-description > input{
-
+.transaction-description > input {
   width: 50px;
 }
 
@@ -369,7 +368,7 @@ form > input {
   text-align: center;
   position: relative;
   display: block;
-  background-color: #f80;
+  background-color: #fa0;
   padding: 10px 20px;
   border-radius: 5px;
   margin: auto;
@@ -381,7 +380,7 @@ form > input {
 }
 
 .submit > input:hover {
-  background-color: #fa0;
+  background-color: #f80;
 }
 
 .welcome {
