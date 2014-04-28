@@ -49,6 +49,7 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
+    chartkick (1.2.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -84,6 +85,8 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
+    groupdate (2.1.0)
+      activerecord (>= 3.0.0)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -224,12 +227,14 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capybara
+  chartkick
   cocaine
   coffee-rails (~> 4.0.0)
   debugger
   factory_girl_rails
   faker
   figaro
+  groupdate
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails
