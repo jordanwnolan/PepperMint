@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def publish_shares
-    current_user.publish_shares
+    current_user.publish_shares if signed_in?
   end
 
   def publish_share(options)
-    # fail
+
     if options[:item]
       item = options[:item]
       is_new = options[:is_new]

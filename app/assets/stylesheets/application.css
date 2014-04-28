@@ -22,8 +22,6 @@ html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, 
 
 body {
   font-family: sans-serif;
-  /*background-color: #696;*/
-  /*color: #fd0;*/
 }
 
   input[type="text"],
@@ -50,7 +48,37 @@ input[type="submit"] {
     cursor: pointer;
   }
 
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 2px 5px;
+  }
+
+.login-button {
+  margin: 10px 5px;
+  display: block;
+}
+
+.submit.login-button > input {
+  padding: 10px 20px;
+  background-color: #f80;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.new-user-form > a {
+  /*padding: 10px;*/
+  margin: 5px;
+  font-size: 12px;
+  display: block; 
+}
+
 .logout {
+  
+}
+
+.logout > input {
   padding: 10px 20px;
 }
 
@@ -170,9 +198,15 @@ h3 {
 }
 
 .nav-side-bar > li > a {
+  color: #0a5;
   display: inline-block;
-  padding: 10px 0 5px 0;
+  border-radius: 3px;
+  padding: 10px 10px 10px 10px;
 }
+
+.nav-side-bar > li > a:hover {
+  background-color: #eee;
+} 
 
 .page {
   width: 860px;
@@ -251,19 +285,21 @@ form > input {
 .comment-count {
   /*background-color: green;*/
   display: block;
-  float: left;
+  margin: 0 5px 0 0;
+  float: right;
 }
 
 /*.new-comment-form > */
 
-.submit > input {
-  position: static;
-  display: block;
-  float: left;
-  padding: 5px;
+.new-comment-form > .submit > input {
+  font-size: 10px;
+  margin: 0 5px 0 0;
+  padding: 3px;
+  float: right;
 }
 
 .new-comment-form > .input {
+  float: right;
   margin: 0 0 0 0;
 }
 
@@ -307,10 +343,10 @@ form > input {
   margin: 5px;
 }
 
-.new-user-form > .submit > input {
+/*.new-user-form > .submit > input {
   padding: 10px 20px;
   margin: 10px auto;
-}
+}*/
 
 .input {
   margin: 20px 0;
@@ -329,17 +365,23 @@ form > input {
 }
 
 .submit > input {
+  color: #0a5;
   text-align: center;
   position: relative;
   display: block;
-  background-color: #bbb;
+  background-color: #f80;
   padding: 10px 20px;
   border-radius: 5px;
   margin: auto;
+  color: #fff;
+  position: static;
+  display: block;
+  float: left;
+  padding: 5px;
 }
 
 .submit > input:hover {
-  background-color: #ccc;
+  background-color: #fa0;
 }
 
 .welcome {
@@ -358,20 +400,33 @@ form > input {
 }
 
 .welcome > .links > a {
-  width: 70px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 3px;
+  width: 80px;
   display: block;
   float: left;
   margin: 20px;
-  padding: 20px;
-  background: #eee;
+  padding: 15px;
+  background: #fa0;
   text-align: center;
-  color: #0a5;
+  color: #fff;
+}
+
+.welcome > .links > a:hover {
+  background: #fb0;
+}
+
+.welcome.submit {
+  margin: auto;
+  float: none;
 }
 
 /*****Messaging*****/
 
-.message-form {
-
+.message-form-container {
+  /*padding: 10px;*/
+  width: 180px;
 }
 
 .message-form > .input {
@@ -402,52 +457,57 @@ form > input {
 .message-form > .submit > input {
   display: inline-block;
   font-size: 12px;
-  background: #fff;
-  color: #0a5;
-  padding: 0;
+/*  background: #fff;
+  color: #0a5;*/
+  padding: 3px;
 }
 
 .messages {
+  width: 100%;
   display: block;
+  clear: left;
   margin: 10px 0 0 0;
 }
 
-.message {
+.message-content {
+  /*float: right;*/
   display: block;
-  padding: 5px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   margin: 10px auto;
+  margin-bottom: 0;
   background-color: #eee;
   /*border: 2px solid #ccc;*/
   border-radius: 3px;
 }
 
-.message > header > article {
+.message-content > header > article {
   display: block;
   padding: 5px 0 5px 0;
 }
 
-.message > header > article > time {
+.message-content > header > article > time {
   /*font-weight: lighter;*/
+  padding: 0;
   display: block;
   float: left;
   color: #999;
   font-size: 10px;
 }
 
-.message > header > .message-title {
+.message-content > header > .message-title {
   background: #fff;
   padding: 2px;
   font-size: 14px;
 }
 
-.message > .message-body {
+.message-content > .message-body {
   display: block;
   padding: 2px;
   background: #fff;
   font-size: 14px;
 }
 
-.message > header > form {
+.message-content > header > form {
   display: block;
 }
 
@@ -465,37 +525,76 @@ form > input {
   color: #000;
 }
 
+.message-thumb {
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.message-thumb.user-sent-message {
+  float: right;
+}
+
+.message img {
+  height: 50px;
+  width: 50px;
+}
+
 /*****Faming*****/
 
+.fame-container {
+  position: relative;
+  display: block;
+}
+
 .fame {
+  width: 100px;
   display: block;
   float: left;
   padding-left: 5px;
 }
 
 .fame-count {
-  display: inline-block;
-  float: left;
+  position: absolute;
+  top: 5px;
+  left: 50px;
   font-weight: bold;
   font-size: 20px;
-  vertical-align: 50%;
 }
 
-.fame-form {
+.fame-forms {
   display: block;
+  height: 36px;
 }
 
 .fame-form > .submit > input {
-  display: inline;
+  margin: 0 0 1px 0;
+  display: block;
+  clear: both;
+  float: left;
   padding: 0;
   vertical-align: text-bottom;
-  background: none;
+  padding: 2px;
+  /*background: none;*/
 }
 
-.fame-forms > .fame-form > .submit > .input {
-  background: none;
+.unfame-form {
+  display: block;
+}
+
+.unfame-container {
+
+}
+
+.unfame-form > .submit > input {
+  position: absolute;
+  top: 7px;
+  display: block;
+  clear: both;
+  float: left;
   padding: 0;
-  height: 100%;
+  vertical-align: text-bottom;
+  padding: 2px;
+  /*background: none;*/
 }
 
 .fame-count {
@@ -518,7 +617,7 @@ form > input {
 }
 
 .card {
-  background-color: #eee;
+  background-color: #F3F3F3;
   border: 3px solid #ddd;
   border-radius: 5px;
   padding: 15px;
@@ -535,9 +634,10 @@ form > input {
   margin-right: 10px;
 }
 
-.card > .thumb {
-  width: 50px;
-  height: 50px;
+.card-header > div.thumb {
+  width: 100px;
+  height: 100px;
+  display: block;
 }
 
 .card-header {
@@ -552,26 +652,29 @@ form > input {
   float: left;
 }
 
-.card-header > h3 {
+.card-header > .header-info > h3 {
   float: left;
+  clear: left;
   display: block;
   font-weight: bold;
   font-size: 20px;
-  clear: right;
 }
 
-.card-header > h3 > a {
+.card-header > .header-info > h3 > a {
   display: block;
-  clear: right;
-  vertical-align: 50%;
+}
+
+.card-header > .header-info > h3 > a:hover {
+  color: #0c7;
 }
 
 time {
+  float: left;
   padding-top: 5px;
   display: block;
-  clear: both;
   font-weight: lighter;
   font-size: 12px;
+  clear: both;
 }
 
 .card > p {
@@ -693,16 +796,17 @@ td.total {
 }
 
 .overview-subheader > a {
-  font-size: 12px;
-  padding: 5px 10px;
-  background-color: #ddd;
+  /*font-size: 12px;*/
+  padding: 5px 10px 5px 5px;
+  /*background-color: #ddd;*/
   border-radius: 3px;
   margin: 0 0 10px 0;
 }
 
-.overview-subheader > a {
-
+.overview-subheader > a:hover {
+  background-color: #eee;
 }
+
 
 .goal-subsection {
   padding: 0 0 20px 0;
@@ -729,3 +833,25 @@ td.total {
 .user-info-card > time  {
   margin: 20px 0 0 0;
 }
+
+.avatar {
+  max-width: 600px;
+  max-height: 600px;
+  height: auto;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  
+  border-top: 20px solid #eee;
+}
+
+.user > .card-header > .avatar {
+  display: block;
+  float: left;
+  width: 100px;
+  height: 100px;
+} 

@@ -10,12 +10,14 @@
         <article class="card">
           <header class="card-header group">
             <div class="thumb">
-            <a href="<%= user_url(share.user.id) %>"><img src=""></a>
+              <a href="<%= user_url(share.user.id) %>"><img class="avatar" src="<%= share.user.avatar.url(:thumb) %>"></a>
             </div>
-            <h3><a href="<%= user_url(share.user.id) %>"><%= share.user.username %></a></h3>
 
+            <div class="header-info">
+              <h3><a href="<%= user_url(share.user.id) %>"><%= share.user.username %></a></h3>
+
+              <time><%= time_ago_in_words(share.created_at) %> ago</time>
             </div>
-            <time><%= time_ago_in_words(share.created_at) %> ago</time>
           </header>
 
           <p><a href="<%= url %>"><%= share.message %></a></p>
@@ -23,21 +25,24 @@
           
         <footer class="card-footer group">
           <div class="card-buttons group">
-            <h3 class="fame-count"><%= share.total_fame %></h3>
+            <div class="fame-container">
+            
               <div class="fame group">
 
               <% fame = share.fames.select { |fame| fame.user_giving_fame_id == current_user.id }.first %>
+              <div class="fame-forms group">
               <% if fame %>
-              <form action="<%= fame_url(fame) %>" method="post" class="fame-form">
+              <form action="<%= fame_url(fame) %>" method="post" class="unfame-form group">
                 <%= auth_token %>
                 <input type="hidden" name="_method" value="delete">
                 <div class="submit">
-                <input type="submit" value="Unfame">
+                  <input type="submit" value="Unfame">
                 </div>
               </form>
+
               <% else %>
 
-              <div class="fame-forms">
+              
                 <form action="<%= fame_user_url(share.user, share) %>" method="post" class="fame-form">
                 <%= auth_token %>
                 <div class="submit">
@@ -47,20 +52,20 @@
                 <form action="<%= shame_user_url(share.user, share) %>" method="post" class="fame-form">
                 <%= auth_token %>
                 <div class="submit">
-                <input type="submit" value="Shame...">
+                  <input type="submit" value="Shame...">
                 </div>
               </form>
               </div>
-              </div>
+              
               <% end %>
+              </div>
+              <h3 class="fame-count"><%= share.total_fame %></h3>
+              </div>
+              
 
             <div class="comments group">
 
-              <h3 class="comment-count">
-                <% count = share.shareable.comments.count %>
 
-                <%= count %> <%= count == 1 ? "comment" : "comments" %>
-              </h3>
 
               <form action="<%= comments_url %>" method="post" class="new-comment-form">
                 <%= auth_token %>
@@ -70,10 +75,17 @@
                   <textarea name="comment[body]"></textarea>
                 </div>
 
+              <h3 class="comment-count">
+                <% count = share.shareable.comments.count %>
+
+                <%= count %> <%= count == 1 ? "comment" : "comments" %>
+              </h3>
+
                 <div class="submit">
                   <input type="submit" value="Add Comment">
                 </div>
             </form>
+
           </div>
           </div>
           </footer>

@@ -7,12 +7,14 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by_credentials(user_params[:email], user_params[:password])
+    # fail
     if @user
 
       login_user(@user)
       redirect_to overview_url
     else
       flash.now[:errors] = ["Invalid Credentials"]
+      @user = User.new
       render :new
     end
   end

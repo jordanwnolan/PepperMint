@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
+  has_attached_file :avatar, styles: { thumb: "100x100>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  
   after_create :create_profile
 
   validates :email, presence: true, uniqueness: true

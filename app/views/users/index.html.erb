@@ -10,7 +10,9 @@
     <% @users.each do |user| %>
     <article class="user card">
       <header class="card-header group">
-        <a href="<%= user_url(user) %>"><img src="" class="profile-thumbnail" alt="THUMBNAIL" width="100px" height="100px"></a>
+        <a href="<%= user_url(user) %>">
+        <img class="avatar" src="<%= user.avatar.url(:thumb) %>">
+        </a>
         <div class="user-info-card group">
           <h3><a href="<%= user_url(user) %>"><%= user.username %></a></h3>
           <strong>Fame: <%= user.total_fame %></strong>

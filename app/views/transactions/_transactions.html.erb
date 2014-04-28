@@ -12,7 +12,7 @@
 <% transactions.each do |transaction| %>
 <% category = transaction.try(:merchant_category).merchant_category %>
   <tr class="table-data">
-    <td><%= transaction.account.account_name %></td>
+    <td><a href="<%= account_url(transaction.account) %>"><%= transaction.account.account_name %></a></td>
     <td><%= transaction.try(:date) %></td>
     <td><%= transaction.try(:description) %></td>
     <td><%= category %></td>

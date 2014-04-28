@@ -1,17 +1,11 @@
 <div class="message">
+<div class="message-content group">
 <header>
   <h3 class="user">
-  <% if message.sender == current_user %>
-    <%= "You"  %>
-  <% else %>
-    <a href="<%= user_url(message.sender) %>">
-    <%= message.sender.username %>
-    </a>
-  <% end %>
-  sent: 
-  </h3>
 
+  </h3>
   <h3 class="message-title"><%= message.title %></h3>
+
   <article class="group">
   <time><%= time_ago_in_words(message.created_at) %> ago</time>
     <form action="<%= user_message_url(@user.id, message.id) %>" method="post">
@@ -30,4 +24,18 @@
 <footer>
 
 </footer>
+</div>
+  <% if message.sender == current_user %>
+    <div class="message-thumb user-sent-message group">
+      <div class="arrow-down"></div>
+      <img class="avatar" src="<%= message.sender.avatar.url(:thumb) %>">
+    </div>
+  <% else %>
+      <div class="message-thumb group">
+      <div class="arrow-down"></div>
+      <a href="<%= user_url(message.sender) %>">
+        <img class="avatar" src="<%= message.sender.avatar.url(:thumb) %>">
+      </a>
+    </div>
+  <% end %>
 </div>

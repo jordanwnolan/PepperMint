@@ -15,6 +15,7 @@
       <a href="<%= follow_user_url(@user) %>">Follow <%= @user.username %></a></li>
     <% end %>
     <li>
+      <div class="message-form-container">
         <form action="<%=user_messages_url(@user) %>" method="post" class="message-form">
           <%= auth_token %>
           <div class="input">
@@ -30,12 +31,13 @@
             <input type="submit" value="Send Message">
           </div>
           </form>
+        </div>
     </li>
     <div class="messages">
     <li>Messages</li>
   <ul>
   <% @messages.each do |message| %>
-    <li><%= render partial: 'messages/message', locals: { message: message } %></li>
+    <li class="group"><%= render partial: 'messages/message', locals: { message: message } %></li>
   <% end %>
   </ul>
     </div>
@@ -43,7 +45,9 @@
 </ul>
   <section class="page-content">
     <header class="page-content-header group">
-      <img src="<%= @profile.try(:picture_url) %>">
+      <% if @user.avatar %>
+        <img class="avatar" src="<%= @user.avatar.url %>">
+      <% end %>
       <h1 class="page-title"><%= @user.username %></h1>
       <strong class="fame">Fame: <%= @user.total_fame %></strong>
 

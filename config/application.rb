@@ -20,6 +20,15 @@ module PepperMint
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.paperclip_defaults = {
+        storage: :s3,
+        s3_credentials: {
+            bucket: ENV["S3_BUCKET"],
+            access_key_id: ENV["S3_ACCESS_KEY"],
+            secret_access_key: ENV["S3_SECRET_KEY"]
+        }
+    }
+
     config.generators do |g|
         g.test_framework :rspec,
             fixtures: true, 

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+# ruby '2.1.1'
 
 gem 'rails', '4.0.4'
 gem 'pg'
@@ -12,6 +13,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'cocaine'
 
 gem 'rails_12factor', group: :production
 

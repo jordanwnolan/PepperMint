@@ -1,3 +1,5 @@
+<section class="page group">
+
 <ul class="nav-side-bar">
     <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
     <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
@@ -7,56 +9,57 @@
     <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
 </ul>
 
+<form action="<%= user_url(@user) %>" method="post" enctype="multipart/form-data">
 <section class="page-content">
-<form action="<%= user_url(@user) %>" method="post">
+
 <%= auth_token %>
-  <header class="user-header"
-    <img src="<%= @profile.try(:picture_url) %>">
-    <label>
-      <input type="text" name="user[picture_url]">
-      Edit Photo
-    </label>
-    <br>
-    <h3 class="page-title">Edit Profile, <%= @user.username %></h3>
+  <header class="page-content-header">
+    <% if @user.avatar %>
+      <img class="avatar" src="<%= @user.avatar.url %>">
+    <% end %>
+    <div class="file">
+      <label for="user-avatar">Edit Photo</label>
+      <input type="file" name="user[avatar]" id="user-avatar">
+    </div>
+
+    <h3 class="page-content-title">Edit Profile, <%= @user.username %></h3>
   </header>
-  
+
+  <article class="page-body">
+  <div class="user-edit">
   <input type="hidden" name="_method" value="patch">
 
-  <label>
-    <input type="text" name="profile[age]" value="<%= @profile.age %>">
-    Age
-  </label>
-  <br>
-  
-  <label>
-    <label>
+    <label for="gender">Gender</label>
+    <label id="gender" for="gender-m">M</label>
       <input type="radio" 
         name="profile[gender]" 
         value="0" 
-        <%= "checked" if @profile.gender == 0%>>
-      M
-    </label>
+        <%= "checked" if @profile.gender == 0%> id="gender-m">
     
-    <label>
+    <label id="gender" for="gender-f">F</label>
       <input type="radio" 
         name="profile[gender]" 
         value="1"
-        <%= "checked" if @profile.gender == 1%>>
-      F
-    </label>
-    Gender
-  </label>
-  <br>
+        <%= "checked" if @profile.gender == 1%> id="gender-f">
 
-  <label>
-  <%# fail %>
+  <div class="input">
+    <label for="user-age">Age</label>
+    <input type="text" name="profile[age]" value="<%= @profile.age %>" id="user-age">
+  </div>
+
+  <% zip = @profile.zip_code.nil? ? '' : @profile.zip_code.to_s.try(:rjust, 5, '0') %>
+  <div class="input">
+  <label for="user-zip">Zip Code</label>
     <input type="text" 
     name="profile[zip_code]" 
-    value="<%= @profile.zip_code.to_s.try(:rjust, 5, '0') %>">
-    Zip Code
-  </label>
-  <br>
+    value="<%= zip %>" id="user-zip">
+  </div>
 
-  <input type="submit" value="Update Profile">
-</form>
+  <div class="submit">
+    <input type="submit" value="Update Profile">
+  </div>
+    </div>
+  </form>
+</article>
+</section>
 </section>

@@ -2,6 +2,7 @@
   <form class="new-user-form" action="<%=  session_url %>" method="post">
     <h1>PepperMint</h1>
     <h3>Log In!</h3>
+    <a href="<%= new_user_url %>">Don't have an account? Sign Up!</a>
     <%= auth_token %>
 
     <div class="input">
@@ -14,8 +15,9 @@
       <input type="password" name="user[password]">
     </div>
 
-    <div class="submit">
+    <div class="submit login-button group">
       <input type="submit" value="Log In!">
+
     </div>
 
   </form>

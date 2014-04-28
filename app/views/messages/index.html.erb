@@ -38,7 +38,11 @@
   </header>
   <ul>
   <% @received_messages.each do |message| %>
-    <li><%= render partial: 'message', locals: { message: message } %></li>
+  <li class="group">
+
+    <%= render partial: 'message', locals: { message: message } %>    
+
+  </li>
   <% end %>
   </ul>
   </article>
@@ -49,7 +53,11 @@
   </header>
   <ul>
   <% @sent_messages.each do |message| %>
-    <li><%= render partial: 'message', locals: { message: message } %></li>
+  <li class="group">
+
+    <%= render partial: 'message', locals: { message: message } %>
+
+  </li>
   <% end %>
   </ul>
 
