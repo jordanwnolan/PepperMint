@@ -10,11 +10,23 @@
 
       <time>Created <%= time_ago_in_words(budget.created_at) %> ago</time>
     </header>
-    <ul class="budget-body group">
-      <li class="chart">~~chart goes here~~~</li>
-      <li><%= pct %></li>
-      <li><%= progress %> / <%= budget.amount %></li>
-      <li><%= FREQUENCIES[budget.frequency] %></li>
-      <li class="on-track"><%= budget.on_track? ? "On Track!" : "Uh Oh! You're overbudget!"%></li>
-    </ul>
+    <div class="budget-body group">
+      <article class="chart">~~chart goes here~~~</article>
+    </div>
+    <table>
+      <thead>
+        <th>Status</th>
+        <th>Progress</th>
+        <th>Amount</th>
+        <th>Frequency</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="on-track"><%= budget.on_track? ? "On Track!" : "Uh Oh! You're overbudget!"%></td>
+        <td><%= pct %></li>
+        <td>$<%= progress %> / $<%= budget.amount %></td>
+        <td><%= FREQUENCIES[budget.frequency] %></td>
+      </td>
+      </tbody>
+    </table>
 </article>

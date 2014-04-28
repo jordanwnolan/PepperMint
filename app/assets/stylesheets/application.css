@@ -164,10 +164,6 @@ h3 {
   background: #0b6;
 }
 
-/*.header-nav > ul > li > form > .logout > input:hover {
-  background: #fff;
-}*/
-
 .nav-side-bar {
   width: 200px;
   float: left;
@@ -192,7 +188,7 @@ h3 {
 }
 
 .page-content > .page-content-header {
-  border-bottom: 3px solid #ddd;
+  border-bottom: 3px solid #ccc;
   padding: 0 0 10px 0;
 }
 
@@ -246,16 +242,21 @@ form > input {
 }
 
 .comments {
+  float: right;
+  display: block;
+  width: 300px;
   /*background-color: red;*/
 }
 
-.card > .card-buttons > .comments > .comment-count {
+.comment-count {
   /*background-color: green;*/
   display: block;
   float: left;
 }
 
-.new-comment-form > .submit > input {
+/*.new-comment-form > */
+
+.submit > input {
   position: static;
   display: block;
   float: left;
@@ -266,14 +267,18 @@ form > input {
   margin: 0 0 0 0;
 }
 
-.new-comment-form > .input > textarea {
+/*.new-comment-form > */
+
+.input > textarea {
   width: 200px;
   height: auto;
 }
 
-.card > .card-buttons > .comments > form > .input > textarea {
+/*.card > .card-buttons > .comments > form > */
+
+.input > textarea {
   padding: 2px;
-  margin: 5px;
+  /*margin: 5px;*/
   font-size: 12px;
   background: #fff;
   border: 1px solid #aaa;
@@ -520,6 +525,16 @@ form > input {
   margin: 20px 0 0 0;
 }
 
+.user.card > .card-header {
+  border: 0;
+}
+
+.user.card {
+  width: 250px;
+  float: left;
+  margin-right: 10px;
+}
+
 .card > .thumb {
   width: 50px;
   height: 50px;
@@ -551,7 +566,7 @@ form > input {
   vertical-align: 50%;
 }
 
-.card-header > time {
+time {
   padding-top: 5px;
   display: block;
   clear: both;
@@ -576,7 +591,8 @@ form > input {
 
 }
 
-.card > .budget-body > .chart {
+/*.card > .budget-body > */
+.chart {
   border-bottom: 3px solid #ddd;
   padding: 10px 0 10px 0;
   width: 100%;
@@ -625,6 +641,7 @@ table {
   margin: 10px 0 0 0;
   border-collapse: collapse;
   border: 3px solid #ccc;
+  /*border-radius: 3px;*/
 }
 
 th {
@@ -656,6 +673,8 @@ td.total {
 
 .overview {
   display: block;
+  padding: 10px 0 20px 0;
+  border-bottom: 3px solid #ddd;
 }
 
 .overview > header {
@@ -665,5 +684,48 @@ td.total {
 }
 
 .overview > header > h3 {
+  display: block;
   padding: 0 0 10px 0;
+}
+
+.overview-subheader > h3 {
+  font-size: 36px;
+}
+
+.overview-subheader > a {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #ddd;
+  border-radius: 3px;
+  margin: 0 0 10px 0;
+}
+
+.overview-subheader > a {
+
+}
+
+.goal-subsection {
+  padding: 0 0 20px 0;
+  border-bottom: 3px solid #ccc;
+}
+
+.profile-thumbnail {
+  float: left;
+}
+
+.user-info-card {
+  display: block;
+  padding: 0 0 0 20px;
+  width: 120px;
+}
+
+.user-info-card > h3 {
+  font-weight: bold;
+  font-size: 20px;
+  clear: right;
+  height: 45px;
+}
+
+.user-info-card > time  {
+  margin: 20px 0 0 0;
 }

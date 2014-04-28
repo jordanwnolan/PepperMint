@@ -1,3 +1,5 @@
+<section class="page group">
+
 <%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
@@ -15,10 +17,16 @@
     
     <form action="<%= goal_comments_url(@goal) %>" method="post">
       <%= auth_token %>
-      <textarea name="comment[body]" id="comment-body"></textarea>
-      <input type="submit" value="Add Comment">
+      <div class="input">
+        <textarea name="comment[body]" id="comment-body"></textarea>
+      </div>
+      
+      <div class="submit">
+        <input type="submit" value="Add Comment">
+      </div>
     </form>
     <%= render @comments %>
     </div>
   </article>
+</section>
 </section>

@@ -3,32 +3,44 @@
     <h3><a href="<%= goal_url(goal) %>"><%= goal.name %></a></h3>
     <time>Created: <%= time_ago_in_words(goal.goal_date) %> ago</time>
   </header>
-      <table class="goals-table">
-        <tr>
-          <td>Total Goal Status</td>
-          <td>Goal Amount</td>
-          <td>Amount So Far</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= goal.overall_on_track? ? "On Track!" : "Uh oh, you're behind!" %></td>
-          <td><%= goal.amount %></td>
-          <td><%= goal.overall_progress %></td>
-          <td>~~~chart_goes_here</td>
-        </tr>
+  <div class="goal-subsection">
 
-        <tr>
-          <td>Status this Month</td>
-          <td>Monthly Amount</td>
-          <td>Amount Saved This Month</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= goal.this_month_on_track? ? "On Track!" : "Uh oh, you're behind this month!" %>
-          <td><%= goal.monthly_amount %></td>
-          <td><%= goal.this_month_progress %></td>
-          <td>~~~chart goes here</td>
-        </tr>
+    <article class="chart">~~~chart_goes_here</article>
+      <table class="goals-table">
+        <thead>
+          <th>Total Goal Status</th>
+          <th>Goal Amount</th>
+          <th>Amount So Far</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= goal.overall_on_track? ? "On Track!" : "Uh oh, you're behind!" %></td>
+            <td><%= goal.amount %></td>
+            <td><%= goal.overall_progress %></td>
+          </tr>
+        </tbody>
       </table>
-  </div>
+
+      
+      </div>
+
+      <div class="goal-subsection">
+
+      <article class="chart">~~~chart goes here</article>
+        <table>
+        <thead>
+          <th>Status this Month</th>
+          <th>Monthly Amount</th>
+          <th>Amount Saved This Month</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= goal.this_month_on_track? ? "On Track!" : "Uh oh, you're behind this month!" %>
+            <td><%= goal.monthly_amount %></td>
+            <td><%= goal.this_month_progress %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
 </article>

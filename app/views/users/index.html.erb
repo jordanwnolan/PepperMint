@@ -1,27 +1,36 @@
 <section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
-  <header>
+  <header class="page-content-header group">
     <h3>Follow People!</h3>
   </header>
 
-  <section class="users">
-  <table class="users-table">
-    <tr>
-      <td class="profile-thumbnal"></td>
-      <td>Username</td>
-      <td>Age</td>
-      <td>Fame</td>
-    </tr>
+  <article class="page-body">
+    <section class="cards group">
     <% @users.each do |user| %>
-      <tr>
-      <td></td>
-      <td><a href="<%= user_url(user) %>"><%= user.username %></a></td>
-      <td><%= user.profile.age %></td>
-      <td></td>
-      </tr>
+    <article class="user card">
+      <header class="card-header group">
+        <a href="<%= user_url(user) %>"><img src="" class="profile-thumbnail" alt="THUMBNAIL" width="100px" height="100px"></a>
+        <div class="user-info-card group">
+          <h3><a href="<%= user_url(user) %>"><%= user.username %></a></h3>
+          <strong>Fame: <%= user.total_fame %></strong>
+          <time>Joined <%= time_ago_in_words(user.created_at) %></time>
+        </div>
+          
+
+      </header>
+
+
+    </article>
     <% end %>
-  </table>
   </section>
+
+  </article>
 </section>
-</section>
+
+
+
+
+
+
+

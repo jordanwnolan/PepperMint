@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   before_action :require_signed_in!, except: [:home]
+
   def home
+    redirect_to overview_url if current_user
   end
 
   def overview
@@ -22,7 +24,7 @@ class HomeController < ApplicationController
   end
 
   def fame
-    fail
+    # fail
   end
 
   def shame
