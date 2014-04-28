@@ -54,6 +54,10 @@ input[type="submit"] {
     padding: 2px 5px;
   }
 
+  img {
+    border-radius: 5px;
+  }
+
 .login-button {
   margin: 10px 5px;
   display: block;
@@ -665,6 +669,11 @@ form > input {
 
 .card-header > .header-info > h3 > a:hover {
   color: #0c7;
+}
+
+.card-header > a > .avatar {
+  width: 100px;
+  height: 100px;
 }
 
 time {
