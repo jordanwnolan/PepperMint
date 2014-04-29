@@ -6,9 +6,16 @@
   <div class="goal-subsection">
 
     <article class="chart">
-      <% color = goal.overall_on_track? ? "green" : "red" %>
+      <% if goal.overall_on_track? %>
+        <% background = GOOD_CHART[:back] %>
+        <% color = GOOD_CHART[:fill] %>
+      <% else %>
+        <% background = BAD_CHART[:back] %>
+        <% color = BAD_CHART[:fill] %>
+      <% end %>
       <%= bar_chart({"" => goal.overall_progress}, 
-      max: goal.amount, height: "100px", colors: [color]) %></article>
+      max: goal.amount, height: "100px", colors: [color],
+      library: {backgroundColor: background }) %></article>
       <table class="goals-table">
         <thead>
           <th>Total Goal Status</th>
@@ -28,11 +35,18 @@
       </div>
 
       <div class="goal-subsection">
-
+      <% if goal.this_month_on_track? %>
+        <% background = GOOD_CHART[:back] %>
+        <% color = GOOD_CHART[:fill] %>
+      <% else %>
+        <% background = BAD_CHART[:back] %>
+        <% color = BAD_CHART[:fill] %>
+      <% end %>
       <article class="chart">
       <% color = goal.this_month_on_track? ? "green" : "red" %>
       <%= bar_chart({"" => goal.this_month_progress}, 
-      max: goal.monthly_amount, height: "100px", colors: [color]) %></article>
+      max: goal.monthly_amount, height: "100px", colors: [color],
+      library: {backgroundColor: background }) %></article>
         <table>
         <thead>
           <th>Status this Month</th>

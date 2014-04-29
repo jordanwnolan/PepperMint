@@ -12,8 +12,18 @@
     </header>
     <div class="budget-body group">
       <article class="chart">
-      <% color = budget.on_track? ? "green" : "red" %>
-      <%= bar_chart({"Progress" => "#{pct}%" }, max: 100, height: "100px", stacked: true, colors: [color]) %></article>
+      <% if budget.on_track? %>
+        <% background = GOOD_CHART[:back] %>
+        <% color = GOOD_CHART[:fill] %>
+      <% else %>
+        <% background = BAD_CHART[:back] %>
+        <% color = BAD_CHART[:fill] %>
+      <% end %>
+      <%= bar_chart({"" => "#{pct}" }, 
+      max: budget.amount, height: "100px", 
+      stacked: true, 
+      colors: [color],
+      library: { backgroundColor: background }) %></article>
     </div>
     <table>
       <thead>
