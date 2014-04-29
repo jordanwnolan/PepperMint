@@ -16,6 +16,8 @@ gem 'figaro'
 gem 'cocaine'
 gem 'chartkick'
 gem 'groupdate'
+gem 'underscore'
+gem 'backbone-on-rails'
 
 gem 'rails_12factor', group: :production
 

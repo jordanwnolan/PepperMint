@@ -21,6 +21,7 @@ html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, 
 }
 
 body {
+  overflow-y: scroll;
   font-family: sans-serif;
 }
 

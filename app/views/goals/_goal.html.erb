@@ -13,9 +13,11 @@
         <% background = BAD_CHART[:back] %>
         <% color = BAD_CHART[:fill] %>
       <% end %>
+      
       <%= bar_chart({"" => goal.overall_progress}, 
       max: goal.amount, height: "100px", colors: [color],
       library: {backgroundColor: background }) %></article>
+
       <table class="goals-table">
         <thead>
           <th>Total Goal Status</th>
