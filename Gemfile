@@ -14,7 +14,6 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
 gem 'cocaine'
-# gem 'chartjs-ror'
 gem 'chartkick'
 gem 'groupdate'
 
