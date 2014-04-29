@@ -10,3 +10,14 @@
   <%= render partial: 'layouts/overview_main', locals: { goals: @goals, budgets: @budgets} %>
 </section>
 </section>
+
+<script>
+
+$(document).ready(function(){
+  console.log("hello");
+
+  $("svg").on("click", function(event) {
+    console.log("event");
+  });
+});
+</script>

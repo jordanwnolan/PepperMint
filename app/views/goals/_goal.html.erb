@@ -43,10 +43,12 @@
         <% color = BAD_CHART[:fill] %>
       <% end %>
       <article class="chart">
-      <% color = goal.this_month_on_track? ? "green" : "red" %>
+
       <%= bar_chart({"" => goal.this_month_progress}, 
       max: goal.monthly_amount, height: "100px", colors: [color],
-      library: {backgroundColor: background }) %></article>
+      library: {backgroundColor: background }) %>
+
+      </article>
         <table>
         <thead>
           <th>Status this Month</th>

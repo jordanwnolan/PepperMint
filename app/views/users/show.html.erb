@@ -3,7 +3,6 @@
   <% if @user == current_user %>
     <li><a href="<%= user_url(current_user) %>">My Profile</a></li>
     <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
-    <li><a href="<%= accounts_url %>">Accounts</a></li>
     <li><a href="<%= user_url(current_user) %>">Settings</a></li>
     <li><a href="<%= user_url(current_user) %>">Email Settings</a></li>
     <li><a href="<%= user_url(current_user) %>">Notification Settings</a></li>
