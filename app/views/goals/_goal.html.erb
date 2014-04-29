@@ -5,7 +5,10 @@
   </header>
   <div class="goal-subsection">
 
-    <article class="chart">~~~chart_goes_here</article>
+    <article class="chart">
+      <% color = goal.overall_on_track? ? "green" : "red" %>
+      <%= bar_chart({"" => goal.overall_progress}, 
+      max: goal.amount, height: "100px", colors: [color]) %></article>
       <table class="goals-table">
         <thead>
           <th>Total Goal Status</th>
@@ -26,7 +29,10 @@
 
       <div class="goal-subsection">
 
-      <article class="chart">~~~chart goes here</article>
+      <article class="chart">
+      <% color = goal.this_month_on_track? ? "green" : "red" %>
+      <%= bar_chart({"" => goal.this_month_progress}, 
+      max: goal.monthly_amount, height: "100px", colors: [color]) %></article>
         <table>
         <thead>
           <th>Status this Month</th>

@@ -1,6 +1,12 @@
 
   <article class="overview group">
   <header class="overview-subheader">
+    <h3>Net Expenditure per month</h3>
+  </header>
+
+  <%= line_chart @transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true %>
+  
+  <header class="overview-subheader">
     <h3>Budgets</h3>
     <% unless @user %>
       <a href="<%= new_budget_url %>">Add Budget</a>

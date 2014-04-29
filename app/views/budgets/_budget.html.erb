@@ -11,7 +11,9 @@
       <time>Created <%= time_ago_in_words(budget.created_at) %> ago</time>
     </header>
     <div class="budget-body group">
-      <article class="chart">~~chart goes here~~~</article>
+      <article class="chart">
+      <% color = budget.on_track? ? "green" : "red" %>
+      <%= bar_chart({"Progress" => "#{pct}%" }, max: 100, height: "100px", stacked: true, colors: [color]) %></article>
     </div>
     <table>
       <thead>

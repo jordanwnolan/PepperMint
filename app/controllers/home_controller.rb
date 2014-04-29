@@ -6,6 +6,8 @@ class HomeController < ApplicationController
   end
 
   def overview
+    @transactions = current_user.transactions.includes(:merchant_category)
+    @transactions_by_month = @transactions.group_by_month(:date, format: "%B %Y").sum(:amount)
     @budgets = current_user.budgets
     @goals = current_user.goals
   end
