@@ -627,6 +627,10 @@ form > input {
   margin: 20px 0 0 0;
 }
 
+.card-content {
+  margin: 10px 0 10px 0;
+}
+
 .user.card > .card-header {
   border: 0;
 }
@@ -863,3 +867,17 @@ td.total {
   width: 100px;
   height: 100px;
 } 
+
+.alert {
+  background: #beb;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.alert-error {
+  background: #ebb;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}

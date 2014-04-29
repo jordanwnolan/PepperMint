@@ -15,6 +15,10 @@
   <% flash[:errors].each do |error| %>
   <div class="alert-error"><%= error %></div>
   <% end %>
+<% elsif flash[:alerts] %>
+  <% flash[:alerts].each do |alert| %>
+  <div class="alert"><%= alert %></div>
+  <% end %>
 <% end %>
 
 <%= yield %>
