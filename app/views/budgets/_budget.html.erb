@@ -19,7 +19,8 @@
         <% background = BAD_CHART[:back] %>
         <% color = BAD_CHART[:fill] %>
       <% end %>
-      <%= bar_chart({"" => "#{pct}" }, 
+
+      <%= bar_chart({"" => "#{progress}" }, 
       max: budget.amount, height: "100px", 
       stacked: true, 
       colors: [color],

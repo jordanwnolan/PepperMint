@@ -12,18 +12,25 @@
     <%= button_to "Delete Budget", budget_url(@budget), method: :delete, form_class: "delete-button" %>
   </header>
   <article class="page-section">
-    <form action="<%= budget_comments_url(@budget) %>" method="post">
-    <%= auth_token %>
-    <textarea name="comment[body]" id="comment-body"></textarea>
-    <input type="submit" value="Add Comment">
-    </form>
+  <%= render partial: 'budget', locals: { budget: @budget } %>
     <div class="cards group">
-    <%= render @comments %>
+  <%= render @comments %>
     </div>
     <% if @budget.user == current_user %>
       <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
     <% end %>
   </article>
+
+    <form action="<%= budget_comments_url(@budget) %>" method="post">
+    <%= auth_token %>
+    <div class="input">
+    <textarea name="comment[body]" id="comment-body"></textarea>
+    </div>
+    <div class="submit">
+      <input type="submit" value="Add Comment">
+    </div>
+    </form>
 </section>
+
 
 </section>

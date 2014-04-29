@@ -4,7 +4,7 @@
     <h3>Net Expenditure per month</h3>
   </header>
 
-  <%= line_chart @transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil %>
+  <%= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>
   
   <header class="overview-subheader">
     <h3>Budgets</h3>
