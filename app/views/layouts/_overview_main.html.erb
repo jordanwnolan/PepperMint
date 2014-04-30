@@ -1,6 +1,6 @@
 
   <article class="overview group">
-  <% if @user == current_user %>
+  <% if @user == current_user || @user.nil?%>
   <header class="overview-subheader">
     <h3>Net Expenditure per month</h3>
   </header>
@@ -45,7 +45,7 @@
   </article>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<% if @user == current_user %>
+<% if @user == current_user || @user.nil? %>
   <script type="text/javascript">
 
     // Load the Visualization API and the piechart package.
