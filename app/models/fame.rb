@@ -20,4 +20,8 @@ class Fame < ActiveRecord::Base
     user_id = self.user_receiving_fame_id
     self.notifications.create({ message: message, user_id: user_id })
   end
+
+  def name
+    self.fameable.name
+  end
 end
