@@ -37,10 +37,11 @@ module Progress
     else
 
       reset_day = get_reset_day(frequency_reset, today)
-
-      if reset_day > today.day
+      # debugger
+      if reset_day >= today.day
         last_month = today.prev_month
         reset_date = last_month.change(day: get_reset_day(frequency_reset, last_month))
+        # debugger
       else
         reset_date = today.change(day: reset_day)
       end
