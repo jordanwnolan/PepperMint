@@ -6,6 +6,7 @@ PepperMint::Application.routes.draw do
   get 'feed', to: 'home#feed'
 
 
+  resources :transaction_categories, only: [:show]
 
   resources :users do
     resources :messages, only: [:create, :show, :index, :destroy]
@@ -21,7 +22,9 @@ PepperMint::Application.routes.draw do
   resources :notifications, only: [:show]
   resources :fames, only: [:destroy]
   resources :comments, only: [:destroy]
-  resources :accounts
+  resources :accounts do
+    resources :transaction_categories, only: [:show]
+  end
   resources :budgets do
     resources :comments, only: [:create]
   end

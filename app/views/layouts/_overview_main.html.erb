@@ -1,11 +1,19 @@
 
   <article class="overview group">
+  <% if @user == current_user %>
   <header class="overview-subheader">
     <h3>Net Expenditure per month</h3>
   </header>
 
-  <%= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>
-  
+  <%#= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>
+
+  <script type="application/json" id="line-chart-data">
+    <%= @transactions.group_by_month(:date, format: "%B %Y").sum(:amount).to_json.html_safe if @transactions %> 
+  </script>
+  <%# fail %>
+
+  <div id="line-chart-container"></div>
+  <% end %>
   <header class="overview-subheader">
     <h3>Budgets</h3>
     <% unless @user %>
@@ -35,3 +43,42 @@
     <% end %>
   </section>
   </article>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<% if @user == current_user %>
+  <script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1.0', {'packages':['corechart']});
+    
+    $(document).ready(function() {
+      
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      // console.log(Object.keys($("#line-chart-data").html()));
+      var lineData = JSON.parse($("#line-chart-data").html());
+      console.log(lineData);
+      rows = [];
+      Object.keys(lineData).forEach(function(key) {
+        rows.push([key, lineData[key]])
+      });
+
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Month');
+        data.addColumn('number', 'Amount');
+        data.addRows(rows);
+
+        // Set chart options
+        var options = {'title':'', 'height': 300, 'legend': 'none', 'curveType': 'function' };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.LineChart(document.getElementById('line-chart-container'));
+        chart.draw(data, options);
+      }
+    });
+  </script>
+<% end %>

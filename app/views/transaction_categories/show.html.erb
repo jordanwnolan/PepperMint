@@ -1,0 +1,29 @@
+
+<section class="page group">
+<%= render partial: 'layouts/overview_side_bar' %>
+<section class="page-content">
+  <header class="page-content-header group">
+    <h3 class="page-title"><%= @category.description %></h3>
+</header>
+  <article class="page-body">
+    <form action="<%= account_choose_url %>" method="get" class="account-selector group">
+      <div class="select">
+      <select name="account[id]">
+        <option value="0" selected>All</option>
+        <% @accounts.each do |account| %>
+           <%= account.account_name %>
+           <option value="<%= account.id %>"><%= account.account_name %></option>
+        <% end %>
+      </select>
+      </div>
+      <div class="submit view-button">
+        <input type="submit" value="View">
+      </div>
+      </form>
+  </header>
+  <div id="pie-chart-container"></div>
+  
+    <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+  </article>
+</section>
+</section>

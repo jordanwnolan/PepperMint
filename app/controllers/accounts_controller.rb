@@ -28,6 +28,9 @@ class AccountsController < ApplicationController
 
     if @account
       @transactions = @account.transactions.includes(:merchant_category, :account)
+      if request.xhr?
+        render partial: 'transactions/transactions', locals: { transactions: @transactions }
+      end
     else
       flash[:errors] = ["You are not authorized to view this account"]
       redirect_to accounts_url

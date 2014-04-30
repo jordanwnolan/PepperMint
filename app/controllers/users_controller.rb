@@ -37,9 +37,11 @@ class UsersController < ApplicationController
     @messages = received_messages + sent_messages
 
     if @user == current_user
+      @transactions = @user.transactions
       @budgets = @user.budgets.to_a
       @goals = @user.goals.to_a
     else
+      @transactions = nil
       @budgets = @user.budgets.where(private: false)
       @goals = @user.goals.where(private: false)
     end

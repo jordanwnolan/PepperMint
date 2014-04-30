@@ -1,4 +1,4 @@
-<section class="page group">
+<section class="page group" data-account-id="<%= @account.id %>" data-url="<%= account_url(@account) %>">
 <ul class="nav-side-bar">
 <%= render partial: 'layouts/overview_side_bar' %>
 </ul>
@@ -8,6 +8,7 @@
   <header class="page-content-header group">
     <h3 class="page-title"><%= @account.account_name %></h3>
     <form action="<%= account_choose_url %>" method="get">
+    <div class="select">
       <select name="account[id]">
         <option value="0">All</option>
         <% @accounts.each do |account| %>
@@ -16,14 +17,136 @@
            </option>
         <% end %>
       </select>
-      <input type="submit" value="View">
+      </div>
+      <div class="submit view-button">
+        <input type="submit" value="View">
+      </div>
   </header>
-
-  <%= pie_chart  data_for_transaction_categories(@transactions) %>
   <article class="page-body">
-    <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+
+  <script type="application/json" id="line-chart-data">
+    <%= @transactions.group_by_month(:date, format: "%B %Y").sum(:amount).to_json.html_safe if @transactions %> 
+  </script>
+
+  <div id="line-chart-container"></div>
+
+  <div id="pie-chart-container"></div>
+
+  <%#= pie_chart  data_for_transaction_categories(@transactions) %>
+  
+
+    <div class="transactions-table-container">
+      <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+    </div>
   </article>
   
   
 </section>
 </section>
+
+  <script type="application/json" id="url-data">
+    <%= ids_for_account_transaction_categories.to_json.html_safe %>
+  </script>
+
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      $(document).ready(function() {
+
+
+
+        google.load('visualization', '1.0', {'packages':['corechart']});
+
+        google.setOnLoadCallback(drawChart);
+
+        var pieData = JSON.parse($("#pie-chart-data").html());
+        var urls = JSON.parse($("#url-data").html());
+        console.log(urls);
+     
+        labels = [];
+        pieData.forEach(function(arr) {
+          labels.push(arr[0])
+        });
+
+        dataRows = [];
+
+        pieData.forEach(function(arr) {
+          dataRows.push([arr[0], arr[1]]);
+        });
+
+        var lineData = JSON.parse($("#line-chart-data").html());
+
+        rows = [];
+        Object.keys(lineData).forEach(function(key) {
+          rows.push([key, lineData[key]])
+        });
+
+        function drawChart() {
+
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Category');
+          data.addColumn('number', 'Count');
+          // console.log(rows);
+          data.addRows(pieData);
+
+          var dataForLineChart = new google.visualization.DataTable();
+          dataForLineChart.addColumn('string', 'Month');
+          dataForLineChart.addColumn('number', 'Amount');
+          dataForLineChart.addRows(rows);
+
+          // Set chart options
+          var optionsForLineChart = {'title':'Account Balance', 'height': 300, 'legend': 'none', 'curveType': 'function' };
+
+          // Instantiate and draw our chart, passing in some options.
+
+          var options = {'title':'Transactions by Category', 'height': 400 };
+
+          var chart = new google.visualization.PieChart(document.getElementById('pie-chart-container'));
+          var lineChart = new google.visualization.LineChart(document.getElementById('line-chart-container'));
+          
+
+          function selectHandler() {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+              console.log(chart.getSelection());
+              var transactionCategoryId = urls[data.getValue(selectedItem.row, 0)]
+              var goToUrl = "/accounts/" + $(".page").attr("data-account-id") + "/transaction_categories/" + transactionCategoryId
+              console.log(goToUrl);
+              $.ajax({
+                url: goToUrl,
+                type: 'GET',
+                success: function (data) {
+                  console.log('hello')
+                  $(".transactions-table-container").empty();
+                  $(".transactions-table-container").html(data);
+                }
+              })
+            }
+          };
+
+          function readyHandler () {
+            $("#pie-chart-container").on('click', function (event) {
+              console.log(event)
+            if ($(event.target).prop("tagName") == "rect") {
+              $.ajax({
+                url: $(".page").attr("data-url"),
+                type: 'GET',
+                success: function(data) {
+                  chart.setSelection();
+                  $(".transactions-table-container").empty();
+                  $(".transactions-table-container").html(data);
+                }
+              })
+            }
+           });
+          };
+          
+          chart.draw(dataForLineChart, optionsForLineChart);
+          google.visualization.events.addListener(chart, 'select', selectHandler);
+          google.visualization.events.addListener(chart, 'ready', readyHandler);
+          chart.draw(data, options);
+          lineChart.draw(dataForLineChart, optionsForLineChart);
+        }
+    });
+    </script>

@@ -1,7 +1,13 @@
 class TransactionsController < ApplicationController
   def index
     @accounts = current_user.accounts
-    @transactions = current_user.transactions.includes(:merchant_category)
+    @transactions = current_user.transactions.includes(:merchant_category).order(date: :desc)
+
+    if request.xhr?
+      render partial: 'transactions/transactions', locals: { transactions: @transactions }
+    else
+      render :index
+    end
   end
 
   def edit
