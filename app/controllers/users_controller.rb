@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
 
   def shame
-    item = Share.find(params[:share_id])
+    item = Share.find(params[:share_id]).shareable
     share_id = params[:share_id]
     item.fames.create({value: -1, user_receiving_fame_id: params[:id], user_giving_fame_id: current_user.id,
       share_id: share_id })

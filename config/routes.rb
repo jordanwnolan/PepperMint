@@ -18,6 +18,7 @@ PepperMint::Application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:show]
   resources :fames, only: [:destroy]
   resources :comments, only: [:destroy]
   resources :accounts

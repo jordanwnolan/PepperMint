@@ -1,4 +1,5 @@
 class Fame < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   include Notifiable
   belongs_to :user_giving_fame, class_name: "User", foreign_key: :user_giving_fame_id, primary_key: :id
   belongs_to :user_receiving_fame, class_name: "User", foreign_key: :user_receiving_fame_id, primary_key: :id
@@ -23,5 +24,21 @@ class Fame < ActiveRecord::Base
 
   def name
     self.fameable.name
+  end
+
+  def url
+    item = self.fameable
+    case self.fameable_type
+    when "Budget"
+      budget_url(item)
+    when "Goal"
+      goal_url(item)
+    end
+  end
+
+  def default_url_options
+    options = {}
+    options[:host] = Rails.env.production? ? "appacademy.io" : "localhost:3000"
+    options
   end
 end

@@ -7,13 +7,13 @@
   <article class="page-section">
     <div class="cards group">
     <% @notifications.each do |notification| %>
-      <article class="card">
-        <header>
+      <article class="mini card" data-url="<%= notification_url(notification) %>">
+        <header class="card-header group">
           <h3><%= notification.message %></h3>
           <time><%= time_ago_in_words(notification.created_at) %> ago</time>
         </header>
-        <div class="card-body">
-        <p><%= link_to "#{notification.notifiable.name}", notification.notifiable %></p>
+        <div class="mini-card-body group">
+          <strong><%= link_to "#{notification.notifiable.name}", notification %></strong>
         </div>
       </article>
     <% end %>
@@ -21,3 +21,12 @@
   </article>
   </section>
 </section>
+
+<script>
+  $(document).ready(function() {
+    $(".card").on("click", function(event){
+      var $tar = $(event.currentTarget);
+      $(location).attr('href', $tar.attr("data-url"));
+    });
+  });
+</script>

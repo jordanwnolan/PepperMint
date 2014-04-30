@@ -8,7 +8,7 @@
   <article class="page-body">
     <section class="cards group">
     <% @users.each do |user| %>
-    <article class="user card">
+    <article class="user card" data-url="<%= user_url(user) %>">
       <header class="card-header group">
         <a href="<%= user_url(user) %>">
         <img class="avatar" src="<%= user.avatar.url(:thumb) %>">
@@ -16,12 +16,10 @@
         <div class="user-info-card group">
           <h3><a href="<%= user_url(user) %>"><%= user.username %></a></h3>
           <strong>Fame: <%= user.total_fame %></strong>
-          <time>Joined <%= time_ago_in_words(user.created_at) %></time>
+          <time>Joined <%= time_ago_in_words(user.created_at) %> ago</time>
         </div>
           
-
       </header>
-
 
     </article>
     <% end %>
@@ -29,6 +27,15 @@
 
   </article>
 </section>
+
+<script>
+  $(document).ready(function() {
+    $(".card").on("click", function(event){
+      var $tar = $(event.currentTarget);
+      $(location).attr('href', $tar.attr("data-url"));
+    });
+  });
+</script>
 
 
 

@@ -620,12 +620,18 @@ form > input {
   
 }
 
+.mini.card {
+  width: 304px;
+  float: left;
+  margin-right: 10px;
+}
 .card {
   background-color: #F3F3F3;
   border: 3px solid #ddd;
   border-radius: 5px;
   padding: 15px;
   margin: 20px 0 0 0;
+  cursor: pointer;
 }
 
 .card-content {
@@ -637,7 +643,7 @@ form > input {
 }
 
 .user.card {
-  width: 250px;
+  width: 304px;
   float: left;
   margin-right: 10px;
 }
