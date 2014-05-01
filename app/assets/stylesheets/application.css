@@ -923,7 +923,7 @@ td.total {
   background: #F3F3F3;
 }
 
-.page-content-header > strong.selected > a {
+.page-content-header > strong > a.selected {
   color: #fff;
   background: #f80;
 }

@@ -3,14 +3,46 @@
   <section class="page-content">
   <header class="page-content-header group">
   <% if @all %>
-    <strong class='unselected'><a href="<%= followed_feed_url %>">Followed Updates</a></strong>
-    <strong class="selected"><a href="<%= feed_url %>">All Updates</a></strong>
+    <strong><a class="unselected" href="<%= followed_feed_url %>">Followed Updates</a></strong>
+    <strong><a class="selected" href="<%= feed_url %>">All Updates</a></strong>
   <% else %>
-    <strong class='selected'><a href="<%= followed_feed_url %>">Followed Updates</a></strong>
-    <strong class="unselected"><a href="<%= feed_url %>">All Updates</a></strong>
+    <strong><a class='selected' href="<%= followed_feed_url %>">Followed Updates</a></strong>
+    <strong><a class="unselected" href="<%= feed_url %>">All Updates</a></strong>
   <% end %>
 
   </header>
-  <%= render partial: 'feed', locals: { shares: @shares } %>
+  <article class="page-body">
+    <%= render partial: 'feed', locals: { shares: @shares } %>
+  </article>
   </section>
 </section>
+
+<script>
+  $(document).ready(function() {
+
+    var $startedSelected = $(".selected")
+
+    $(".page-content-header a").on('click', function(event){
+      event.preventDefault();
+      var $selected = $(".page-content-header a.selected");
+      var $unselected = $(".page-content-header a.unselected");
+      var url = $unselected.attr("href");
+
+      $unselected.removeClass("unselected");
+      $unselected.addClass("selected");
+      $selected.removeClass("selected");
+      $selected.addClass("unselected");
+
+      $.ajax({
+        url: url,
+        type: "GET",
+        success: function(data) {
+          console.log("success")
+          $(".page-body").empty();
+          $(".page-body").html(data);
+        }
+      })
+    });
+    
+  });
+</script>
