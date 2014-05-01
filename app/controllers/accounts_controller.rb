@@ -25,14 +25,18 @@ class AccountsController < ApplicationController
     # fail
     @accounts = current_user.accounts
     @account = current_user.accounts.where(id: params[:id]).first
-
+    # fail
     if @account
-      @transactions = @account.transactions.includes(:merchant_category, :account).order(date: :desc)
+      @transactions = @account.transactions.includes(:merchant_category, :account)
       if request.xhr?
         render partial: 'transactions/transactions', locals: { transactions: @transactions }
+      else
+        # fail
+        render :show
       end
     else
       flash[:errors] = ["You are not authorized to view this account"]
+
       redirect_to accounts_url
     end
   end

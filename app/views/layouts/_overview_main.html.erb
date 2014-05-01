@@ -8,7 +8,7 @@
   <%#= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>
 
   <script type="application/json" id="line-chart-data">
-    <%= @transactions.group_by_month(:date, format: "%B %Y").sum(:amount).to_json.html_safe if @transactions %> 
+    <%= @transactions.group_by_month(:date, format: "%B %Y").order('month asc').sum(:amount).to_json.html_safe if @transactions %> 
   </script>
   <%# fail %>
 
