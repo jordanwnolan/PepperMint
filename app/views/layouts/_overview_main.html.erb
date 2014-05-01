@@ -2,7 +2,7 @@
   <article class="overview group">
   <% if @user == current_user || @user.nil?%>
   <header class="overview-subheader group">
-    <h3>Net Expenditure per month</h3>
+    <h3>Net Income per month</h3>
   </header>
 
   <%#= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>

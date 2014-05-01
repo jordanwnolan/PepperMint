@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, label, strong, thead, th, tbody, tr, td {
+html, body, h1, h2, h3, form, section, article, div, select, option, p, ul, li, label, strong, thead, th, tbody, tr, td, textarea {
   padding: 0;
   margin: 0;
   border: 0;
@@ -830,7 +830,7 @@ td.total {
   vertical-align: middle;
 }
 
-.overview-subheader > h3:hover {
+.overview-subheader > h3 > a:hover {
   background-color: #eee;
 }
 
@@ -885,7 +885,7 @@ td.total {
   height: 0; 
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  
+
   border-top: 20px solid #eee;
 }
 
@@ -946,4 +946,44 @@ td.total {
 
 .link-button > a:hover {
   background-color: #f90;
+}
+
+td > textarea.inline-edit {
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    display: block;
+    margin: 1px;
+    padding: 2px;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    vertical-align: baseline;
+    width: 100%;
+    background: transparent;
+    color: inherit;
+    resize: none;
+    height: 14px;
+    position: relative;
+}
+
+td > textarea.inline-edit:focus {
+  background: #eee;
+}
+
+.hidden {
+  display: none;
+}
+
+.transaction-container {
+  background-color: #fff;
+}
+
+.green-background {
+  background-color: #fff;
+  -webkit-animation: fadetogreen 5s;
+}
+
+@-webkit-keyframes fadetogreen {
+  0% { background-color: #cfc; }
+  100% { background-color: #fff; }
 }

@@ -19,9 +19,12 @@ class TransactionsController < ApplicationController
     @transaction = current_user.transactions.find(params[:id])
 
     if @transaction.update(transaction_params)
-      # fail
-      flash[:alerts] = ['Transaction updated successfully']
-      redirect_to transactions_url
+      if request.xhr?
+        render partial: 'transactions/transaction', locals: { transaction: @transaction }
+      else
+        flash[:alerts] = ['Transaction updated successfully']
+        redirect_to transactions_url
+      end
     else
       flash.now[:errors] = @transaction.errors.full_messages
       render :edit

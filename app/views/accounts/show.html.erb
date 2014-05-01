@@ -99,7 +99,7 @@
           dataForLineChart.addRows(rows);
 
           // Set chart options
-          var optionsForLineChart = {'title':'Net Expenditure', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
+          var optionsForLineChart = {'title':'Net Income', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
 
           // Instantiate and draw our chart, passing in some options.
 
@@ -112,15 +112,12 @@
           function selectHandler() {
             var selectedItem = chart.getSelection()[0];
             if (selectedItem) {
-              console.log(chart.getSelection());
               var transactionCategoryId = urls[data.getValue(selectedItem.row, 0)]
               var goToUrl = "/accounts/" + $(".page").attr("data-account-id") + "/transaction_categories/" + transactionCategoryId
-              console.log(goToUrl);
               $.ajax({
                 url: goToUrl,
                 type: 'GET',
                 success: function (data) {
-                  console.log('hello')
                   $(".transactions-table-container").empty();
                   $(".transactions-table-container").html(data);
                 }
@@ -130,7 +127,6 @@
 
           function readyHandler () {
             $("#pie-chart-container").on('click', function (event) {
-              console.log(event)
             if ($(event.target).prop("tagName") == "rect") {
               $.ajax({
                 url: $(".page").attr("data-url"),

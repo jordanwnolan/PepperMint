@@ -10,20 +10,48 @@
   <th>Description</th>
   <th>Category</th>
   <th>Amount</th>
-  <th></th>
 </thead>
 <tbody>
 <% transactions.each do |transaction| %>
-<% category = transaction.try(:merchant_category).merchant_category %>
-  <tr class="table-data">
-    <td><a href="<%= account_url(transaction.account) %>"><%= transaction.account.account_name %></a></td>
-    <td><%= transaction.try(:date) %></td>
-    <td><%= transaction.try(:description) %></td>
-    <td><%= category %></td>
-    <td>$<%= transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount %></td>
-    <td><%= link_to "Edit",  edit_transaction_url(transaction)%>
-  </tr>
+  <%= render partial: 'transactions/transaction', locals: { transaction: transaction } %>
 <% end %>
 </tbody>
 </table>
 </td>
+
+<script>
+  $(document).ready(function(){
+    
+    $('tbody').on("webkitAnimationEnd", '.transaction-container', function(event){
+      $(event.currentTarget).removeClass("green-background");
+    });
+
+    $('tbody').on('keypress', '.inline-edit', function(event){
+      if (event.which == 13) {
+        event.preventDefault();
+        var $target = $(event.currentTarget);
+        var transactionUrl = $target.attr("data-transaction-url");
+        var formData = $target.serialize();
+        var text = $target.val();
+
+
+        console.log("target", $target)
+        $.ajax({
+          url: transactionUrl,
+          type: 'PATCH',
+          data: formData,
+          success: function(data) {
+            $target.blur();
+            $target.closest(".transaction-container").removeClass("green-background");
+            $target.closest(".transaction-container").addClass("green-background");
+          },
+
+          error: function(data) {
+            $target.empty();
+            $target.html(text);
+          }
+        });
+      }
+     });
+    });
+</script>

@@ -194,19 +194,3 @@ end
 
 pcts = (1..25).to_a
 
-# Account.where(account_type: 0).to_a.each do |account|
-#   bal = account.current_balance
-#   puts bal
-#   puts bal.abs
-#   if bal < 0
-#     new_bal = bal.abs * (pcts.sample / 100.0).to_f
-#     new_bal
-#     puts new_bal
-#     puts new_bal.round(2)
-#     account.transactions.create({merchant_category_code: 11000, 
-#       date: diffs.sample.months.ago.to_date,
-#       amount: new_bal.round(2),
-#       description: "Deposit"       
-#       })
-#   end
-# end
