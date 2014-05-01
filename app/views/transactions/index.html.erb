@@ -11,8 +11,10 @@
   <script type="application/json" id="url-data">
     <%= urls_for_transaction_categories.to_json.html_safe %>
   </script>
+  <article class="card">
+    <div id="pie-chart-container"></div>
+  </article>
 
-  <div id="pie-chart-container"></div>
       <form action="<%= account_choose_url %>" method="get" class="account-selector group">
     <div class="select">
       <select name="account[id]">
@@ -72,7 +74,7 @@
           // console.log(rows);
           data.addRows(pieData);
 
-          var options = {'title':'Transactions by Category', 'height': 400 };
+          var options = {'title':'Transactions by Category', 'height': 400, 'backgroundColor': '#F3F3F3' };
 
           var chart = new google.visualization.PieChart(document.getElementById('pie-chart-container'));
           

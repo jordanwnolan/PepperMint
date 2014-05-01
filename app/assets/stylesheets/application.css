@@ -88,11 +88,11 @@ input[type="submit"] {
 }
 
 .logout:hover {
-  background-color: #0b6;
+  background: rgba(100,100,100,0.2);
 }
 
 .logout {
-  color: #fff;
+  color: #0a5;
 }
 
 a {
@@ -132,29 +132,28 @@ h3 {
 /* --- Header --- */
 
 .header {
-  background: #0a5;
-  border-bottom: 3px solid #333;
+  background: rgba(100,100,100,0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.6)
 }
 
 .header-wrap {
   width: 1000px;
   margin: auto;
-  border-left: 3px solid #333;
-  border-right: 3px solid #333;
 }
 
 .header a {
-  color: #fff;
+  color: #0a5;
 }
 
 .header-logo {
   float: left;
+  letter-spacing: 3px;
 }
 
 .header-logo > a {
   display: block;
   padding: 10px 20px;
-  color: #fff;
+  color: #0a5;
   font-weight: bold;
 }
 
@@ -163,7 +162,7 @@ h3 {
 }
 
 .header-logo > a:hover {
-  background: #0b6;
+  background: rgba(100,100,100,0.2);
 }
 
 .header-nav {
@@ -183,17 +182,8 @@ h3 {
   padding: 10px 20px;
 }
 
-.header-nav > ul > li > form > input {
-  display: block;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border-style: none;
-}
-
 .header-nav > ul > li:hover > a {
-  background: #0b6;
+  background: rgba(100,100,100,0.2);
 }
 
 .nav-side-bar {
@@ -388,7 +378,7 @@ form > input {
   text-align: center;
   position: relative;
   display: block;
-  background-color: #fa0;
+  background-color: #f80;
   padding: 10px 20px;
   border-radius: 5px;
   margin: auto;
@@ -396,11 +386,11 @@ form > input {
   position: static;
   display: block;
   float: left;
-  padding: 5px;
 }
 
+
 .submit > input:hover {
-  background-color: #f80;
+  background-color: #f90;
 }
 
 .welcome {
@@ -433,7 +423,7 @@ form > input {
 }
 
 .welcome > .links > a:hover {
-  background: #fb0;
+  background: #f80;
 }
 
 .welcome.submit {
@@ -642,7 +632,7 @@ form > input {
 }
 .card {
   background-color: #F3F3F3;
-  border: 3px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px;
   margin: 20px 0 0 0;
@@ -828,18 +818,33 @@ td.total {
 
 .overview-subheader > h3 {
   font-size: 36px;
+  display: block;
+  float: left;
+  border-radius: 3px;
+  /*vertical-align: baseline;*/
+}
+
+.overview-subheader > h3 > a {
+  padding: 10px 20px;
+  
+  vertical-align: middle;
+}
+
+.overview-subheader > h3:hover {
+  background-color: #eee;
 }
 
 .overview-subheader > a {
-  /*font-size: 12px;*/
+  color: #fff;
+  float: right;
+  background-color: #fa0;
   padding: 5px 10px 5px 5px;
-  /*background-color: #ddd;*/
   border-radius: 3px;
-  margin: 0 0 10px 0;
+  margin: 12px 0 10px 0;
 }
 
 .overview-subheader > a:hover {
-  background-color: #eee;
+  background-color: #f80;
 }
 
 
@@ -903,4 +908,22 @@ td.total {
   width: 100%;
   margin: auto;
   text-align: center;
+}
+
+.page-content-header > strong > a {
+  display: block;
+  float: left;
+  padding: 10px 20px;
+  margin-right: 20px;
+  font-size: 24px;
+  border-radius: 3px;
+}
+
+.page-content-header > strong:hover > a {
+  background: #F3F3F3;
+}
+
+.page-content-header > strong.selected > a {
+  color: #fff;
+  background: #f80;
 }

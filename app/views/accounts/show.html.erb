@@ -27,11 +27,14 @@
   <script type="application/json" id="line-chart-data">
     <%= @transactions.group_by_month(:date, format: "%B %Y").sum(:amount).to_json.html_safe if @transactions %> 
   </script>
+  <article class="card">
+    <div id="line-chart-container"></div>
+  </article>
 
-  <div id="line-chart-container"></div>
-
-  <div id="pie-chart-container"></div>
-
+  <article class="card">
+    <div id="pie-chart-container"></div>
+  </article>
+  
   <%#= pie_chart  data_for_transaction_categories(@transactions) %>
   
 
@@ -96,11 +99,11 @@
           dataForLineChart.addRows(rows);
 
           // Set chart options
-          var optionsForLineChart = {'title':'Account Balance', 'height': 300, 'legend': 'none', 'curveType': 'function' };
+          var optionsForLineChart = {'title':'Account Balance', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
 
           // Instantiate and draw our chart, passing in some options.
 
-          var options = {'title':'Transactions by Category', 'height': 400 };
+          var options = {'title':'Transactions by Category', 'height': 400, 'backgroundColor': '#F3F3F3' };
 
           var chart = new google.visualization.PieChart(document.getElementById('pie-chart-container'));
           var lineChart = new google.visualization.LineChart(document.getElementById('line-chart-container'));

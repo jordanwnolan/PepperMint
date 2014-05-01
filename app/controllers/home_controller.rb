@@ -17,12 +17,28 @@ class HomeController < ApplicationController
     all.includes(:user, :fames, shareable: { comments: :author } )
     .where("created_at >= ? AND user_id != ?", Date.current.prev_month,current_user.id)
     .order(created_at: :desc)
+
+    @all = true
+
+    if request.xhr?
+      render partial: 'home/feed', locals: { shares: @shares }
+    else
+      render :feed
+    end
   end
 
   def followed_feed
     ids = current_user.followed_users.map { |user| user.id }
     @shares = Share.where(user_id: ids).where("created_at >= ?", Date.current.prev_month)
     .includes(:user, :fames, shareable: { comments: :author }).order(created_at: :desc)
+
+    @all = false
+
+    if request.xhr?
+      render partial: 'home/feed', locals: { shares: @shares }
+    else
+      render :feed
+    end
   end
 
   def fame

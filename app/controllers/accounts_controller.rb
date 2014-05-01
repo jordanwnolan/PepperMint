@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
     @account = current_user.accounts.where(id: params[:id]).first
 
     if @account
-      @transactions = @account.transactions.includes(:merchant_category, :account)
+      @transactions = @account.transactions.includes(:merchant_category, :account).order(date: :desc)
       if request.xhr?
         render partial: 'transactions/transactions', locals: { transactions: @transactions }
       end
