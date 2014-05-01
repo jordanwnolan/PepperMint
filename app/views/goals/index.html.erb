@@ -3,10 +3,11 @@
 <%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
-  <header class="page-content-header">
+  <header class="page-content-header group">
     <h3 class="page-title"><%= current_user.username %>'s Goals</h3>
-
-     <a href="<%= new_goal_url %>">Create New Goal</a>
+    <div class="link-button">
+       <a href="<%= new_goal_url %>">Create New Goal</a>
+     </div>
   </header>
 
  

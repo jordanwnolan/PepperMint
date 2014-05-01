@@ -20,7 +20,7 @@
     <td><%= transaction.try(:date) %></td>
     <td><%= transaction.try(:description) %></td>
     <td><%= category %></td>
-    <td>$<%= transaction.try(:amount) %></td>
+    <td>$<%= transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount %></td>
     <td><%= link_to "Edit",  edit_transaction_url(transaction)%>
   </tr>
 <% end %>

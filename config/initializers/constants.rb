@@ -16,3 +16,6 @@ MONTHLY_FREQUENCY_RESETS = ['First of Month', '15th of Month', 'End of Month']
   1 => "Savings",
   2 => "Credit Card"
  }
+
+ DEPOSIT_CODE = 11000
+ PAYMENT_CODE = 12000

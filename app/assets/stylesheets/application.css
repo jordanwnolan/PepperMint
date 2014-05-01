@@ -927,3 +927,23 @@ td.total {
   color: #fff;
   background: #f80;
 }
+
+.link-button > a {
+  color: #0a5;
+  text-align: center;
+  position: relative;
+  display: block;
+  background-color: #f80;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: auto;
+  color: #fff;
+  position: static;
+  display: block;
+  float: left;
+}
+
+
+.link-button > a:hover {
+  background-color: #f90;
+}

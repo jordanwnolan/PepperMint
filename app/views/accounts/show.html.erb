@@ -39,7 +39,7 @@
   
 
     <div class="transactions-table-container">
-      <%= render partial: 'transactions/transactions', locals: { transactions: @transactions } %>
+      <%= render partial: 'transactions/transactions', locals: { transactions: @transactions.order(date: :desc) } %>
     </div>
   </article>
   
@@ -99,7 +99,7 @@
           dataForLineChart.addRows(rows);
 
           // Set chart options
-          var optionsForLineChart = {'title':'Account Balance', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
+          var optionsForLineChart = {'title':'Net Expenditure', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
 
           // Instantiate and draw our chart, passing in some options.
 
