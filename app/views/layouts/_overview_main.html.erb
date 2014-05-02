@@ -1,11 +1,11 @@
-
+<header class="page-content-header group">
+  <h1 class="page-title">Overview</h1>
+</header>
   <article class="overview group">
   <% if @user == current_user || @user.nil?%>
   <header class="overview-subheader group">
     <h3>Net Income per month</h3>
   </header>
-
-  <%#= line_chart(@transactions.group_by_month(:date, format: "%B %Y").sum(:amount), discrete: true, min: nil) if @transactions %>
 
   <script type="application/json" id="line-chart-data">
     <%= @transactions.group_by_month(:date, format: "%B %Y").order('month asc').sum(:amount).to_json.html_safe if @transactions %> 
@@ -46,21 +46,21 @@
   </section>
   </article>
 
+
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <% if @user == current_user || @user.nil? %>
   <script type="text/javascript">
 
-    // Load the Visualization API and the piechart package.
     google.load('visualization', '1.0', {'packages':['corechart']});
     
     $(document).ready(function() {
       
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
-      // console.log(Object.keys($("#line-chart-data").html()));
+
+      // google.setOnLoadCallback(drawChart);
+
       var lineData = JSON.parse($("#line-chart-data").html());
-      console.log(lineData);
       rows = [];
       Object.keys(lineData).forEach(function(key) {
         rows.push([key, lineData[key]])
@@ -68,19 +68,18 @@
 
       function drawChart() {
 
-        // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Month');
         data.addColumn('number', 'Amount');
         data.addRows(rows);
 
-        // Set chart options
         var options = {'title':'', 'height': 300, 'legend': 'none', 'curveType': 'function', 'backgroundColor': '#F3F3F3' };
 
-        // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.LineChart(document.getElementById('line-chart-container'));
         chart.draw(data, options);
       }
+
+      drawChart()
     });
   </script>
 <% end %>

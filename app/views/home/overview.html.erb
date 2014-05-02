@@ -4,14 +4,26 @@
 
 <%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
-<header class="page-content-header group">
-  <h1 class="page-title">Overview</h1>
-</header>
   <%= render partial: 'layouts/overview_main', locals: { goals: @goals, budgets: @budgets} %>
 </section>
+
 </section>
 
 <script>
+  $(document).ready(function() {
+    $('.nav-side-bar').on('click', 'a', function (event) {
+      event.preventDefault();
+      console.log($(event.currentTarget).attr('href'))
 
-
+      $.ajax({
+        url: $(event.currentTarget).attr('href'),
+        type: 'GET',
+        success: function(data) {
+          console.log('success');
+          $(".page-content").empty();
+          $(".page-content").html(data);
+        }
+      })
+    });
+  });
 </script>

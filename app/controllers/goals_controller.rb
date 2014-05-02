@@ -1,7 +1,13 @@
 class GoalsController < ApplicationController
 
   def index
-    @goals = current_user.goals
+    @goals = current_user.goals.includes(:account)
+
+    if request.xhr?
+      render partial: 'goals', locals: { goals: @goals }
+    else
+      render :index
+    end
   end
 
   def new

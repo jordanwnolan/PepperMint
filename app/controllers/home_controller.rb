@@ -10,6 +10,13 @@ class HomeController < ApplicationController
     @transactions_by_month = @transactions.group_by_month(:date, format: "%B %Y").sum(:amount)
     @budgets = current_user.budgets
     @goals = current_user.goals
+
+    if request.xhr?
+      render partial: 'layouts/overview_main', 
+      locals: { transactions: @transactions, transactions_by_month: @transactions_by_month, budgets: @budgets, goals: @goals}
+    else
+      render :overview
+    end
   end
 
   def feed

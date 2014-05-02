@@ -3,7 +3,8 @@
 <head>
   <title>PepperMint</title>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <script>google.load('visualization', '1.0', {'packages':['corechart']});</script>
+  <%= javascript_include_tag "chartkick" %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   

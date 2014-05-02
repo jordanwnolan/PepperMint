@@ -19,6 +19,11 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = current_user.accounts.includes(:bank)
+    if request.xhr?
+      render partial: 'accounts', locals: { accounts: @accounts }
+    else
+      render :index
+    end
   end
 
   def show

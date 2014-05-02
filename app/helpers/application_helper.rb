@@ -5,26 +5,6 @@ module ApplicationHelper
     HTML
   end
 
-  def data_for_transaction_categories(transactions)
-    data = Hash.new { |h, k| h[k] = 0 }
-    
-    debits =  transactions.reject do |transaction| 
-      transaction.merchant_category_code == DEPOSIT_CODE || transaction.merchant_category_code == PAYMENT_CODE
-    end
-
-    debits.each do |transaction|
-      if  transaction.account.account_type == 2
-       data[transaction.transaction_category.description] += transaction.amount
-     else
-        data[transaction.transaction_category.description] -= transaction.amount
-      end
-      # fail
-    end
-
-    # fail
-    data.to_a
-  end
-
   def urls_for_transaction_categories
     urls = {}
 

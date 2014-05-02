@@ -1,10 +1,10 @@
 class TransactionsController < ApplicationController
   def index
     @accounts = current_user.accounts
-    @transactions = current_user.transactions.includes(:merchant_category).order(date: :desc)
-
+    @transactions = current_user.transactions.includes(:account, merchant_category: :transaction_category).order(date: :desc)
+    @data = data_for_transaction_categories(@transactions)
     if request.xhr?
-      render partial: 'transactions/transactions', locals: { transactions: @transactions }
+      render partial: 'transactions/transactions', locals: { transactions: @transactions.limit(50), data: @data }
     else
       render :index
     end
@@ -35,5 +35,25 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     params.require(:transaction).permit(:merchant_category_code, :description)
+  end
+
+  def data_for_transaction_categories(transactions)
+    data = Hash.new { |h, k| h[k] = 0 }
+    
+    debits =  transactions.reject do |transaction| 
+      transaction.merchant_category_code == DEPOSIT_CODE || transaction.merchant_category_code == PAYMENT_CODE
+    end
+
+    debits.each do |transaction|
+      if  transaction.account.account_type == 2
+       data[transaction.merchant_category.transaction_category.description] += transaction.amount
+     else
+        data[transaction.merchant_category.transaction_category.description] -= transaction.amount
+      end
+      # fail
+    end
+
+    # fail
+    data.to_a
   end
 end

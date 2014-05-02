@@ -1,6 +1,11 @@
 class BudgetsController < ApplicationController
   def index
     @budgets = current_user.budgets.includes(:transaction_category)
+    if request.xhr?
+      render partial: 'budgets', locals: { budgets: @budgets }
+    else
+      render :index
+    end
   end
 
   def new

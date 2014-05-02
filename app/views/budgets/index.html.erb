@@ -3,18 +3,6 @@
 <section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
 <section class="page-content">
-  <header class="page-content-header group">
-    <h1 class="page-title">Budgets</h1>
-    <div class="link-button">
-      <a href="<%= new_budget_url %>">Create New Budget</a>
-    </div>
-  </header>
-
-  <article class="page-body">
-    <% @budgets.each do |budget| %>
-      <%= render partial: 'budgets/budget', locals: { budget: budget } %>
-    <% end %>
-    
-  </article>
+  <%= render partial: 'budgets', locals: { budgets: @budgets } %>
   </section>
 </section>

@@ -1,0 +1,23 @@
+<header class="page-content-header group">
+    <h3 class="page-title"><%= category.description %></h3>
+</header>
+  <article class="page-body">
+  
+<div class="transactions-table">
+<table>
+<thead>
+  <th>Account</th>
+  <th>Date</th>
+  <th>Description</th>
+  <th>Category</th>
+  <th>Amount</th>
+</thead>
+<tbody>
+<% transactions.each do |transaction| %>
+  <%= render partial: 'transactions/transaction', locals: { transaction: transaction } %>
+<% end %>
+</tbody>
+</table>
+
+      </div>
+  </article>

@@ -1,41 +1,5 @@
 <section class="page group">
 <%= render partial: 'layouts/overview_side_bar' %>
+<%= render partial: 'accounts', locals: { accounts: @accounts } %>
 
-<section class="page-content">
-  <header class="page-content-header group">
-    <h3 class="page-title"><%= current_user.username %>'s Accounts</h3>
-    <div class="link-button">
-    <a href="<%= new_account_url %>">Add Account</a>
-    </div>
-  </header>
-
-  
-  <article class="page-body">
-  <table class="accounts-table">
-    <thead>
-      <th>Bank Name</th>
-      <th>Account Name</th>
-      <th>Account Type</th>
-      <th>Balance</th>
-    </thead>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.bank.name %></td>
-        <td><a href="<%= account_url(account) %>"><%= account.account_name %></a></td>
-        <td><%= ACCOUNT_TYPES[account.account_type] %></td>
-        <td>$<%= account.current_balance %></td>
-      </tr>
-    <% end %>
-      <td class="total"></td>
-      <td class="total"></td>
-      <td class="total">Total:</td>
-      <td>
-        $<%= @accounts.inject(0) do |n, account| %>
-          <%n += account.try(:account_type) == 2 ? -1 * (account.try(:current_balance)) : account.try(:current_balance) %>
-        <% end %>
-      </td>
-
-  </table>
-  </article>
-</section>
 </section>

@@ -12,7 +12,7 @@ class TransactionCategoriesController < ApplicationController
     .where('accounts.user_id = ?', current_user.id).order(date: :desc)
 
     if request.xhr?
-      render partial: 'transactions/transactions', locals: {transactions: @transactions}
+      render partial: 'transaction_categories/transaction_category', locals: { category: @category, transactions: @transactions, accounts: @accounts }
     else
       render :show
     end
@@ -28,6 +28,7 @@ class TransactionCategoriesController < ApplicationController
     .includes(:merchant_category)
     .where('transaction_categories.id = ?', @category.id)
     .where('accounts.user_id = ?', current_user.id).order(date: :desc)
+    .limit(50)
   end
 
   def transactions_for_account_and_category
@@ -40,6 +41,7 @@ class TransactionCategoriesController < ApplicationController
     .where('accounts.user_id = ?', current_user.id)
     .where('accounts.id = ?', params[:account_id])
     .order(date: :desc)
+    .limit(50)
   end
 
 end

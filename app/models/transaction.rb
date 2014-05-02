@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
     foreign_key: :merchant_category_code,
     primary_key: :merchant_category_code)
 
-  delegate :transaction_category, to: :merchant_category
+  # delegate :transaction_category, to: :merchant_category
 
   def self.find_since_date(date)
     Transaction.where("date >= ?", date)
