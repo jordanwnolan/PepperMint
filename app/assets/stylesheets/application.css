@@ -483,6 +483,10 @@ form > input {
   padding-top: 10px;
 }
 
+.messages > ul {
+  padding-top: 10px
+}
+
 .message-content {
   /*float: right;*/
   display: block;
