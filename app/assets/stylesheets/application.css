@@ -478,6 +478,11 @@ form > input {
   margin: 10px 0 0 0;
 }
 
+.messages > li > h3 {
+  display: block;
+  padding-top: 10px;
+}
+
 .message-content {
   /*float: right;*/
   display: block;

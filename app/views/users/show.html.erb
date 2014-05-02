@@ -29,7 +29,7 @@
         </div>
     </li>
     <div class="messages">
-    <li>Messages</li>
+    <li><h3>Messages</h3></li>
   <ul>
   <% @messages.each do |message| %>
     <li class="group"><%= render partial: 'messages/message', locals: { message: message } %></li>
