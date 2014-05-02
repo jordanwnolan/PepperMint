@@ -4,10 +4,10 @@
   <h3 class="user">
 
   </h3>
-  <h3 class="message-title"><%= message.title %></h3>
 
   <article class="group">
-  <time><%= time_ago_in_words(message.created_at) %> ago</time>
+  <% time_ago = time_ago_in_words(message.created_at) %>
+  <time><%= time_ago == "less than a minute" ? "Just now" : "#{time_ago} ago" %></time>
     <form action="<%= user_message_url(@user.id, message.id) %>" method="post">
     <%= auth_token %>
     <input type="hidden" name="_method" value="delete">

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     .where(receiver_id: current_user.id).order(:created_at).first(10)
 
     @messages = received_messages + sent_messages
-
+    @messages = @messages.sort_by { |message| message.created_at }.reverse
     if @user == current_user
       @transactions = @user.transactions
       @budgets = @user.budgets.to_a

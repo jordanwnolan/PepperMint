@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
     self.goals.where(private: false, is_active: true).each do |goal|
       goal.create_public_share({ user_id: self.id, is_new: false })
     end
+    # fail
   end
 
   def reset_session_token!

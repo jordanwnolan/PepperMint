@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     .order(created_at: :desc)
 
     @all = true
-
+    # fail
     if request.xhr?
       render partial: 'home/feed', locals: { shares: @shares }
     else

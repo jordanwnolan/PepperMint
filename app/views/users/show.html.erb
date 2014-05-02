@@ -17,10 +17,6 @@
       <div class="message-form-container">
         <form action="<%=user_messages_url(@user) %>" method="post" class="message-form">
           <%= auth_token %>
-          <div class="input">
-            <label for="message-title">Subject</label>
-            <input type="text" name="message[title]" value="<%= @message.title %>" id="message-title">
-          </div>
 
           <div class="input">
             <textarea name="message[body]"><%= @message.body %></textarea>
