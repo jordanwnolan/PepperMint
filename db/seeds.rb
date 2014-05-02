@@ -192,3 +192,80 @@ checking_accounts = Account.all.where(account_type: 0)
 
   end
 end
+
+b1 = jordan.budgets.create({category_id: t1.id, frequency: 2, frequency_reset: 1, amount: 500, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = jordan.budgets.create({category_id: t2.id, frequency: 2, frequency_reset: 1, amount: 400, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+b1 = jordan.budgets.create({category_id: t3.id, frequency: 2, frequency_reset: 1, amount: 100, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 4))
+
+b1 = jordan.goals.create({account_id: j1.id, name: "save for apartment", goal_date: Date.current.change(month: 9), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 3))
+
+b1 = jordan.goals.create({account_id: j2.id, name: "save for car", goal_date: Date.current.change(month: 7), amount: 2000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = jordan.goals.create({account_id: j2.id, name: "save for vacation", goal_date: Date.current.change(month: 12), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+
+b1 = stewart.budgets.create({category_id: t1.id, frequency: 2, frequency_reset: 1, amount: 500, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = stewart.budgets.create({category_id: t2.id, frequency: 2, frequency_reset: 1, amount: 400, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+b1 = stewart.budgets.create({category_id: t3.id, frequency: 2, frequency_reset: 1, amount: 100, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 4))
+
+b1 = stewart.goals.create({account_id: s2.id, name: "save for apartment", goal_date: Date.current.change(month: 9), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 3))
+
+b1 = stewart.goals.create({account_id: s2.id, name: "save for car", goal_date: Date.current.change(month: 7), amount: 2000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = stewart.goals.create({account_id: s2.id, name: "save for vacation", goal_date: Date.current.change(month: 12), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+
+
+b1 = martha.budgets.create({category_id: t1.id, frequency: 2, frequency_reset: 1, amount: 500, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = martha.budgets.create({category_id: t2.id, frequency: 2, frequency_reset: 1, amount: 400, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+b1 = martha.budgets.create({category_id: t3.id, frequency: 2, frequency_reset: 1, amount: 100, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 4))
+
+b1 = martha.goals.create({account_id: m2.id, name: "save for apartment", goal_date: Date.current.change(month: 9), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 3))
+
+b1 = martha.goals.create({account_id: m2.id, name: "save for car", goal_date: Date.current.change(month: 7), amount: 2000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = martha.goals.create({account_id: m1.id, name: "save for vacation", goal_date: Date.current.change(month: 12), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+
+
+b1 = ned.budgets.create({category_id: t1.id, frequency: 2, frequency_reset: 1, amount: 500, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = ned.budgets.create({category_id: t2.id, frequency: 2, frequency_reset: 1, amount: 400, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
+
+b1 = ned.budgets.create({category_id: t3.id, frequency: 2, frequency_reset: 1, amount: 100, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 4))
+
+b1 = ned.goals.create({account_id: c2.id, name: "save for apartment", goal_date: Date.current.change(month: 9), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 3))
+
+b1 = ned.goals.create({account_id: c2.id, name: "save for car", goal_date: Date.current.change(month: 7), amount: 2000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 2))
+
+b1 = ned.goals.create({account_id: c1.id, name: "save for vacation", goal_date: Date.current.change(month: 12), amount: 5000, private: false, is_active: true})
+b1.update(created_at: Date.current.change(month: 1))
