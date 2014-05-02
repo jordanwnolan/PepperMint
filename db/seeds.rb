@@ -6,11 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-jordan = User.create({email: "jordan@appacademy.io", password: "123456", username: "jordan"})
-stewart = User.create({email: "stewart@appacademy.io", password: "123456", username: "stewart"})
-martha = User.create({email: "martha@appacademy.io", password: "123456", username: "martha"})
-ned = User.create({email: "ned@appacademy.io", password: "123456", username: "ned"})
-jonathan = User.create({email: "jonathan@appacademy.io", password: "123456", username: "jonathan"})
+jordan = User.create({email: "bill@gates.com", password: "123456", username: "billgatesXP"})
+stewart = User.create({email: "steve@woz.com", password: "123456", username: "steveAppleII"})
+martha = User.create({email: "sergei@brin.com", password: "123456", username: "sergetSearch"})
+ned = User.create({email: "larry@page.com", password: "123456", username: "larryGoogle"})
+jonathan = User.create({email: "steve@ballmer.com", password: "123456", username: "steveM$"})
+mark = User.create({email: "mark@zuck.com", password: "123456", username: "markFace"})
 
 bofa = Bank.create({name: "Bank of America", url: "bofa.com"})
 gnb = Bank.create({name: "Wells Fargo", url: "wellsfargo.com"})
@@ -191,6 +192,3 @@ checking_accounts = Account.all.where(account_type: 0)
 
   end
 end
-
-pcts = (1..25).to_a
-

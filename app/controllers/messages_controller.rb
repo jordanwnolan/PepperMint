@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     @message.sender_id = current_user.id
 
     if @message.save
-      flash[:alerts] = ["Message sent!"]
+      # flash[:alerts] = ["Message sent!"]
       redirect_to @user
     else
       @already_following = current_user.followed_users.include?(@user)
