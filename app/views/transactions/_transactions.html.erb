@@ -5,7 +5,7 @@
   <header class="page-content-header group">
     <h3 class="page-title">All Transactions</h3>
 </header>
-<article class="page-body">
+<article class="page-body" data-url="<%= transactions_url %>">
 
   <script type="application/json" id="url-data">
     <%= urls_for_transaction_categories.to_json.html_safe %>
@@ -103,7 +103,7 @@
           console.log(event)
         if ($(event.target).prop("tagName") == "rect") {
           $.ajax({
-            url: $(".page").attr("data-url"),
+            url: $(".page-body").attr("data-url"),
             type: 'GET',
             success: function(data) {
               console.log('hi')
