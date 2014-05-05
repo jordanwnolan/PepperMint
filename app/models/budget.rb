@@ -46,7 +46,9 @@ class Budget < ActiveRecord::Base
   end
 
   def current_transactions
-    self.transactions.where("date >= ?", get_reset_date(self.frequency, self.frequency_reset))
+    self.transactions.includes(:account).where("date >= ?", get_reset_date(self.frequency, self.frequency_reset)).map do |transaction|
+      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+    end
   end
 
   def on_track?

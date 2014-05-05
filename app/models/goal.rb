@@ -30,7 +30,15 @@ class Goal < ActiveRecord::Base
   end
 
   def current_transactions(date = self.created_at)
-    self.transactions.where("date >= ?", date)
+    self.transactions.inlcudes(:account).where("date >= ?", date).map do |transaction|
+      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+    end
+  end
+
+  def get_amounts(transactions_to_convert)
+    transactions_to_convert.map do |transaction|
+      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+    end
   end
 
   def set_initial_balance
@@ -39,16 +47,21 @@ class Goal < ActiveRecord::Base
 
   def define_monthly_amount
     start_date = (self.created_at ? self.created_at : Date.current)
+    # debugger
     months_to_go = (self.goal_date.year * 12 + self.goal_date.month) - (start_date.year * 12 + start_date.month)
     self.monthly_amount = (amount / months_to_go.to_f).round
   end
 
   def overall_on_track?
-    progress(account.transactions.where("date >= ?", self.created_at)) >= get_current_overall_scaled_goal_amount
+    transactions_to_convert = account.transactions.includes(:account).where("date >= ?", self.created_at)
+    progress(get_amounts(transactions_to_convert)) >= get_current_overall_scaled_goal_amount
   end
 
   def this_month_on_track?
-    progress(account.transactions.where("date >= ?", get_reset_date)) >= get_current_scaled_monthly_amount
+    reset_date = get_reset_date
+    reset_date = (reset_date < self.created_at ? self.created_at.to_date : reset_date)
+    transactions_to_convert = account.transactions.includes(:account).where("date >= ?", reset_date)
+    progress(get_amounts(transactions_to_convert)) >= get_current_scaled_monthly_amount
   end
 
   def on_track?
@@ -60,7 +73,10 @@ class Goal < ActiveRecord::Base
   end
 
   def this_month_progress
-    account.current_balance - self.account.balance_at_date(get_reset_date)
+    reset_date = get_reset_date
+    reset_date = reset_date < self.created_at ? self.created_at.to_date : reset_date
+    account.current_balance - self.account.balance_at_date(reset_date)
+    # fail
   end
 
   #scale the amounts to how far into the period to check if on track
@@ -72,6 +88,7 @@ class Goal < ActiveRecord::Base
 
   def get_current_scaled_monthly_amount
     reset_date = get_reset_date
+    reset_date = (reset_date < self.created_at ? self.created_at.to_date : reset_date)
     total_days = (reset_date.next_month - reset_date.to_date).to_i
     days_so_far = (Date.current - reset_date).to_i
     (self.monthly_amount * (days_so_far / total_days.to_f)).round

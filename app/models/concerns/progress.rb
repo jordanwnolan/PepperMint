@@ -3,8 +3,8 @@ require 'active_support/concern'
 module Progress
   extend ActiveSupport::Concern
 
-  def progress(current_transactions)
-    current_transactions.inject(0) { |accum, transactions| accum += transactions.amount }
+  def progress(amounts)
+    amounts.inject(0) { |accum, amount| accum -= amount }
   end
 
   def set_date_beginning_of_week(frequency_reset)

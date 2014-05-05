@@ -186,6 +186,12 @@ h3 {
   background: rgba(100,100,100,0.2);
 }
 
+.user-side-bar {
+  width: 200px;
+  display: block;
+  float: left;
+}
+
 .nav-side-bar {
   width: 200px;
   float: left;
@@ -200,7 +206,12 @@ h3 {
 
 .nav-side-bar > li > a:hover {
   background-color: #eee;
-} 
+}
+
+#messages-sidebar-container {
+  width: 200px;
+  float: left;
+}
 
 .page {
   width: 960px;
@@ -388,6 +399,12 @@ form > input {
   float: left;
 }
 
+.background-image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -100000000;
+}
 
 .submit > input:hover {
   background-color: #f90;
@@ -397,6 +414,10 @@ form > input {
   margin: auto;
   padding: 30px;
   width: 300px;
+}
+
+.welcome-page {
+  background: url("mintleaf.jpg");
 }
 
 .welcome > h1 {
