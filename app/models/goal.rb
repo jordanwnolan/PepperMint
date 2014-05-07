@@ -4,7 +4,7 @@ class Goal < ActiveRecord::Base
   include Fameable
   include Commentable
   
-  before_create :define_monthly_amount, :set_initial_balance
+  before_save :define_monthly_amount, :set_initial_balance
   before_save :define_monthly_amount
 
   validates :name, :goal_date, :amount, presence: true
@@ -29,25 +29,19 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def current_transactions(date = self.created_at)
-    self.transactions.inlcudes(:account).where("date >= ?", date).map do |transaction|
-      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
-    end
-  end
-
   def get_amounts(transactions_to_convert)
     transactions_to_convert.map do |transaction|
-      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+      transaction.actual_amount = transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+      transaction
     end
   end
 
   def set_initial_balance
-    self.account_initial_bal = self.account.current_balance
+    self.account_initial_bal = self.account.balance_at_date(self.created_at)
   end
 
   def define_monthly_amount
     start_date = (self.created_at ? self.created_at : Date.current)
-    # debugger
     months_to_go = (self.goal_date.year * 12 + self.goal_date.month) - (start_date.year * 12 + start_date.month)
     self.monthly_amount = (amount / months_to_go.to_f).round
   end
@@ -60,7 +54,7 @@ class Goal < ActiveRecord::Base
   def this_month_on_track?
     reset_date = get_reset_date
     reset_date = (reset_date < self.created_at ? self.created_at.to_date : reset_date)
-    transactions_to_convert = account.transactions.includes(:account).where("date >= ?", reset_date)
+    transactions_to_convert = account.transactions.includes(:account, merchant_category: :transaction_category).where("date >= ?", reset_date)
     progress(get_amounts(transactions_to_convert)) >= get_current_scaled_monthly_amount
   end
 
@@ -75,7 +69,9 @@ class Goal < ActiveRecord::Base
   def this_month_progress
     reset_date = get_reset_date
     reset_date = reset_date < self.created_at ? self.created_at.to_date : reset_date
+    # debugger
     account.current_balance - self.account.balance_at_date(reset_date)
+
     # fail
   end
 

@@ -46,8 +46,9 @@ class Budget < ActiveRecord::Base
   end
 
   def current_transactions
-    self.transactions.includes(:account).where("date >= ?", get_reset_date(self.frequency, self.frequency_reset)).map do |transaction|
-      transaction.account.account_type == 2 ? (-1 * transaction.amount) : transaction.amount
+    self.transactions.includes(:account, merchant_category: :transaction_category).where("date >= ?", get_reset_date(self.frequency, self.frequency_reset)).map do |transaction|
+      transaction.actual_amount = transaction.account.account_type != 2 ? (-1 * transaction.amount) : transaction.amount
+      transaction
     end
   end
 

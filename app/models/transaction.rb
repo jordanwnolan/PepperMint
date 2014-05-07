@@ -1,4 +1,5 @@
 class Transaction < ActiveRecord::Base
+  attr_accessor :actual_amount
 
   belongs_to :account
   belongs_to(

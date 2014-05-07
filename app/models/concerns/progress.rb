@@ -3,8 +3,9 @@ require 'active_support/concern'
 module Progress
   extend ActiveSupport::Concern
 
-  def progress(amounts)
-    amounts.inject(0) { |accum, amount| accum -= amount }
+  def progress(transactions)
+    # fail
+    transactions.inject(0) { |accum, transaction| accum += transaction.actual_amount }
   end
 
   def set_date_beginning_of_week(frequency_reset)
@@ -37,11 +38,9 @@ module Progress
     else
 
       reset_day = get_reset_day(frequency_reset, today)
-      # debugger
       if reset_day >= today.day
         last_month = today.prev_month
         reset_date = last_month.change(day: get_reset_day(frequency_reset, last_month))
-        # debugger
       else
         reset_date = today.change(day: reset_day)
       end

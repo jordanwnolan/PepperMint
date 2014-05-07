@@ -30,7 +30,7 @@ class BudgetsController < ApplicationController
     @budget = Budget.includes(:user, :transaction_category, { comments: :author} ).where(id: params[:id]).first
     @transactions = @budget.current_transactions
     @comments = @budget.comments.order(created_at: :desc)
-
+    @accounts = current_user.accounts
     if @budget.private
       flash[:errors] = ["You are not authorized to view this budget"]
       redirect_to root_url
