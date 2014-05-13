@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :require_signed_in!, except: [:home]
+  before_action :require_signed_in!, except: [:home, :demo_user]
 
   def home
     redirect_to overview_url if current_user
@@ -45,6 +45,19 @@ class HomeController < ApplicationController
       render partial: 'home/feed', locals: { shares: @shares }
     else
       render :feed
+    end
+  end
+
+  def demo_user
+    @user = User.find_by_credentials('demo@example.com', '123456')
+    if @user
+
+      login_user(@user)
+      redirect_to overview_url
+    else
+      flash.now[:errors] = ["Invalid Credentials"]
+      @user = User.new
+      render :new
     end
   end
 

@@ -1017,3 +1017,7 @@ td > textarea.inline-edit:focus {
   0% { background-color: #cfc; }
   100% { background-color: #fff; }
 }
+
+.welcome > p {
+  text-align: center;
+}

@@ -4,6 +4,7 @@ PepperMint::Application.routes.draw do
   get 'overview', to: 'home#overview', as: :overview
   get 'followed_feed', to: 'home#followed_feed'
   get 'feed', to: 'home#feed'
+  get 'demo_user', to: 'home#demo_user'
 
 
   resources :transaction_categories, only: [:show]
