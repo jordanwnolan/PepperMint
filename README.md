@@ -75,3 +75,5 @@ Add jQuery to Budget creation so that one the monthly/weekly dropdowns appear un
 Oauth
 
 Email authenticate/password reset
+
+Add logic to notification and share creation so that it doesn't happen too often.
