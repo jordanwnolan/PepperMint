@@ -21,6 +21,7 @@
       <div class="submit view-button">
         <input type="submit" value="View">
       </div>
+      </form>
   </header>
   <article class="page-body">
 
@@ -29,14 +30,7 @@
   </script>
   <article class="card">
     <div id="line-chart-container"></div>
-  </article>
-
-  <article class="card">
-    <div id="pie-chart-container"></div>
-  </article>
-  
-  <%#= pie_chart  data_for_transaction_categories(@transactions) %>
-  
+  </article>  
 
     <div class="transactions-table-container">
       <%= render partial: 'transactions/transactions', locals: { transactions: @transactions.order(date: :desc) } %>
@@ -53,8 +47,7 @@
 
     <script type="text/javascript">
 
-      // Load the Visualization API and the piechart package.
-      $(document).ready(function() {
+      // $(document).ready(function() {
 
 
 
@@ -62,23 +55,15 @@
 
         google.setOnLoadCallback(drawChart);
 
-        var pieData = JSON.parse($("#pie-chart-data").html());
         var urls = JSON.parse($("#url-data").html());
         console.log(urls);
      
         labels = [];
-        pieData.forEach(function(arr) {
-          labels.push(arr[0])
-        });
 
         dataRows = [];
 
-        pieData.forEach(function(arr) {
-          dataRows.push([arr[0], arr[1]]);
-        });
-
         var lineData = JSON.parse($("#line-chart-data").html());
-
+        console.log(lineData)
         rows = [];
         Object.keys(lineData).forEach(function(key) {
           rows.push([key, lineData[key]])
@@ -91,7 +76,7 @@
           data.addColumn('string', 'Category');
           data.addColumn('number', 'Count');
           // console.log(rows);
-          data.addRows(pieData);
+          // data.addRows(pieData);
 
           var dataForLineChart = new google.visualization.DataTable();
           dataForLineChart.addColumn('string', 'Month');
@@ -105,47 +90,47 @@
 
           var options = {'title':'Transactions by Category', 'height': 400, 'backgroundColor': '#F3F3F3' };
 
-          var chart = new google.visualization.PieChart(document.getElementById('pie-chart-container'));
+          // var chart = new google.visualization.PieChart(document.getElementById('pie-chart-container'));
           var lineChart = new google.visualization.LineChart(document.getElementById('line-chart-container'));
           
 
-          function selectHandler() {
-            var selectedItem = chart.getSelection()[0];
-            if (selectedItem) {
-              var transactionCategoryId = urls[data.getValue(selectedItem.row, 0)]
-              var goToUrl = "/accounts/" + $(".page").attr("data-account-id") + "/transaction_categories/" + transactionCategoryId
-              $.ajax({
-                url: goToUrl,
-                type: 'GET',
-                success: function (data) {
-                  $(".transactions-table-container").empty();
-                  $(".transactions-table-container").html(data);
-                }
-              })
-            }
-          };
+          // function selectHandler() {
+          //   var selectedItem = chart.getSelection()[0];
+          //   if (selectedItem) {
+          //     var transactionCategoryId = urls[data.getValue(selectedItem.row, 0)]
+          //     var goToUrl = "/accounts/" + $(".page").attr("data-account-id") + "/transaction_categories/" + transactionCategoryId
+          //     $.ajax({
+          //       url: goToUrl,
+          //       type: 'GET',
+          //       success: function (data) {
+          //         $(".transactions-table-container").empty();
+          //         $(".transactions-table-container").html(data);
+          //       }
+          //     })
+          //   }
+          // };
 
-          function readyHandler () {
-            $("#pie-chart-container").on('click', function (event) {
-            if ($(event.target).prop("tagName") == "rect") {
-              $.ajax({
-                url: $(".page").attr("data-url"),
-                type: 'GET',
-                success: function(data) {
-                  chart.setSelection();
-                  $(".transactions-table-container").empty();
-                  $(".transactions-table-container").html(data);
-                }
-              })
-            }
-           });
-          };
+          // function readyHandler () {
+          //   $("#pie-chart-container").on('click', function (event) {
+          //   if ($(event.target).prop("tagName") == "rect") {
+          //     $.ajax({
+          //       url: $(".page").attr("data-url"),
+          //       type: 'GET',
+          //       success: function(data) {
+          //         chart.setSelection();
+          //         $(".transactions-table-container").empty();
+          //         $(".transactions-table-container").html(data);
+          //       }
+          //     })
+          //   }
+          //  });
+          // };
           
-          chart.draw(dataForLineChart, optionsForLineChart);
-          google.visualization.events.addListener(chart, 'select', selectHandler);
-          google.visualization.events.addListener(chart, 'ready', readyHandler);
-          chart.draw(data, options);
+          // chart.draw(dataForLineChart, optionsForLineChart);
+          // google.visualization.events.addListener(chart, 'select', selectHandler);
+          // google.visualization.events.addListener(chart, 'ready', readyHandler);
+          // chart.draw(data, options);
           lineChart.draw(dataForLineChart, optionsForLineChart);
         }
-    });
+    // });
     </script>

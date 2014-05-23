@@ -3,28 +3,38 @@
 <%= render partial: 'layouts/overview_side_bar' %>
 
 <section class="page-content">
-  <header class="page-content-header">
-    <h3 class="page-content-title">
+  <header class="page-content-header group">
+    <h1 class="page-title">
     <%= "#{ @goal.user.username }'s goal to: " unless @goal.user == current_user %>
     <%= @goal.name %>
-    </h3>
+    </h1>
+
     <%= link_to "Edit Goal", edit_goal_url(@goal) %>
-    <%= button_to "Delete Goal", goal_url(@goal), method: :delete, form_class: "delete-button" %>
+    <form action="<%= goal_url(@goal) %>" method="post">
+      <%= auth_token %>
+      <input type="hidden" name="_method" value="delete">
+
+      <div class="submit">
+        <input type="submit" value = "Delete Goal">
+      </div>
+    </form>
+
   </header>
   <article class="page-body">
     <div class="cards">
     <%= render partial: 'goals/goal', locals: { goal: @goal } %>
-    
-    <form action="<%= goal_comments_url(@goal) %>" method="post">
-      <%= auth_token %>
-      <div class="input">
-        <textarea name="comment[body]" id="comment-body"></textarea>
-      </div>
-      
-      <div class="submit">
-        <input type="submit" value="Add Comment">
-      </div>
-    </form>
+    <div class="bottom-of-page-comment group">
+      <form action="<%= goal_comments_url(@goal) %>" method="post">
+        <%= auth_token %>
+        <div class="input">
+          <textarea name="comment[body]" id="comment-body"></textarea>
+        </div>
+        
+        <div class="submit">
+          <input type="submit" value="Add Comment">
+        </div>
+      </form>
+    </div>
     <%= render @comments %>
     </div>
   </article>

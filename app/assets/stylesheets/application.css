@@ -660,6 +660,7 @@ form > input {
   float: left;
   margin-right: 10px;
 }
+
 .card {
   background-color: #F3F3F3;
   border: 1px solid #ccc;
@@ -684,6 +685,7 @@ form > input {
 }
 
 .card-header > div.thumb {
+  padding-left: 200px;
   width: 100px;
   height: 100px;
   margin-right: 20px;
@@ -719,6 +721,7 @@ form > input {
 }
 
 .card-header > a > .avatar {
+  margin-left: 50px;
   width: 100px;
   height: 100px;
 }
@@ -1020,4 +1023,24 @@ td > textarea.inline-edit:focus {
 
 .welcome > p {
   text-align: center;
+}
+
+.page-content-header > a {
+  border-radius: 5px;
+  /*width: 0px;*/
+  display: block;
+  float: left;
+  margin: 0 20px 0 0;
+  padding: 10px 20px;
+  background: #f80;
+  text-align: center;
+  color: #fff;
+}
+
+.page-content-header a:hover {
+  background: #fa0;
+}
+
+.page-content-title {
+  margin: 0 0 5px 0;
 }

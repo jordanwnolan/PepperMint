@@ -1,3 +1,4 @@
+<% if @data %>
 <script type="application/json" id="pie-chart-data">
   <%= @data.to_json.html_safe %>
 </script>
@@ -28,6 +29,7 @@
         <input type="submit" value="View">
       </div>
       </form>
+<% end %>
       <div class="transactions-table-container">
 
 <div class="transactions-table">
@@ -49,7 +51,8 @@
       </div>
       </div>
   </article>
-
+<%# fail %>
+<% if @data %>
 <script>
 
 
@@ -159,3 +162,4 @@
 
     });
 </script>
+<% end %>
