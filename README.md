@@ -1,5 +1,6 @@
 #Description#
 
+
 Peppermint is a personal finance site with social features to spice things up.
 
 Users can create budgets, goals, and view transactions.  Users can also follow people, view other users' public goals and budgets as well
